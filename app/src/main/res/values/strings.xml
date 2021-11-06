@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">bestworld</string>
+
+    <string name="contentDescription">contentDescription</string>
+
+    <string name="tabHome">tabHome</string>
+    <string name="tabAdd">tabAdd</string>
+    <string name="tabUsers">tabUsers</string>
+    <string name="tabUserProfile">tabUserProfile</string>
+
+    <string name="EnviromentalTitleTab">Acción medioambiental</string>
+    <string name="DivulgationTitleTab">Divulgación</string>
+    <string name="WorkshopTitleTab">Talleres ambientales</string>
+    <string name="MobilizationTitleTab">Movilización</string>
+    <string name="FarmingTitleTab">Agricultura colaborativa</string>
+    <string name="OtherTitleTab">Otros</string>
+
+    <string name="EnviromentalTitle">AM</string>
+    <string name="DivulgationTitle">D</string>
+    <string name="WorkshopTitle">TA</string>
+    <string name="MobilizationTitle">M</string>
+    <string name="FarmingTitle">AC</string>
+    <string name="OtherTitle">O</string>
+
+</resources>

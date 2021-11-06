@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "621377823585",
+    "firebase_url": "https://bestworld-23be6-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "bestworld-23be6",
+    "storage_bucket": "bestworld-23be6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:621377823585:android:cf5d2b88247f85d7b25b20",
+        "android_client_info": {
+          "package_name": "com.ftbw.app.bestworld"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "621377823585-ofl3b3qhdudk3h9otma71l72eife9uoj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ftbw.app.bestworld",
+            "certificate_hash": "879f8cc5d48b883c55b1982928c005a06bb5098f"
+          }
+        },
+        {
+          "client_id": "621377823585-vrffgkrqns86v4s0677podhtvb9ebh0a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_gag656qTlRiz4p1PaAV9xV81kxuuYz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "621377823585-vrffgkrqns86v4s0677podhtvb9ebh0a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

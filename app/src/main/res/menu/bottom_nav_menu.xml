@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab1"
+        android:enabled="true"
+        android:icon="@drawable/ic_nav_home"
+        android:title="@string/tabHome" />
+
+    <item
+        android:id="@+id/tab2"
+        android:enabled="true"
+        android:icon="@drawable/ic_nav_add"
+        android:title="@string/tabAdd" />
+
+    <item
+        android:id="@+id/tab3"
+        android:enabled="true"
+        android:icon="@drawable/ic_nav_users"
+        android:title="@string/tabUsers" />
+
+    <item
+        android:id="@+id/tab4"
+        android:enabled="true"
+        android:icon="@drawable/ic_nav_user_profile"
+        android:title="@string/tabUserProfile" />
+</menu>
