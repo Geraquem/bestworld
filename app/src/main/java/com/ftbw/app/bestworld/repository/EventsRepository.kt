@@ -10,9 +10,9 @@ class EventsRepository constructor(val application: Application) {
 
     val listEventRecycler = MutableLiveData<List<EventRecyclerDTO>>()
 
-    fun getEnvironmentalEvents() {
+    fun getEnvironmentalEvents(eventName: String) {
         val auxList: MutableList<EventRecyclerDTO> = mutableListOf()
-        Firebase.database.reference.child("events").child("environmental").get()
+        Firebase.database.reference.child("events").child(eventName).get()
             .addOnSuccessListener {
                 auxList.clear()
                 for (event in it.children) {

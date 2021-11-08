@@ -23,7 +23,7 @@ class EnvironmentalTab : Fragment() {
 
     private lateinit var viewModel: EventsViewModel
 
-    lateinit var adapter: RViewEventsAdapter
+    private lateinit var adapter: RViewEventsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,7 +42,7 @@ class EnvironmentalTab : Fragment() {
 
         bdg.eventTabTitle.text = getString(R.string.EnviromentalTitleTab)
 
-        viewModel.getEnvironmentalEvents()
+        viewModel.getEvents("environmental")
         viewModel.listEventRecycler.observe(viewLifecycleOwner, {
             initRecyclerView(it)
             adapter.notifyDataSetChanged()

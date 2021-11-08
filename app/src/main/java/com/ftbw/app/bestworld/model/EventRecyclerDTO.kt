@@ -5,4 +5,5 @@ data class EventRecyclerDTO(
     val address: String = "",
     val imageURL: String = "",
     val creator: String = "",
+    val key: String = "",
 )

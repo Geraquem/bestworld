@@ -19,9 +19,9 @@ class EventsViewModel(application: Application) : AndroidViewModel(application) 
         this.listEventRecycler = repository.listEventRecycler
     }
 
-    fun getEnvironmentalEvents() {
+    fun getEvents(eventName: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            repository.getEnvironmentalEvents()
+            repository.getEnvironmentalEvents(eventName)
         }
     }
 }

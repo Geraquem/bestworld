@@ -3,6 +3,7 @@ package com.ftbw.app.bestworld.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.RowEventRecyclerBinding
@@ -28,7 +29,14 @@ class RViewEventsAdapter(private var eventList: List<EventRecyclerDTO>) :
         private val bdg = RowEventRecyclerBinding.bind(view)
 
         fun bind(event: EventRecyclerDTO) {
+            //set imageURL
             bdg.name.text = event.name
+            bdg.creator.text = event.creator
+            bdg.address.text = event.address
+
+            bdg.row.setOnClickListener{
+                System.out.println(" ROW PULSADO ")
+            }
         }
     }
 }
