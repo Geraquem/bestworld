@@ -15,11 +15,6 @@
     <string name="FarmingTitleTab">Agricultura colaborativa</string>
     <string name="OtherTitleTab">Otros</string>
 
-    <string name="EnviromentalTitle">AM</string>
-    <string name="DivulgationTitle">D</string>
-    <string name="WorkshopTitle">TA</string>
-    <string name="MobilizationTitle">M</string>
-    <string name="FarmingTitle">AC</string>
-    <string name="OtherTitle">O</string>
+    <string name="createdBy">Creado por</string>
 
 </resources>

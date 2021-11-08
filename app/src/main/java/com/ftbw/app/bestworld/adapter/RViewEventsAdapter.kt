@@ -1,15 +1,17 @@
 package com.ftbw.app.bestworld.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.ftbw.app.bestworld.EventFile
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.RowEventRecyclerBinding
 import com.ftbw.app.bestworld.model.EventRecyclerDTO
 
-class RViewEventsAdapter(private var eventList: List<EventRecyclerDTO>) :
+class RViewEventsAdapter(var context: Context, private var eventList: List<EventRecyclerDTO>) :
     RecyclerView.Adapter<RViewEventsAdapter.EventHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventHolder {
@@ -20,7 +22,7 @@ class RViewEventsAdapter(private var eventList: List<EventRecyclerDTO>) :
     }
 
     override fun onBindViewHolder(holder: EventHolder, position: Int) {
-        holder.bind(eventList[position])
+        holder.bind(context, eventList[position])
     }
 
     override fun getItemCount() = eventList.size
@@ -28,14 +30,21 @@ class RViewEventsAdapter(private var eventList: List<EventRecyclerDTO>) :
     class EventHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val bdg = RowEventRecyclerBinding.bind(view)
 
-        fun bind(event: EventRecyclerDTO) {
+        fun bind(context: Context, event: EventRecyclerDTO) {
             //set imageURL
             bdg.name.text = event.name
             bdg.creator.text = event.creator
             bdg.address.text = event.address
 
-            bdg.row.setOnClickListener{
-                System.out.println(" ROW PULSADO ")
+            bdg.row.setOnClickListener {
+                context.startActivity(
+                    Intent(
+                        context,
+                        EventFile::class.java
+                    ).apply {
+                        putExtra("key", event.key)
+                        putExtra("label", event.label)
+                    })
             }
         }
     }
