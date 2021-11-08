@@ -2,15 +2,26 @@ package com.ftbw.app.bestworld.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import com.ftbw.app.bestworld.model.EventRecyclerDTO
 import com.ftbw.app.bestworld.repository.EventsRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class EventsViewModel (application: Application) : AndroidViewModel(application) {
+class EventsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = EventsRepository(application)
 
-    fun searchItem(terms: String) {
+    val listEventRecycler: LiveData<List<EventRecyclerDTO>>
+
+    init {
+        this.listEventRecycler = repository.listEventRecycler
+    }
+
+    fun getEnvironmentalEvents() {
         CoroutineScope(Dispatchers.IO).launch {
-            repository.searchItem(terms)
+            repository.getEnvironmentalEvents()
         }
     }
 }

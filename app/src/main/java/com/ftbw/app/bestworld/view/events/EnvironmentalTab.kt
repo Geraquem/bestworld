@@ -1,24 +1,29 @@
 package com.ftbw.app.bestworld.view.events
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
+import com.ftbw.app.bestworld.adapter.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentTabEventBinding
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import com.ftbw.app.bestworld.model.EventRecyclerDTO
+import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 
 class EnvironmentalTab : Fragment() {
     private var _bdg: FragmentTabEventBinding? = null
     private val bdg get() = _bdg!!
 
+    lateinit var getContext: Context
 
-    private lateinit var database: DatabaseReference
+    private lateinit var viewModel: EventsViewModel
 
+    lateinit var adapter: RViewEventsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,23 +34,29 @@ class EnvironmentalTab : Fragment() {
         return bdg.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
+
         bdg.eventTabTitle.text = getString(R.string.EnviromentalTitleTab)
 
+        viewModel.getEnvironmentalEvents()
+        viewModel.listEventRecycler.observe(viewLifecycleOwner, {
+            initRecyclerView(it)
+            adapter.notifyDataSetChanged()
+        })
+    }
 
-        database = Firebase.database.reference
+    private fun initRecyclerView(list: List<EventRecyclerDTO>) {
+        bdg.recyclerView.layoutManager = LinearLayoutManager(context)
+        adapter = RViewEventsAdapter(list)
+        bdg.recyclerView.adapter = adapter
+    }
 
-        database.child("test").child("value").get().addOnSuccessListener {
-            System.out.println("-------YES")
-            Log.i("firebase", "Got value ${it.value}")
-            bdg.text.text = it.value.toString()
-        }.addOnFailureListener {
-            Log.e("firebase", "Error getting data", it)
-            System.out.println("-------NOPE")
-        }
-
-        database.child("test").child("value").setValue("yeyeyeyeyey")
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        getContext = context
     }
 }
