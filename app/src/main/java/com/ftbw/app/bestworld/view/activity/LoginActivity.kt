@@ -1,8 +1,10 @@
 package com.ftbw.app.bestworld.view.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.ftbw.app.bestworld.R
@@ -30,8 +32,11 @@ class LoginActivity : AppCompatActivity() {
         }
 
         bdg.errorMessage.visibility = View.GONE
+        bdg.loading.visibility = View.GONE
+        bdg.logInButton.isEnabled = true
 
         bdg.logInButton.setOnClickListener {
+            closeKeyboard()
             bdg.errorMessage.visibility = View.GONE
 
 //            val email = bdg.email.text.toString()
@@ -41,6 +46,8 @@ class LoginActivity : AppCompatActivity() {
             val password = "123456"
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
+                bdg.loading.visibility = View.VISIBLE
+                bdg.logInButton.isEnabled = false
                 doLogin(email, password)
             }
         }
@@ -60,6 +67,8 @@ class LoginActivity : AppCompatActivity() {
 
                 } else {
                     bdg.errorMessage.visibility = View.VISIBLE
+                    bdg.loading.visibility = View.GONE
+                    bdg.logInButton.isEnabled = true
                 }
             }
     }
@@ -70,6 +79,13 @@ class LoginActivity : AppCompatActivity() {
         }
         setResult(LOGIN_ACTIVITY_REQUEST_CODE, returnIntent)
         finish()
+    }
+
+    private fun closeKeyboard() {
+        this.currentFocus?.let { view ->
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     //HACER FIREBASE AUTH CON LINK EN EL CORREO

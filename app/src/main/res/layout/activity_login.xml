@@ -99,7 +99,16 @@
             android:id="@+id/logInButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/montserrat_regular"
             android:text="@string/log_in" />
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/loading"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/loading_dots" />
 
     </LinearLayout>
 
