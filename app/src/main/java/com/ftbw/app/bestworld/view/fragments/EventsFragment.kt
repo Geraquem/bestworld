@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view
+package com.ftbw.app.bestworld.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

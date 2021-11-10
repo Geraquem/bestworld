@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bestworld">
         <activity
-            android:name=".EventFile"
+            android:name=".view.activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".BottomNavActivity"
+            android:name=".view.activity.EventFile"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.BottomNavActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

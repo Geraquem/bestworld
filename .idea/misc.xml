@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable-v24/bg_edit_text_register.xml" value="0.3828125" />
+        <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable-v24/ic_email.xml" value="0.3828125" />
+        <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable-v24/ic_password.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_arrow_back.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_nav_users.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_social_tab.xml" value="0.3828125" />
@@ -16,8 +19,10 @@
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/tab_color_selector.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/activity_bottom_nav.xml" value="0.3972911963882618" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/activity_event_file.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/fragment_events.xml" value="0.3972911963882618" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/fragment_tab_event.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/fragment_user_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/include_back_toolbar.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/include_main_toolbar.xml" value="0.4" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/include_recycler_view.xml" value="0.36666666666666664" />

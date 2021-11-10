@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view.events
+package com.ftbw.app.bestworld.view.fragments.events
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -16,7 +16,7 @@ import com.ftbw.app.bestworld.databinding.FragmentTabEventBinding
 import com.ftbw.app.bestworld.model.EventRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 
-class DivulgationTab : Fragment() {
+class EnvironmentalTab : Fragment() {
     private var _bdg: FragmentTabEventBinding? = null
     private val bdg get() = _bdg!!
 
@@ -41,9 +41,9 @@ class DivulgationTab : Fragment() {
 
         viewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
 
-        bdg.eventTabTitle.text = getString(R.string.DivulgationTitleTab)
+        bdg.eventTabTitle.text = getString(R.string.EnviromentalTitleTab)
 
-        viewModel.getEvents("divulgation")
+        viewModel.getEvents("environmental")
         viewModel.listEventRecycler.observe(viewLifecycleOwner, {
             initRecyclerView(it)
             adapter.notifyDataSetChanged()

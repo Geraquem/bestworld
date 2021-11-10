@@ -1,9 +1,10 @@
-package com.ftbw.app.bestworld
+package com.ftbw.app.bestworld.view.activity
 
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityEventFileBinding
 import com.ftbw.app.bestworld.model.EventDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel

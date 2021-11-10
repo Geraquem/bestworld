@@ -1,7 +1,7 @@
 package com.ftbw.app.bestworld.helper
 
 import androidx.fragment.app.Fragment
-import com.ftbw.app.bestworld.BottomNavActivity
+import com.ftbw.app.bestworld.view.activity.BottomNavActivity
 import com.ftbw.app.bestworld.R
 
 class EventHelper {

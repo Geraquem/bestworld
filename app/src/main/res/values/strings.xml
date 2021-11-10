@@ -1,7 +1,19 @@
 <resources>
     <string name="app_name">bestworld</string>
 
+    <string name="best">BEST</string>
+    <string name="world">WORLD</string>
+
     <string name="contentDescription">contentDescription</string>
+
+    <string name="email">EMAIL</string>
+    <string name="password">CONTRASEÑA</string>
+    <string name="repeat_password">REPITE LA CONSTRASEÑA</string>
+    <string name="log_in">ACCEDER</string>
+    <string name="sign_up">CREAR CUENTA</string>
+    <string name="dontHaveAccount">¿No tienes cuenta?</string>
+    <string name="registerHere">REGISTRATE AQUÍ</string>
+    <string name="errorMessageLogIn">Error al iniciar sesión\nCredenciales incorrectas</string>
 
     <string name="tabHome">tabHome</string>
     <string name="tabAdd">tabAdd</string>

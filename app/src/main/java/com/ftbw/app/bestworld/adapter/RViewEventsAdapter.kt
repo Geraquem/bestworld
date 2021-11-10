@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ftbw.app.bestworld.EventFile
+import com.ftbw.app.bestworld.view.activity.EventFile
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.RowEventRecyclerBinding
 import com.ftbw.app.bestworld.model.EventRecyclerDTO

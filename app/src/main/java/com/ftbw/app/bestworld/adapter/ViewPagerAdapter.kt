@@ -2,7 +2,7 @@ package com.ftbw.app.bestworld.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.ftbw.app.bestworld.view.events.*
+import com.ftbw.app.bestworld.view.fragments.events.*
 
 class ViewPagerAdapter(val fragment: Fragment) : FragmentStateAdapter(fragment) {
 
