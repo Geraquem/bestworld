@@ -65,7 +65,6 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     returnIntent(false)
-
                 } else {
                     bdg.errorMessage.visibility = View.VISIBLE
                     bdg.loading.visibility = View.GONE

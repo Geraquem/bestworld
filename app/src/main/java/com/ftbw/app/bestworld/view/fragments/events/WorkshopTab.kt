@@ -54,7 +54,6 @@ class WorkshopTab : Fragment() {
         bdg.recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = RViewEventsAdapter(requireContext(), list)
         bdg.recyclerView.adapter = adapter
-        bdg.recyclerView.addItemDecoration(DividerItemDecoration(context, 1))
     }
 
     override fun onAttach(context: Context) {

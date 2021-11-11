@@ -14,7 +14,16 @@ class UsersRepository constructor(val application: Application) {
 
     fun saveUser(name: String, email: String, key: String, type: String) {
         val user = RegisteredUserDTO(name, email, key, type)
-        Firebase.database.reference.child("users").child(type).child(key).setValue(user)
+        Firebase.database.reference.child("users").child(key).setValue(user)
+            .addOnCompleteListener {
+                run {
+                    saveUserByType(type, key)
+                }
+            }
+    }
+
+    private fun saveUserByType(type: String, key: String) {
+        Firebase.database.reference.child("usersByTypes").child(type).child(key).setValue(true)
             .addOnCompleteListener {
                 run {
                     isUserSaved.value = true
@@ -22,8 +31,8 @@ class UsersRepository constructor(val application: Application) {
             }
     }
 
-    fun getUser(type: String, key: String) {
-        Firebase.database.reference.child("users").child(type).child(key).get()
+    fun getUser(key: String) {
+        Firebase.database.reference.child("users").child(key).get()
             .addOnSuccessListener {
                 user.value = it.getValue(UserDTO::class.java)
 
