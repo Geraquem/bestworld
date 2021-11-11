@@ -2,8 +2,7 @@ package com.ftbw.app.bestworld.repository
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.ftbw.app.bestworld.model.EventDTO
-import com.ftbw.app.bestworld.model.EventRecyclerDTO
+import com.ftbw.app.bestworld.model.RegisteredUserDTO
 import com.ftbw.app.bestworld.model.UserDTO
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -11,6 +10,17 @@ import com.google.firebase.ktx.Firebase
 class UsersRepository constructor(val application: Application) {
 
     val user = MutableLiveData<UserDTO>()
+    val isUserSaved = MutableLiveData<Boolean>()
+
+    fun saveUser(name: String, email: String, key: String, type: String) {
+        val user = RegisteredUserDTO(name, email, key, type)
+        Firebase.database.reference.child("users").child(type).child(key).setValue(user)
+            .addOnCompleteListener {
+                run {
+                    isUserSaved.value = true
+                }
+            }
+    }
 
     fun getUser(type: String, key: String) {
         Firebase.database.reference.child("users").child(type).child(key).get()

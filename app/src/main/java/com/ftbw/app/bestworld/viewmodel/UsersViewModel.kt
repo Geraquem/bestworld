@@ -2,10 +2,7 @@ package com.ftbw.app.bestworld.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import com.ftbw.app.bestworld.model.EventDTO
-import com.ftbw.app.bestworld.model.EventRecyclerDTO
-import com.ftbw.app.bestworld.repository.EventsRepository
+import androidx.lifecycle.MutableLiveData
 import com.ftbw.app.bestworld.repository.UsersRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,15 +12,15 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = UsersRepository(application)
 
-//    val user: LiveData<User>
-//
-//    init {
-//        this.user = repository.user
-//    }
-//
-//    fun getUser(type: String) {
-//        CoroutineScope(Dispatchers.IO).launch {
-//            repository.getEvents(eventLabel)
-//        }
-//    }
+    var isUserSaved = MutableLiveData<Boolean>()
+
+    init {
+        this.isUserSaved = repository.isUserSaved
+    }
+
+    fun saveUser(name: String, email: String, key: String, type: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.saveUser(name, email, key, type)
+        }
+    }
 }

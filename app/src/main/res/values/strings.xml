@@ -1,19 +1,27 @@
 <resources>
     <string name="app_name">bestworld</string>
 
-    <string name="best">BEST</string>
-    <string name="world">WORLD</string>
-
     <string name="contentDescription">contentDescription</string>
+    <string name="somethingWentWrong">Algo ha salido mal :(</string>
 
+    <string name="name">NOMBRE</string>
     <string name="email">EMAIL</string>
+    <string name="passwordDetails">La contraseña debe tener 6 caracteres como mínimo.</string>
     <string name="password">CONTRASEÑA</string>
     <string name="repeat_password">REPITE LA CONSTRASEÑA</string>
+    <string name="log_in_title">INICIAR SESIÓN</string>
+    <string name="register_title">REGISTRARSE</string>
     <string name="log_in">ACCEDER</string>
     <string name="sign_up">CREAR CUENTA</string>
     <string name="dontHaveAccount">¿No tienes cuenta?</string>
     <string name="registerHere">REGISTRATE AQUÍ</string>
+    <string name="particular">PARTICULAR</string>
+    <string name="comapany">EMPRESA</string>
     <string name="errorMessageLogIn">Error al iniciar sesión\nCredenciales incorrectas</string>
+    <string name="errorMessageEmailNotValid">Email no válido</string>
+    <string name="errorMessageEmailInUse">Email en uso</string>
+    <string name="errorMessageNotMatchingPasswords">Las contraseñas no coinciden</string>
+    <string name="errorMessagePasswords6chars">La contraseña debe tener mínimo 6 caracteres</string>
 
     <string name="tabHome">tabHome</string>
     <string name="tabAdd">tabAdd</string>

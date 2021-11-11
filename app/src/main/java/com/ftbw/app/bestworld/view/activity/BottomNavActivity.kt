@@ -9,6 +9,7 @@ import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityBottomNavBinding
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.LOGIN_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.REGISTER_ACTIVITY_REQUEST_CODE
+import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.goToUserProfileAsMainUser
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.openFragment
 import com.ftbw.app.bestworld.view.fragments.EventsFragment
 import com.ftbw.app.bestworld.view.fragments.UserProfileFragment
@@ -76,20 +77,14 @@ class BottomNavActivity : AppCompatActivity() {
             when (result.resultCode) {
                 LOGIN_ACTIVITY_REQUEST_CODE -> {
                     if (result.data?.getBooleanExtra("register", false) == true) {
-                        //openActivity(RegisterActivity::class.java)
-                        Toast.makeText(this, "REGISTER ACTIVITY", Toast.LENGTH_SHORT).show()
-
+                        openActivity(RegisterActivity::class.java)
                     } else {
-                        if (Firebase.auth.currentUser != null) {
-                            openFragment(
-                                this,
-                                UserProfileFragment(Firebase.auth.currentUser!!.uid)
-                            )
-                        }
+                        goToUserProfileAsMainUser(this)
                     }
 
                 }
                 REGISTER_ACTIVITY_REQUEST_CODE -> {
+                    goToUserProfileAsMainUser(this)
                 }
             }
         }

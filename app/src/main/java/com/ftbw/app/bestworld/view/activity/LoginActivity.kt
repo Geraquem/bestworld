@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityLoginBinding
@@ -30,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         findViewById<ImageView>(R.id.backButton).setOnClickListener {
             finish();
         }
+        findViewById<TextView>(R.id.toolbarText).text = getString(R.string.log_in_title)
 
         bdg.errorMessage.visibility = View.GONE
         bdg.loading.visibility = View.GONE
@@ -62,7 +64,6 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-//                    val user = auth.currentUser
                     returnIntent(false)
 
                 } else {
