@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityRegisterBinding
-import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.LOGIN_ACTIVITY_REQUEST_CODE
+import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.REGISTER_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -43,8 +43,12 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         viewModel.isUserSaved.observe(this, {
-            setResult(LOGIN_ACTIVITY_REQUEST_CODE, Intent())
-            finish()
+            if (it) {
+                setResult(REGISTER_ACTIVITY_REQUEST_CODE, Intent())
+                finish()
+            } else {
+                setErrorMessage(R.string.somethingWentWrong)
+            }
         })
     }
 
@@ -99,7 +103,12 @@ class RegisterActivity : AppCompatActivity() {
                     bdg.errorMessage.visibility = View.GONE
                     if (Firebase.auth.currentUser != null) {
                         getRadioButton()
-                        viewModel.saveUser(name, email, Firebase.auth.currentUser!!.uid, getRadioButton())
+                        viewModel.saveUser(
+                            name,
+                            email,
+                            Firebase.auth.currentUser!!.uid,
+                            getRadioButton()
+                        )
                     } else {
                         setErrorMessage(R.string.somethingWentWrong)
                     }
@@ -115,14 +124,6 @@ class RegisterActivity : AppCompatActivity() {
         } else {
             return "particular"
         }
-    }
-
-    private fun returnIntent(register: Boolean) {
-        val returnIntent = Intent().apply {
-            putExtra("register", register)
-        }
-        setResult(LOGIN_ACTIVITY_REQUEST_CODE, returnIntent)
-        finish()
     }
 
     private fun closeKeyboard() {

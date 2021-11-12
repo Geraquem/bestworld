@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ftbw.app.bestworld.view.activity.EventFile
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.RowEventRecyclerBinding
-import com.ftbw.app.bestworld.model.EventRecyclerDTO
+import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 
 class RViewEventsAdapter(var context: Context, private var eventList: List<EventRecyclerDTO>) :
     RecyclerView.Adapter<RViewEventsAdapter.EventHolder>() {
@@ -32,7 +32,7 @@ class RViewEventsAdapter(var context: Context, private var eventList: List<Event
 
         fun bind(context: Context, event: EventRecyclerDTO) {
             //set imageURL
-            bdg.name.text = event.name
+            bdg.name.text = event.title
             bdg.creator.text = event.creator
             bdg.address.text = event.address
 

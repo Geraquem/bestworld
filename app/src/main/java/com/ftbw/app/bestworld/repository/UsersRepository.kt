@@ -25,9 +25,7 @@ class UsersRepository constructor(val application: Application) {
     private fun saveUserByType(type: String, key: String) {
         Firebase.database.reference.child("usersByTypes").child(type).child(key).setValue(true)
             .addOnCompleteListener {
-                run {
-                    isUserSaved.value = true
-                }
+                isUserSaved.value = it.isSuccessful
             }
     }
 

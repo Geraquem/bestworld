@@ -34,8 +34,7 @@ class BottomNavActivity : AppCompatActivity() {
                     true
                 }
                 R.id.tab2 -> {
-                    Toast.makeText(application.applicationContext, "tab add", Toast.LENGTH_SHORT)
-                        .show()
+                    openPostActivity.launch(Intent(this, CreateEventActivity::class.java))
                     true
                 }
                 R.id.tab3 -> {

@@ -14,6 +14,7 @@ class BottomNavHelper {
 
         const val LOGIN_ACTIVITY_REQUEST_CODE = 1
         const val REGISTER_ACTIVITY_REQUEST_CODE = 2
+        const val CREATE_EVENT_ACTIVITY_REQUEST_CODE = 3
 
         fun openFragment(context: BottomNavActivity, fragment: Fragment) {
             context.supportFragmentManager.beginTransaction()

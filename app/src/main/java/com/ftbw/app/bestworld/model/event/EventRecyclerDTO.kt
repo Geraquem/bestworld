@@ -1,7 +1,7 @@
-package com.ftbw.app.bestworld.model
+package com.ftbw.app.bestworld.model.event
 
 data class EventRecyclerDTO(
-    val name: String = "",
+    val title: String = "",
     val address: String = "",
     val creator: String = "",
     val key: String = "",

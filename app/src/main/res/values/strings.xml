@@ -2,7 +2,21 @@
     <string name="app_name">bestworld</string>
 
     <string name="contentDescription">contentDescription</string>
-    <string name="somethingWentWrong">Algo ha salido mal :(</string>
+    <string name="somethingWentWrong">Algo ha salido mal</string>
+
+    <string name="tabHome">tabHome</string>
+    <string name="tabAdd">tabAdd</string>
+    <string name="tabUsers">tabUsers</string>
+    <string name="tabUserProfile">tabUserProfile</string>
+
+    <string name="EnvironmentalTitleTab">Acción medioambiental</string>
+    <string name="DivulgationTitleTab">Divulgación</string>
+    <string name="WorkshopTitleTab">Talleres ambientales</string>
+    <string name="MobilizationTitleTab">Movilización</string>
+    <string name="FarmingTitleTab">Agricultura colaborativa</string>
+    <string name="OtherTitleTab">Otros</string>
+
+    <string name="createdBy">Creado por</string>
 
     <string name="name">NOMBRE</string>
     <string name="email">EMAIL</string>
@@ -23,18 +37,25 @@
     <string name="errorMessageNotMatchingPasswords">Las contraseñas no coinciden</string>
     <string name="errorMessagePasswords6chars">La contraseña debe tener mínimo 6 caracteres</string>
 
-    <string name="tabHome">tabHome</string>
-    <string name="tabAdd">tabAdd</string>
-    <string name="tabUsers">tabUsers</string>
-    <string name="tabUserProfile">tabUserProfile</string>
+    <string name="createEventTitle">CREAR EVENTO</string>
+    <string name="eventTitle">Titulo</string>
+    <string name="eventDescription">Descripción</string>
+    <string name="eventAddress">Dirección</string>
+    <string name="eventOtherInfo">Información adicional (opcional)</string>
+    <string name="uploadImage">SUBIR FOTO</string>
+    <string name="errorMessageEventTitle">Introduce un título válido</string>
+    <string name="errorMessageEventDescription">El evento necesita una descripción</string>
+    <string name="errorMessageEventAddress">El evento necesita una dirección</string>
+    <string name="errorMessageEventCategory">Selecciona la categoría del evento</string>
 
-    <string name="EnviromentalTitleTab">Acción medioambiental</string>
-    <string name="DivulgationTitleTab">Divulgación</string>
-    <string name="WorkshopTitleTab">Talleres ambientales</string>
-    <string name="MobilizationTitleTab">Movilización</string>
-    <string name="FarmingTitleTab">Agricultura colaborativa</string>
-    <string name="OtherTitleTab">Otros</string>
-
-    <string name="createdBy">Creado por</string>
+    <string-array name="event_labels">
+        <item>Selecciona categoría</item>
+        <item>Acción medioambiental</item>
+        <item>Divulgación</item>
+        <item>Talleres ambientales</item>
+        <item>Movilización</item>
+        <item>Agricultura colaborativa</item>
+        <item>Otros</item>
+    </string-array>
 
 </resources>

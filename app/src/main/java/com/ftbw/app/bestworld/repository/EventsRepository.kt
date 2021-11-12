@@ -2,8 +2,8 @@ package com.ftbw.app.bestworld.repository
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.ftbw.app.bestworld.model.EventDTO
-import com.ftbw.app.bestworld.model.EventRecyclerDTO
+import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
+import com.ftbw.app.bestworld.model.event.EventDTO
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -11,6 +11,7 @@ class EventsRepository constructor(val application: Application) {
 
     val listEventRecycler = MutableLiveData<List<EventRecyclerDTO>>()
     val event = MutableLiveData<EventDTO>()
+    val isEventSaved = MutableLiveData<Boolean>()
 
     fun getEvents(eventLabel: String) {
         val auxList: MutableList<EventRecyclerDTO> = mutableListOf()
@@ -35,5 +36,17 @@ class EventsRepository constructor(val application: Application) {
             }.addOnFailureListener {
                 System.out.println("------- NOPE, DATABASE ERROR")
             }
+    }
+
+    fun saveEvent(event: EventDTO) {
+        val database = Firebase.database.reference
+
+        val label = event.label
+        val key = database.child(label!!).push().key
+        event.key = key
+
+        database.child("events").child(label).child(key!!).setValue(event).addOnCompleteListener {
+            isEventSaved.value = it.isSuccessful
+        }
     }
 }

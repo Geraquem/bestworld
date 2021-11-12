@@ -8,12 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.adapter.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentTabEventBinding
-import com.ftbw.app.bestworld.model.EventRecyclerDTO
+import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 
 class EnvironmentalTab : Fragment() {
@@ -41,7 +40,7 @@ class EnvironmentalTab : Fragment() {
 
         viewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
 
-        bdg.eventTabTitle.text = getString(R.string.EnviromentalTitleTab)
+        bdg.eventTabTitle.text = getString(R.string.EnvironmentalTitleTab)
 
         viewModel.getEvents("environmental")
         viewModel.listEventRecycler.observe(viewLifecycleOwner, {

@@ -3,8 +3,8 @@ package com.ftbw.app.bestworld.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.ftbw.app.bestworld.model.EventDTO
-import com.ftbw.app.bestworld.model.EventRecyclerDTO
+import com.ftbw.app.bestworld.model.event.EventDTO
+import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.repository.EventsRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,10 +16,12 @@ class EventsViewModel(application: Application) : AndroidViewModel(application) 
 
     val listEventRecycler: LiveData<List<EventRecyclerDTO>>
     val event: LiveData<EventDTO>
+    val isEventSaved: LiveData<Boolean>
 
     init {
         this.listEventRecycler = repository.listEventRecycler
         this.event = repository.event
+        this.isEventSaved = repository.isEventSaved
     }
 
     fun getEvents(eventLabel: String) {
@@ -31,6 +33,12 @@ class EventsViewModel(application: Application) : AndroidViewModel(application) 
     fun getSpecificEvent(eventLabel: String, key: String) {
         CoroutineScope(Dispatchers.IO).launch {
             repository.getSpecificEvent(eventLabel, key)
+        }
+    }
+
+    fun saveEvent(event: EventDTO){
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.saveEvent(event)
         }
     }
 }

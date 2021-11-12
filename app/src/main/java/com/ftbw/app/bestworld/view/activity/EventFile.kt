@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityEventFileBinding
-import com.ftbw.app.bestworld.model.EventDTO
+import com.ftbw.app.bestworld.model.event.EventDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 
 class EventFile : AppCompatActivity() {
@@ -35,7 +35,7 @@ class EventFile : AppCompatActivity() {
     }
 
     private fun setEventAttributes(event: EventDTO) {
-        bdg.title.text = event.name
+        bdg.title.text = event.title
         bdg.description.text = event.description
         bdg.creator.text = event.creator
     }

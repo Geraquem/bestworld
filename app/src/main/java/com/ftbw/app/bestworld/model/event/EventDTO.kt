@@ -1,9 +1,9 @@
-package com.ftbw.app.bestworld.model
+package com.ftbw.app.bestworld.model.event
 
 data class EventDTO(
-    val key: String? = "",
+    var key: String? = "",
     val label: String? = "",
-    val name: String? = "",
+    val title: String? = "",
     val description: String? = "",
     val otherInfo: String? = "",
     val address: String? = "",
