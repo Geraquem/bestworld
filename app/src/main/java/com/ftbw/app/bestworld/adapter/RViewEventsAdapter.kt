@@ -33,7 +33,7 @@ class RViewEventsAdapter(var context: Context, private var eventList: List<Event
         fun bind(context: Context, event: EventRecyclerDTO) {
             //set imageURL
             bdg.name.text = event.title
-            bdg.creator.text = event.creator
+            bdg.creator.text = event.creatorName
             bdg.address.text = event.address
 
             bdg.row.setOnClickListener {
