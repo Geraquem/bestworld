@@ -41,7 +41,7 @@ class EventHelper {
             bdg.loading.visibility = View.GONE
             bdg.errorMessage.visibility = View.VISIBLE
             bdg.errorMessage.text = message
-            bdg.registerButton.isEnabled = true
+            bdg.createButton.isEnabled = true
         }
 
         fun getLabel(context: Context, labelSelected: String): String {

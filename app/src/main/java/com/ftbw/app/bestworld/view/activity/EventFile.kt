@@ -37,6 +37,6 @@ class EventFile : AppCompatActivity() {
     private fun setEventAttributes(event: EventDTO) {
         bdg.title.text = event.title
         bdg.description.text = event.description
-        bdg.creator.text = event.creator
+        bdg.creator.text = event.creatorName
     }
 }

@@ -8,5 +8,6 @@ data class EventDTO(
     val otherInfo: String? = "",
     val address: String? = "",
     val imageURL: String? = "",
-    val creator: String? = "",
+    val creatorName: String? = "",
+    val creatorKey: String? = "",
 )

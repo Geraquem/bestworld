@@ -34,7 +34,11 @@ class BottomNavActivity : AppCompatActivity() {
                     true
                 }
                 R.id.tab2 -> {
-                    openPostActivity.launch(Intent(this, CreateEventActivity::class.java))
+                    if (Firebase.auth.currentUser != null) {
+                        openPostActivity.launch(Intent(this, CreateEventActivity::class.java))
+                    } else {
+                        openPostActivity.launch(Intent(this, LoginActivity::class.java))
+                    }
                     true
                 }
                 R.id.tab3 -> {
@@ -45,13 +49,10 @@ class BottomNavActivity : AppCompatActivity() {
                 R.id.tab4 -> {
                     if (Firebase.auth.currentUser != null) {
                         openFragment(
-                            this,
-                            UserProfileFragment(Firebase.auth.currentUser!!.uid)
+                            this, UserProfileFragment(Firebase.auth.currentUser!!.uid)
                         )
                     } else {
-                        openPostActivity.launch(
-                            Intent(this, LoginActivity::class.java)
-                        )
+                        openPostActivity.launch(Intent(this, LoginActivity::class.java))
                     }
                     true
                 }

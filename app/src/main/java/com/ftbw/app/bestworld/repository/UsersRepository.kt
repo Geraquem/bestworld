@@ -38,5 +38,4 @@ class UsersRepository constructor(val application: Application) {
                 System.out.println("------- NOPE, DATABASE ERROR")
             }
     }
-
 }

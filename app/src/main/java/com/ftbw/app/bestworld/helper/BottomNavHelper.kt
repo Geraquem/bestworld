@@ -1,8 +1,10 @@
 package com.ftbw.app.bestworld.helper
 
+import android.content.Intent
 import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.view.activity.BottomNavActivity
+import com.ftbw.app.bestworld.view.activity.LoginActivity
 import com.ftbw.app.bestworld.view.fragments.EventsFragment
 import com.ftbw.app.bestworld.view.fragments.UserProfileFragment
 import com.google.firebase.auth.ktx.auth

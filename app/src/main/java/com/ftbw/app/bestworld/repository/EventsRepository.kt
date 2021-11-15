@@ -2,8 +2,8 @@ package com.ftbw.app.bestworld.repository
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.model.event.EventDTO
+import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
