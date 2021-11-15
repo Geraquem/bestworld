@@ -14,11 +14,14 @@ class EventsViewModel(application: Application) : AndroidViewModel(application) 
 
     private val repository = EventsRepository(application)
 
+    val isLoading: LiveData<Boolean>
+
     val listEventRecycler: LiveData<List<EventRecyclerDTO>>
     val event: LiveData<EventDTO>
     val isEventSaved: LiveData<Boolean>
 
     init {
+        this.isLoading = repository.isLoading
         this.listEventRecycler = repository.listEventRecycler
         this.event = repository.event
         this.isEventSaved = repository.isEventSaved

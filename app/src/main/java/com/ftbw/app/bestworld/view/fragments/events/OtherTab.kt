@@ -47,6 +47,10 @@ class OtherTab : Fragment() {
             initRecyclerView(it)
             adapter.notifyDataSetChanged()
         })
+
+        viewModel.isLoading.observe(viewLifecycleOwner, {
+            bdg.loading.visibility = View.GONE
+        })
     }
 
     private fun initRecyclerView(list: List<EventRecyclerDTO>) {

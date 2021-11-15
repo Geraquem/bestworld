@@ -9,6 +9,8 @@ import com.google.firebase.ktx.Firebase
 
 class EventsRepository constructor(val application: Application) {
 
+    val isLoading = MutableLiveData<Boolean>()
+
     val listEventRecycler = MutableLiveData<List<EventRecyclerDTO>>()
     val event = MutableLiveData<EventDTO>()
     val isEventSaved = MutableLiveData<Boolean>()
@@ -22,6 +24,7 @@ class EventsRepository constructor(val application: Application) {
                     auxList.add(event.getValue(EventRecyclerDTO::class.java)!!)
                 }
                 listEventRecycler.value = auxList
+                isLoading.value = false
 
             }.addOnFailureListener {
                 System.out.println("------- NOPE, DATABASE ERROR")
