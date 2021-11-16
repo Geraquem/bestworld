@@ -51,7 +51,7 @@ class CreateEventActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             R.array.event_labels,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            adapter.setDropDownViewResource(R.layout.spinner_item)
             bdg.spinner.adapter = adapter
         }
         bdg.spinner.onItemSelectedListener = this

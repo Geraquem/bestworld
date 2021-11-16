@@ -1,23 +1,30 @@
 package com.ftbw.app.bestworld.view.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.FragmentUserProfileBinding
+import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class UserProfileFragment(var userKey: String) : Fragment() {
+class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var _bdg: FragmentUserProfileBinding? = null
     private val bdg get() = _bdg!!
 
-    private lateinit var viewModel: UsersViewModel
+    lateinit var getContext: Context
+
+    private lateinit var usersViewModel: UsersViewModel
+    private lateinit var eventsViewModel: EventsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,13 +37,18 @@ class UserProfileFragment(var userKey: String) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
+        usersViewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
+        eventsViewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
 
-        if (userKey == Firebase.auth.currentUser!!.uid) {
-            Toast.makeText(context, "USER PRINCIPAL", Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(context, "USER NO PRINCIPAL", Toast.LENGTH_SHORT).show()
+        ArrayAdapter.createFromResource(
+            getContext,
+            R.array.event_labels,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(R.layout.spinner_item)
+            bdg.spinner.adapter = adapter
         }
+        bdg.spinner.onItemSelectedListener = this
 
         bdg.salir.setOnClickListener {
             Firebase.auth.signOut()
@@ -44,13 +56,33 @@ class UserProfileFragment(var userKey: String) : Fragment() {
             //Y DEVOLVER AL INICIO
         }
 
-        viewModel.getUser(userKey)
-        viewModel.user.observe(viewLifecycleOwner, {
+        usersViewModel.getUser(userKey)
+        usersViewModel.user.observe(viewLifecycleOwner, {
             bdg.name.text = it.name
             bdg.email.text = it.email
             //setUserCredentials
         })
 
+        eventsViewModel.listCreatedEvents.observe(viewLifecycleOwner, {
+            bdg.loadingEvents.visibility = View.GONE
+
+        })
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        getContext = context
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        val eventLabel = p0!!.getItemAtPosition(p2).toString()
+        if (eventLabel != "Selecciona categoría") {
+            bdg.loadingEvents.visibility = View.VISIBLE
+            eventsViewModel.getCreatedEventsByUser(userKey, eventLabel)
+        } else {
+            bdg.loadingEvents.visibility = View.GONE
+        }
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {}
 }

@@ -12,6 +12,7 @@ class EventsRepository constructor(val application: Application) {
     val isLoading = MutableLiveData<Boolean>()
 
     val listEventRecycler = MutableLiveData<List<EventRecyclerDTO>>()
+    val listCreatedEvents = MutableLiveData<List<EventRecyclerDTO>>()
     val event = MutableLiveData<EventDTO>()
     val isEventSaved = MutableLiveData<Boolean>()
 
@@ -51,5 +52,22 @@ class EventsRepository constructor(val application: Application) {
         database.child("events").child(label).child(key!!).setValue(event).addOnCompleteListener {
             isEventSaved.value = it.isSuccessful
         }
+    }
+
+    fun getCreatedEventsByUser(userKey: String, eventLabel: String) {
+        val auxList: MutableList<EventRecyclerDTO> = mutableListOf()
+        Firebase.database.reference.child("users").child(userKey).child("events").child(eventLabel)
+            .get()
+            .addOnSuccessListener {
+//                auxList.clear()
+//                for (event in it.children) {
+//                    auxList.add(event.getValue(EventRecyclerDTO::class.java)!!)
+//                }
+//                listEventRecycler.value = auxList
+//                isLoading.value = false
+
+            }.addOnFailureListener {
+                System.out.println("------- NOPE, DATABASE ERROR")
+            }
     }
 }
