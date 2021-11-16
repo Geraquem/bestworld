@@ -18,12 +18,13 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/eventTabTitle" />
+        android:layout_below="@+id/eventTabTitle"
+        android:layout_marginHorizontal="10dp" />
 
     <RelativeLayout
         android:id="@+id/loading"
-        android:background="@color/gray"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/gray" />
 
 </RelativeLayout>

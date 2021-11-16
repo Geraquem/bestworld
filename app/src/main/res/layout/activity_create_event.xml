@@ -32,7 +32,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:background="@drawable/spinner_style" />
+                android:background="@drawable/spinner_style"
+                android:elevation="3dp" />
 
             <EditText
                 android:id="@+id/title"

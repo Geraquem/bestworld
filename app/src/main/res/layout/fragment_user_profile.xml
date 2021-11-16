@@ -80,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="3dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/createdEvents"
@@ -90,7 +91,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/spinner_style" />
+            android:background="@drawable/spinner_style"
+            android:elevation="3dp" />
 
         <ProgressBar
             android:id="@+id/loadingEvents"
@@ -99,6 +101,34 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/suchEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:text="@string/suchEmpty"
+                android:textAllCaps="true"
+                android:textColor="@color/gray"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/contentDescription"
+                android:src="@drawable/ic_sad_face" />
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCreatedEventsByUser"

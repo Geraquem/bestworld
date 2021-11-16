@@ -50,21 +50,50 @@ class EventsRepository constructor(val application: Application) {
         event.key = key
 
         database.child("events").child(label).child(key!!).setValue(event).addOnCompleteListener {
-            isEventSaved.value = it.isSuccessful
+            saveCreatedEventByUser(event)
         }
     }
 
+    private fun saveCreatedEventByUser(event: EventDTO) {
+        Firebase.database.reference.child("users").child(event.creatorKey!!).child("events")
+            .child(event.label!!).child(event.key!!).setValue(true).addOnCompleteListener {
+                isEventSaved.value = it.isSuccessful
+            }
+    }
+
+
     fun getCreatedEventsByUser(userKey: String, eventLabel: String) {
-        val auxList: MutableList<EventRecyclerDTO> = mutableListOf()
+        val keyList: MutableList<String> = mutableListOf()
         Firebase.database.reference.child("users").child(userKey).child("events").child(eventLabel)
             .get()
             .addOnSuccessListener {
-//                auxList.clear()
-//                for (event in it.children) {
-//                    auxList.add(event.getValue(EventRecyclerDTO::class.java)!!)
-//                }
-//                listEventRecycler.value = auxList
-//                isLoading.value = false
+                keyList.clear()
+                for (event in it.children) {
+                    keyList.add(event.key.toString())
+                }
+                givenListOfKeysGetEvents(keyList, eventLabel)
+
+            }.addOnFailureListener {
+                System.out.println("------- NOPE, DATABASE ERROR")
+            }
+    }
+
+    private fun givenListOfKeysGetEvents(
+        keyList: List<String>,
+        eventLabel: String
+    ) {
+        val auxList: MutableList<EventRecyclerDTO> = mutableListOf()
+        Firebase.database.reference.child("events").child(eventLabel).get()
+            .addOnSuccessListener {
+                auxList.clear()
+                for (event in it.children) {
+                    for (key in keyList) {
+                        if (event.key == key) {
+                            auxList.add(event.getValue(EventRecyclerDTO::class.java)!!)
+                        }
+                    }
+                }
+                listCreatedEvents.value = auxList
 
             }.addOnFailureListener {
                 System.out.println("------- NOPE, DATABASE ERROR")

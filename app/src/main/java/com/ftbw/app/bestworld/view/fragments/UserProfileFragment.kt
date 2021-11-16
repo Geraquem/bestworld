@@ -1,5 +1,6 @@
 package com.ftbw.app.bestworld.view.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +10,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
+import com.ftbw.app.bestworld.adapter.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentUserProfileBinding
+import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabel
+import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
 import com.google.firebase.auth.ktx.auth
@@ -26,6 +31,8 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
     private lateinit var usersViewModel: UsersViewModel
     private lateinit var eventsViewModel: EventsViewModel
 
+    private lateinit var adapter: RViewEventsAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,6 +42,7 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         return bdg.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         usersViewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
@@ -65,8 +73,24 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
 
         eventsViewModel.listCreatedEvents.observe(viewLifecycleOwner, {
             bdg.loadingEvents.visibility = View.GONE
+            if (it.isEmpty()) {
+                bdg.rvCreatedEventsByUser.visibility = View.GONE
+                bdg.suchEmpty.visibility = View.VISIBLE
+            } else {
 
+                initRecyclerView(it)
+                adapter.notifyDataSetChanged()
+            }
         })
+    }
+
+    private fun initRecyclerView(list: List<EventRecyclerDTO>) {
+        bdg.rvCreatedEventsByUser.layoutManager = LinearLayoutManager(getContext)
+        adapter = RViewEventsAdapter(requireContext(), list)
+        bdg.rvCreatedEventsByUser.adapter = adapter
+
+        bdg.rvCreatedEventsByUser.visibility = View.VISIBLE
+        bdg.suchEmpty.visibility = View.GONE
     }
 
     override fun onAttach(context: Context) {
@@ -75,7 +99,7 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        val eventLabel = p0!!.getItemAtPosition(p2).toString()
+        val eventLabel = getLabel(getContext, p0!!.getItemAtPosition(p2).toString())
         if (eventLabel != "Selecciona categoría") {
             bdg.loadingEvents.visibility = View.VISIBLE
             eventsViewModel.getCreatedEventsByUser(userKey, eventLabel)
