@@ -2,7 +2,6 @@ package com.ftbw.app.bestworld.view.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.ftbw.app.bestworld.R
@@ -11,8 +10,9 @@ import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.LOGIN_ACTIVITY_RE
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.REGISTER_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.goToUserProfileAsMainUser
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.openFragment
-import com.ftbw.app.bestworld.view.fragments.EventsFragment
+import com.ftbw.app.bestworld.view.fragments.events.EventsFragment
 import com.ftbw.app.bestworld.view.fragments.UserProfileFragment
+import com.ftbw.app.bestworld.view.fragments.users.UsersFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -42,8 +42,7 @@ class BottomNavActivity : AppCompatActivity() {
                     true
                 }
                 R.id.tab3 -> {
-                    Toast.makeText(application.applicationContext, "tab users", Toast.LENGTH_SHORT)
-                        .show()
+                    openFragment(this, UsersFragment())
                     true
                 }
                 R.id.tab4 -> {

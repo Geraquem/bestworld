@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.adapter.RViewEventsAdapter
+import com.ftbw.app.bestworld.adapter.recyclerview.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentUserProfileBinding
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInEnglish
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
@@ -74,7 +74,7 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         eventsViewModel.listCreatedEvents.observe(viewLifecycleOwner, {
             bdg.loadingEvents.visibility = View.GONE
             if (it.isEmpty()) {
-                bdg.rvCreatedEventsByUser.visibility = View.GONE
+                bdg.recyclerView.visibility = View.GONE
                 bdg.suchEmpty.visibility = View.VISIBLE
             } else {
                 initRecyclerView(it)
@@ -84,11 +84,11 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
     }
 
     private fun initRecyclerView(list: List<EventRecyclerDTO>) {
-        bdg.rvCreatedEventsByUser.layoutManager = LinearLayoutManager(getContext)
+        bdg.recyclerView.layoutManager = LinearLayoutManager(getContext)
         adapter = RViewEventsAdapter(requireContext(), list)
-        bdg.rvCreatedEventsByUser.adapter = adapter
+        bdg.recyclerView.adapter = adapter
 
-        bdg.rvCreatedEventsByUser.visibility = View.VISIBLE
+        bdg.recyclerView.visibility = View.VISIBLE
         bdg.suchEmpty.visibility = View.GONE
     }
 
@@ -101,7 +101,7 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         val eventLabel = getLabelInEnglish(getContext, p0!!.getItemAtPosition(p2).toString())
         if (eventLabel != "Selecciona categoría") {
             bdg.loadingEvents.visibility = View.VISIBLE
-            bdg.rvCreatedEventsByUser.visibility = View.GONE
+            bdg.recyclerView.visibility = View.GONE
             eventsViewModel.getCreatedEventsByUser(userKey, eventLabel)
         } else {
             bdg.loadingEvents.visibility = View.GONE

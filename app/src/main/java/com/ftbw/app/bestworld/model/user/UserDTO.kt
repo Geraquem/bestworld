@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.model
+package com.ftbw.app.bestworld.model.user
 
 data class UserDTO (
     val name: String = "",

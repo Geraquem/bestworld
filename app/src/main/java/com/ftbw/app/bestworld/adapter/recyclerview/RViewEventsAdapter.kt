@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.adapter
+package com.ftbw.app.bestworld.adapter.recyclerview
 
 import android.content.Context
 import android.content.Intent
@@ -11,7 +11,7 @@ import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.RowEventRecyclerBinding
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 
-class RViewEventsAdapter(var context: Context, private var eventList: List<EventRecyclerDTO>) :
+class RViewEventsAdapter(var context: Context, private var eventsList: List<EventRecyclerDTO>) :
     RecyclerView.Adapter<RViewEventsAdapter.EventHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventHolder {
@@ -22,17 +22,17 @@ class RViewEventsAdapter(var context: Context, private var eventList: List<Event
     }
 
     override fun onBindViewHolder(holder: EventHolder, position: Int) {
-        holder.bind(context, eventList[position])
+        holder.bind(context, eventsList[position])
     }
 
-    override fun getItemCount() = eventList.size
+    override fun getItemCount() = eventsList.size
 
     class EventHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val bdg = RowEventRecyclerBinding.bind(view)
 
         fun bind(context: Context, event: EventRecyclerDTO) {
             //set imageURL
-            bdg.name.text = event.title
+            bdg.title.text = event.title
             bdg.creator.text = event.creatorName
             bdg.address.text = event.address
 

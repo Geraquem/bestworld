@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view.fragments
+package com.ftbw.app.bestworld.view.fragments.events
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.adapter.ViewPagerAdapter
+import com.ftbw.app.bestworld.adapter.pager.EventsViewPagerAdapter
 import com.ftbw.app.bestworld.databinding.FragmentEventsBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -33,7 +33,7 @@ class EventsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewPagerAdapter = ViewPagerAdapter(this)
+        val viewPagerAdapter = EventsViewPagerAdapter(this)
         bdg.viewPager.adapter = viewPagerAdapter
 
         TabLayoutMediator(bdg.tabLayout, bdg.viewPager) { tab, position ->

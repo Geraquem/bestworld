@@ -50,6 +50,9 @@
     <string name="errorMessageEventAddress">El evento necesita una dirección</string>
     <string name="errorMessageEventCategory">Selecciona la categoría del evento</string>
 
+    <string name="searchUsers">Buscar personas</string>
+    <string name="searchCompanies">Buscar empresas</string>
+
     <string-array name="event_labels">
         <item>Selecciona categoría</item>
         <item>Acción medioambiental</item>

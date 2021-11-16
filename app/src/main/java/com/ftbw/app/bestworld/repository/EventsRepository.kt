@@ -78,10 +78,7 @@ class EventsRepository constructor(val application: Application) {
             }
     }
 
-    private fun givenListOfKeysGetEvents(
-        keyList: List<String>,
-        eventLabel: String
-    ) {
+    private fun givenListOfKeysGetEvents(keyList: List<String>, eventLabel: String) {
         val auxList: MutableList<EventRecyclerDTO> = mutableListOf()
         Firebase.database.reference.child("events").child(eventLabel).get()
             .addOnSuccessListener {

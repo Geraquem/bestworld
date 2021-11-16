@@ -91,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/spinner_style"
+            android:background="@drawable/bg_spinner_event_label"
             android:elevation="3dp" />
 
         <ProgressBar
@@ -131,7 +131,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCreatedEventsByUser"
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -139,10 +139,10 @@
 
     <Button
         android:id="@+id/salir"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="20dp"
-        android:text="SALIR" />
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp" />
 
 </RelativeLayout>

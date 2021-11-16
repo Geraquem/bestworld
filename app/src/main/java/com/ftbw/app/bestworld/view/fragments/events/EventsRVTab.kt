@@ -10,13 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.adapter.RViewEventsAdapter
+import com.ftbw.app.bestworld.adapter.recyclerview.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentTabEventBinding
-import com.ftbw.app.bestworld.helper.EventHelper.Companion.MOBILIZATION
+import com.ftbw.app.bestworld.helper.EventHelper.Companion.DIVULGATION
+import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInSpanish
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 
-class MobilizationTab : Fragment() {
+class EventsRVTab(var label: String) : Fragment() {
     private var _bdg: FragmentTabEventBinding? = null
     private val bdg get() = _bdg!!
 
@@ -41,9 +42,10 @@ class MobilizationTab : Fragment() {
 
         viewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
 
-        bdg.eventTabTitle.text = getString(R.string.MobilizationTitleTab)
+        val labelText = getLabelInSpanish(getContext, label)
+        bdg.eventTabTitle.text = labelText
 
-        viewModel.getEvents(MOBILIZATION)
+        viewModel.getEvents(label)
         viewModel.listEventRecycler.observe(viewLifecycleOwner, {
             initRecyclerView(it)
             adapter.notifyDataSetChanged()
