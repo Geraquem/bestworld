@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.adapter.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentTabEventBinding
+import com.ftbw.app.bestworld.helper.EventHelper.Companion.DIVULGATION
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 
@@ -42,7 +43,7 @@ class DivulgationTab : Fragment() {
 
         bdg.eventTabTitle.text = getString(R.string.DivulgationTitleTab)
 
-        viewModel.getEvents("divulgation")
+        viewModel.getEvents(DIVULGATION)
         viewModel.listEventRecycler.observe(viewLifecycleOwner, {
             initRecyclerView(it)
             adapter.notifyDataSetChanged()

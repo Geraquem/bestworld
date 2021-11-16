@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityCreateEventBinding
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.CREATE_EVENT_ACTIVITY_REQUEST_CODE
-import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabel
+import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInEnglish
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.isThereFailures
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.setErrorMessage
 import com.ftbw.app.bestworld.model.event.EventDTO
@@ -126,7 +126,7 @@ class CreateEventActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        this.label = getLabel(this, p0!!.getItemAtPosition(p2).toString())
+        this.label = getLabelInEnglish(this, p0!!.getItemAtPosition(p2).toString())
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {}

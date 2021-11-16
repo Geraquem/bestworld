@@ -5,15 +5,17 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#505050</color>
+    <color name="red">#CA1515</color>
 
-    <color name="EnviromentalIconTab">#C0EFC9</color>
-    <color name="DivulgationIconTab">#AADCF8</color>
-    <color name="WorkshopIconTab">#AC817A</color>
-    <color name="MobilizationIconTab">#74B397</color>
-    <color name="FarmingIconTab">#AC817D</color>
-    <color name="OtherIconTab">#857C9C</color>
+    <color name="Enviromental">#C0EFC9</color>
+    <color name="Divulgation">#AADCF8</color>
+    <color name="Workshop">#C5948C</color>
+    <color name="Mobilization">#74B397</color>
+    <color name="Farming">#AC817D</color>
+    <color name="Other">#AA9ECA</color>
 
 </resources>

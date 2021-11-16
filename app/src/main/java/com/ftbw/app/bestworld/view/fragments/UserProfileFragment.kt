@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.adapter.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentUserProfileBinding
-import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabel
+import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInEnglish
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
@@ -77,7 +77,6 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
                 bdg.rvCreatedEventsByUser.visibility = View.GONE
                 bdg.suchEmpty.visibility = View.VISIBLE
             } else {
-
                 initRecyclerView(it)
                 adapter.notifyDataSetChanged()
             }
@@ -99,9 +98,10 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        val eventLabel = getLabel(getContext, p0!!.getItemAtPosition(p2).toString())
+        val eventLabel = getLabelInEnglish(getContext, p0!!.getItemAtPosition(p2).toString())
         if (eventLabel != "Selecciona categoría") {
             bdg.loadingEvents.visibility = View.VISIBLE
+            bdg.rvCreatedEventsByUser.visibility = View.GONE
             eventsViewModel.getCreatedEventsByUser(userKey, eventLabel)
         } else {
             bdg.loadingEvents.visibility = View.GONE
