@@ -64,6 +64,9 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
             //Y DEVOLVER AL INICIO
         }
 
+        bdg.loadingEvents.root.visibility = View.GONE
+        bdg.suchEmpty.root.visibility = View.GONE
+
         usersViewModel.getUser(userKey)
         usersViewModel.user.observe(viewLifecycleOwner, {
             bdg.name.text = it.name
@@ -72,13 +75,13 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         })
 
         eventsViewModel.listCreatedEvents.observe(viewLifecycleOwner, {
-            bdg.loadingEvents.visibility = View.GONE
+            bdg.loadingEvents.root.visibility = View.GONE
             if (it.isEmpty()) {
-                bdg.recyclerView.visibility = View.GONE
-                bdg.suchEmpty.visibility = View.VISIBLE
+                bdg.suchEmpty.root.visibility = View.VISIBLE
             } else {
                 initRecyclerView(it)
                 adapter.notifyDataSetChanged()
+                bdg.suchEmpty.root.visibility = View.GONE
             }
         })
     }
@@ -87,9 +90,6 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         bdg.recyclerView.layoutManager = LinearLayoutManager(getContext)
         adapter = RViewEventsAdapter(requireContext(), list)
         bdg.recyclerView.adapter = adapter
-
-        bdg.recyclerView.visibility = View.VISIBLE
-        bdg.suchEmpty.visibility = View.GONE
     }
 
     override fun onAttach(context: Context) {
@@ -100,11 +100,11 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         val eventLabel = getLabelInEnglish(getContext, p0!!.getItemAtPosition(p2).toString())
         if (eventLabel != "Selecciona categoría") {
-            bdg.loadingEvents.visibility = View.VISIBLE
+            bdg.loadingEvents.root.visibility = View.VISIBLE
             bdg.recyclerView.visibility = View.GONE
             eventsViewModel.getCreatedEventsByUser(userKey, eventLabel)
         } else {
-            bdg.loadingEvents.visibility = View.GONE
+            bdg.loadingEvents.root.visibility = View.GONE
         }
     }
 

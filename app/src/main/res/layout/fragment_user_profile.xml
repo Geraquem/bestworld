@@ -94,41 +94,13 @@
             android:background="@drawable/bg_spinner_event_label"
             android:elevation="3dp" />
 
-        <ProgressBar
+        <include
             android:id="@+id/loadingEvents"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:visibility="gone" />
+            layout="@layout/include_loading" />
 
-        <LinearLayout
+        <include
             android:id="@+id/suchEmpty"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:gravity="center"
-                android:text="@string/suchEmpty"
-                android:textAllCaps="true"
-                android:textColor="@color/gray"
-                android:textSize="14sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:contentDescription="@string/contentDescription"
-                android:src="@drawable/ic_sad_face" />
-
-        </LinearLayout>
+            layout="@layout/include_such_empty" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -141,8 +113,8 @@
         android:id="@+id/salir"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_margin="20dp" />
 
 </RelativeLayout>

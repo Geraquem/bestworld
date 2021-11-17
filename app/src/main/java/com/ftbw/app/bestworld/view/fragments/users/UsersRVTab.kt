@@ -15,7 +15,7 @@ import com.ftbw.app.bestworld.databinding.FragmentTabUsersBinding
 import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
 
-class UserRVTab(var type: String) : Fragment() {
+class UsersRVTab(var type: String) : Fragment() {
     private var _bdg: FragmentTabUsersBinding? = null
     private val bdg get() = _bdg!!
 
@@ -46,17 +46,18 @@ class UserRVTab(var type: String) : Fragment() {
             bdg.search.hint = getString(R.string.searchCompanies)
         }
 
-        bdg.loading.visibility = View.VISIBLE
+        bdg.loading.root.visibility = View.VISIBLE
+        bdg.suchEmpty.root.visibility = View.GONE
 
         viewModel.getUsersByType(type)
         viewModel.listUsers.observe(viewLifecycleOwner, {
-            bdg.loading.visibility = View.GONE
+            bdg.loading.root.visibility = View.GONE
             if (it.isEmpty()) {
-                bdg.recyclerView.visibility = View.GONE
-                bdg.suchEmpty.visibility = View.VISIBLE
+                bdg.suchEmpty.root.visibility = View.VISIBLE
             } else {
                 initRecyclerView(it)
                 adapter.notifyDataSetChanged()
+                bdg.suchEmpty.root.visibility = View.GONE
             }
         })
     }
@@ -65,9 +66,6 @@ class UserRVTab(var type: String) : Fragment() {
         bdg.recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = RViewUsersAdapter(requireContext(), list)
         bdg.recyclerView.adapter = adapter
-
-        bdg.recyclerView.visibility = View.VISIBLE
-        bdg.suchEmpty.visibility = View.GONE
     }
 
     override fun onAttach(context: Context) {

@@ -9,10 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.adapter.recyclerview.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentTabEventBinding
-import com.ftbw.app.bestworld.helper.EventHelper.Companion.DIVULGATION
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInSpanish
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
@@ -42,17 +40,22 @@ class EventsRVTab(var label: String) : Fragment() {
 
         viewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
 
+        bdg.loading.root.visibility = View.VISIBLE
+        bdg.suchEmpty.root.visibility = View.GONE
+
         val labelText = getLabelInSpanish(getContext, label)
         bdg.eventTabTitle.text = labelText
 
         viewModel.getEvents(label)
         viewModel.listEventRecycler.observe(viewLifecycleOwner, {
-            initRecyclerView(it)
-            adapter.notifyDataSetChanged()
-        })
-
-        viewModel.isLoading.observe(viewLifecycleOwner, {
-            bdg.loading.visibility = View.GONE
+            bdg.loading.root.visibility = View.GONE
+            if (it.isEmpty()) {
+                bdg.suchEmpty.root.visibility = View.VISIBLE
+            } else {
+                initRecyclerView(it)
+                adapter.notifyDataSetChanged()
+                bdg.suchEmpty.root.visibility = View.GONE
+            }
         })
     }
 
