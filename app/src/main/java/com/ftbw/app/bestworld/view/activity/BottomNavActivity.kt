@@ -4,23 +4,26 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityBottomNavBinding
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.LOGIN_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.REGISTER_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.goToUserProfileAsMainUser
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.openFragment
-import com.ftbw.app.bestworld.view.fragments.events.EventsFragment
 import com.ftbw.app.bestworld.view.fragments.UserProfileFragment
+import com.ftbw.app.bestworld.view.fragments.events.EventsFragment
 import com.ftbw.app.bestworld.view.fragments.users.UsersFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class BottomNavActivity : AppCompatActivity() {
+class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession {
 
     lateinit var bdg: ActivityBottomNavBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(1500)
+        setTheme(R.style.Theme_Bestworld)
         super.onCreate(savedInstanceState)
         bdg = ActivityBottomNavBinding.inflate(layoutInflater)
         setContentView(bdg.root)
@@ -91,4 +94,17 @@ class BottomNavActivity : AppCompatActivity() {
     private fun openActivity(classToGo: Class<*>) {
         openPostActivity.launch(Intent(this, classToGo))
     }
+
+    override fun onAttachFragment(fragment: Fragment) {
+        if (fragment is UserProfileFragment) {
+            fragment.setCallBack(this)
+        }
+    }
+
+    override fun closeSession() {
+        Firebase.auth.signOut()
+        openFragment(this, EventsFragment())
+        //recreate()
+    }
+
 }

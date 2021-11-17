@@ -53,6 +53,10 @@
     <string name="searchUsers">Buscar personas</string>
     <string name="searchCompanies">Buscar empresas</string>
 
+    <string name="wannaCloseSession">¿Seguro que quieres cerrar sesión?</string>
+    <string name="closeSession">CERRAR SESIÓN</string>
+    <string name="cancel">CANCELAR</string>
+
     <string-array name="event_labels">
         <item>Selecciona categoría</item>
         <item>Acción medioambiental</item>

@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.model.user.UserDTO
 import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
 import com.ftbw.app.bestworld.repository.UsersRepository
@@ -16,8 +15,8 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = UsersRepository(application)
 
-    var isUserSaved = MutableLiveData<Boolean>()
-    var user = MutableLiveData<UserDTO>()
+    val isUserSaved: LiveData<Boolean>
+    val user: LiveData<UserDTO>
     val listUsers: LiveData<List<UserRecyclerDTO>>
 
     init {

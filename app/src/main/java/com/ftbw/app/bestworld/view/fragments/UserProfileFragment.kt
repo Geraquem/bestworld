@@ -15,6 +15,7 @@ import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.adapter.recyclerview.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentUserProfileBinding
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInEnglish
+import com.ftbw.app.bestworld.helper.UserHelper.Companion.generateAlertDialog
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
@@ -32,6 +33,8 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
     private lateinit var eventsViewModel: EventsViewModel
 
     private lateinit var adapter: RViewEventsAdapter
+
+    private lateinit var closeSession: CloseSession
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,9 +62,7 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         bdg.spinner.onItemSelectedListener = this
 
         bdg.salir.setOnClickListener {
-            Firebase.auth.signOut()
-            // ---> activity?.recreate()
-            //Y DEVOLVER AL INICIO
+            generateAlertDialog(getContext, closeSession)
         }
 
         bdg.loadingEvents.root.visibility = View.GONE
@@ -109,4 +110,12 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {}
+
+    fun setCallBack(close: CloseSession) {
+        closeSession = close
+    }
+
+    interface CloseSession {
+        fun closeSession()
+    }
 }
