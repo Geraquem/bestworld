@@ -68,7 +68,15 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession 
             }
         }
 
-        bdg.bottomNavigation.setOnItemReselectedListener {}
+        bdg.bottomNavigation.setOnItemReselectedListener {
+            if (it.itemId == R.id.tab2) {
+                if (Firebase.auth.currentUser != null) {
+                    openPostActivity.launch(Intent(this, CreateEventActivity::class.java))
+                } else {
+                    openPostActivity.launch(Intent(this, LoginActivity::class.java))
+                }
+            }
+        }
 
         usersViewModel.userKey.observe(this, {
             openFragment(this, UserProfileFragment(it))
