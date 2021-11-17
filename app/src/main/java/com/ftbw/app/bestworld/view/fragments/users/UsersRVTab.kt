@@ -38,7 +38,7 @@ class UsersRVTab(var type: String) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(UsersViewModel::class.java)
 
         if (type == "particular") {
             bdg.search.hint = getString(R.string.searchUsers)
@@ -64,7 +64,7 @@ class UsersRVTab(var type: String) : Fragment() {
 
     private fun initRecyclerView(list: List<UserRecyclerDTO>) {
         bdg.recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = RViewUsersAdapter(requireContext(), list)
+        adapter = RViewUsersAdapter(viewModel, list)
         bdg.recyclerView.adapter = adapter
     }
 

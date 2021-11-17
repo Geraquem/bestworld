@@ -15,12 +15,11 @@ import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.adapter.recyclerview.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentUserProfileBinding
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInEnglish
+import com.ftbw.app.bestworld.helper.UserHelper.Companion.checkIfisMainUser
 import com.ftbw.app.bestworld.helper.UserHelper.Companion.generateAlertDialog
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -65,6 +64,8 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
             generateAlertDialog(getContext, closeSession)
         }
 
+        checkIfisMainUser(userKey, bdg.addButton)
+
         bdg.loadingEvents.root.visibility = View.GONE
         bdg.suchEmpty.root.visibility = View.GONE
 
@@ -91,6 +92,7 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         bdg.recyclerView.layoutManager = LinearLayoutManager(getContext)
         adapter = RViewEventsAdapter(requireContext(), list)
         bdg.recyclerView.adapter = adapter
+        bdg.recyclerView.visibility = View.VISIBLE
     }
 
     override fun onAttach(context: Context) {
@@ -106,6 +108,7 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
             eventsViewModel.getCreatedEventsByUser(userKey, eventLabel)
         } else {
             bdg.loadingEvents.root.visibility = View.GONE
+            bdg.suchEmpty.root.visibility = View.GONE
         }
     }
 

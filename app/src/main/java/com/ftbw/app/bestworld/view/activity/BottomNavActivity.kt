@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityBottomNavBinding
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.LOGIN_ACTIVITY_REQUEST_CODE
@@ -14,6 +15,7 @@ import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.openFragment
 import com.ftbw.app.bestworld.view.fragments.UserProfileFragment
 import com.ftbw.app.bestworld.view.fragments.events.EventsFragment
 import com.ftbw.app.bestworld.view.fragments.users.UsersFragment
+import com.ftbw.app.bestworld.viewmodel.UsersViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -21,12 +23,16 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession 
 
     lateinit var bdg: ActivityBottomNavBinding
 
+    private lateinit var usersViewModel: UsersViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1500)
         setTheme(R.style.Theme_Bestworld)
         super.onCreate(savedInstanceState)
         bdg = ActivityBottomNavBinding.inflate(layoutInflater)
         setContentView(bdg.root)
+
+        usersViewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
 
         openFragment(this, EventsFragment())
 
@@ -62,16 +68,11 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession 
             }
         }
 
-//        bdg.bottomNavigation.setOnItemReselectedListener { item ->
-//            when (item.itemId) {
-//                R.id.tab1 -> {
-//                    Toast.makeText(applicationContext, "AGAIN", Toast.LENGTH_SHORT).show()
-//                }
-//                R.id.tab2 -> {
-//                    // Respond to navigation item 2 reselection
-//                }
-//            }
-//        }
+        bdg.bottomNavigation.setOnItemReselectedListener {}
+
+        usersViewModel.userKey.observe(this, {
+            openFragment(this, UserProfileFragment(it))
+        })
     }
 
     private val openPostActivity =
@@ -104,7 +105,7 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession 
     override fun closeSession() {
         Firebase.auth.signOut()
         openFragment(this, EventsFragment())
-        //recreate()
+        //recreate() -> Another way
     }
 
 }

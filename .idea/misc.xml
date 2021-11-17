@@ -6,11 +6,13 @@
         <entry key="..\:/Users/gershon.araque/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gershon.araque/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable-anydpi/ic_spinner_drop_down.xml" value="0.3828125" />
+        <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable-mdpi/bg_custom_button.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable-v24/bg_edit_text.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable-v24/bg_edit_text_register.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable-v24/ic_email.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable-v24/ic_password.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/bg_event_label.xml" value="0.3828125" />
+        <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/bg_spinner_event_label.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_arrow_back.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_company.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_nav_users.xml" value="0.22135416666666666" />
@@ -28,6 +30,8 @@
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_tab_users.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_tab_workshop.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_user_name.xml" value="0.3828125" />
+        <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_users_add.xml" value="0.3828125" />
+        <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_users_added.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/spinner_style.xml" value="0.2916666666666667" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/splash_screen.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/tab_color_selector.xml" value="0.3828125" />
@@ -50,6 +54,7 @@
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/include_register_toolbar.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/include_such_empty.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/row_event_recycler.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/row_users_recycler.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/row_usersrecycler.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/spinner_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20520833333333333" />

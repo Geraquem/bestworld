@@ -54,8 +54,12 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toStartOf="@+id/follow"
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -77,10 +81,22 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/addButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_custom_button"
+            android:elevation="4dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="AÑADIR A MI RED" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
-            android:layout_marginTop="5dp"
             android:layout_marginBottom="3dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/createdEvents"
@@ -94,6 +110,11 @@
             android:background="@drawable/bg_spinner_event_label"
             android:elevation="3dp" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <include
             android:id="@+id/loadingEvents"
             layout="@layout/include_loading" />
@@ -101,11 +122,6 @@
         <include
             android:id="@+id/suchEmpty"
             layout="@layout/include_such_empty" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

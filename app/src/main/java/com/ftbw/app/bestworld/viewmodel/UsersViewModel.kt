@@ -18,6 +18,7 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
     val isUserSaved: LiveData<Boolean>
     val user: LiveData<UserDTO>
     val listUsers: LiveData<List<UserRecyclerDTO>>
+    val userKey = MutableLiveData<String>()
 
     init {
         this.isUserSaved = repository.isUserSaved
@@ -41,5 +42,9 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
         CoroutineScope(Dispatchers.IO).launch {
             repository.getUsersByType(type)
         }
+    }
+
+    fun goToUserProfileByKey(userKey:String){
+        this.userKey.value = userKey
     }
 }
