@@ -69,11 +69,16 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession 
         }
 
         bdg.bottomNavigation.setOnItemReselectedListener {
-            if (it.itemId == R.id.tab2) {
-                if (Firebase.auth.currentUser != null) {
-                    openPostActivity.launch(Intent(this, CreateEventActivity::class.java))
-                } else {
-                    openPostActivity.launch(Intent(this, LoginActivity::class.java))
+            when (it.itemId) {
+                R.id.tab2 -> {
+                    if (Firebase.auth.currentUser != null) {
+                        openPostActivity.launch(Intent(this, CreateEventActivity::class.java))
+                    } else {
+                        openPostActivity.launch(Intent(this, LoginActivity::class.java))
+                    }
+                }
+                R.id.tab3 -> {
+                    openFragment(this, UsersFragment())
                 }
             }
         }

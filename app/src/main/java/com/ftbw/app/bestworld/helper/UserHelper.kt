@@ -26,13 +26,15 @@ class UserHelper {
             dialogBuilder.create().show()
         }
 
-        fun checkIfisMainUser(userKey: String, addButton: TextView) {
+        fun checkIfIsMainUser(userKey: String, addButton: TextView): Boolean {
             if (userKey == Firebase.auth.currentUser!!.uid) {
                 addButton.visibility = View.GONE
                 //editProfileButton.visibility = View.GONE
+                return true
             } else {
                 addButton.visibility = View.VISIBLE
                 //editProfileButton.visibility = View.VISIBLE
+                return false
             }
         }
     }

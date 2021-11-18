@@ -16,12 +16,16 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = UsersRepository(application)
 
     val isUserSaved: LiveData<Boolean>
+    val isUserAdded: LiveData<Boolean>
+    val isUserAlreadyAdded: LiveData<Boolean>
     val user: LiveData<UserDTO>
     val listUsers: LiveData<List<UserRecyclerDTO>>
     val userKey = MutableLiveData<String>()
 
     init {
         this.isUserSaved = repository.isUserSaved
+        this.isUserAdded = repository.isUserAdded
+        this.isUserAlreadyAdded = repository.isUserAlreadyAdded
         this.user = repository.user
         this.listUsers = repository.listUsers
     }
@@ -44,7 +48,19 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun goToUserProfileByKey(userKey:String){
+    fun goToUserProfileByKey(userKey: String) {
         this.userKey.value = userKey
+    }
+
+    fun addUserToMyNetwork(userKey: String, add: Boolean) {
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.addUserToMyNetwork(userKey, add)
+        }
+    }
+
+    fun checkIfUserIsAlreadyAdded(userKey: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.checkIfUserIsAlreadyAdded(userKey)
+        }
     }
 }

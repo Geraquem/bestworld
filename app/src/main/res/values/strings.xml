@@ -53,6 +53,10 @@
     <string name="searchUsers">Buscar personas</string>
     <string name="searchCompanies">Buscar empresas</string>
 
+    <string name="myNetwork">EN MI RED</string>
+    <string name="addToMyNetwork">AÑADIR A MI RED</string>
+    <string name="removeFromMyNetwork">QUITAR DE MI RED</string>
+
     <string name="wannaCloseSession">¿Seguro que quieres cerrar sesión?</string>
     <string name="closeSession">CERRAR SESIÓN</string>
     <string name="cancel">CANCELAR</string>

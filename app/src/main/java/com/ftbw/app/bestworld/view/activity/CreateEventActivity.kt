@@ -74,7 +74,7 @@ class CreateEventActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         bdg.loading.visibility = View.GONE
         bdg.createButton.isEnabled = true
         bdg.uploadImage.setOnClickListener {
-            System.out.println(" ---------------------> userName: " + userName)
+            //UPLOAD IMAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
         }
 
         bdg.createButton.setOnClickListener {

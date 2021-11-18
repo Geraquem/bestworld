@@ -15,7 +15,7 @@ import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.adapter.recyclerview.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentUserProfileBinding
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInEnglish
-import com.ftbw.app.bestworld.helper.UserHelper.Companion.checkIfisMainUser
+import com.ftbw.app.bestworld.helper.UserHelper.Companion.checkIfIsMainUser
 import com.ftbw.app.bestworld.helper.UserHelper.Companion.generateAlertDialog
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
@@ -64,8 +64,18 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
             generateAlertDialog(getContext, closeSession)
         }
 
-        checkIfisMainUser(userKey, bdg.addButton)
+        if (!checkIfIsMainUser(userKey, bdg.addButton)) {
+            usersViewModel.checkIfUserIsAlreadyAdded(userKey)
+        }
+        usersViewModel.isUserAlreadyAdded.observe(viewLifecycleOwner,{
+            if(it){
+                bdg.addButton.text = getString(R.string.removeFromMyNetwork)
+            }else{
+                bdg.addButton.text = getString(R.string.addToMyNetwork)
+            }
+        })
 
+        bdg.loading.root.visibility = View.VISIBLE
         bdg.loadingEvents.root.visibility = View.GONE
         bdg.suchEmpty.root.visibility = View.GONE
 
@@ -73,7 +83,27 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         usersViewModel.user.observe(viewLifecycleOwner, {
             bdg.name.text = it.name
             bdg.email.text = it.email
+            bdg.usersAdded.text = it.addedCount.toString()
             //setUserCredentials
+
+            bdg.loading.root.visibility = View.GONE
+        })
+
+        bdg.addButton.setOnClickListener {
+            bdg.addButton.isEnabled = false
+            if (bdg.addButton.text == getString(R.string.addToMyNetwork)) {
+                usersViewModel.addUserToMyNetwork(userKey, true)
+            } else {
+                usersViewModel.addUserToMyNetwork(userKey, false)
+            }
+        }
+        usersViewModel.isUserAdded.observe(viewLifecycleOwner, {
+            if (it) {
+                bdg.addButton.text = getString(R.string.removeFromMyNetwork)
+            }else{
+                bdg.addButton.text = getString(R.string.addToMyNetwork)
+            }
+            bdg.addButton.isEnabled = true
         })
 
         eventsViewModel.listCreatedEvents.observe(viewLifecycleOwner, {
