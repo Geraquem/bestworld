@@ -2,6 +2,7 @@ package com.ftbw.app.bestworld.helper
 
 import android.content.Context
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +27,7 @@ class UserHelper {
             dialogBuilder.create().show()
         }
 
-        fun checkIfIsMainUser(userKey: String, addButton: TextView): Boolean {
+        fun checkIfIsMainUser(userKey: String, addButton: LinearLayout): Boolean {
             if (userKey == Firebase.auth.currentUser!!.uid) {
                 addButton.visibility = View.GONE
                 //editProfileButton.visibility = View.GONE

@@ -104,7 +104,7 @@
 
         </androidx.cardview.widget.CardView>
 
-        <TextView
+        <LinearLayout
             android:id="@+id/addButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -112,9 +112,27 @@
             android:layout_marginBottom="25dp"
             android:background="@drawable/bg_custom_button"
             android:elevation="4dp"
-            android:fontFamily="@font/montserrat_regular"
             android:gravity="center"
-            android:padding="8dp" />
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/addText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center" />
+
+            <ImageView
+                android:id="@+id/addIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/contentDescription" />
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"

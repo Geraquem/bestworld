@@ -69,9 +69,11 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         }
         usersViewModel.isUserAlreadyAdded.observe(viewLifecycleOwner,{
             if(it){
-                bdg.addButton.text = getString(R.string.removeFromMyNetwork)
+                bdg.addText.text = getString(R.string.removeFromMyNetwork)
+                bdg.addIcon.setBackgroundResource(R.drawable.ic_users_remove)
             }else{
-                bdg.addButton.text = getString(R.string.addToMyNetwork)
+                bdg.addText.text = getString(R.string.addToMyNetwork)
+                bdg.addIcon.setBackgroundResource(R.drawable.ic_users_add)
             }
         })
 
@@ -84,14 +86,13 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
             bdg.name.text = it.name
             bdg.email.text = it.email
             bdg.usersAdded.text = it.addedCount.toString()
-            //setUserCredentials
 
             bdg.loading.root.visibility = View.GONE
         })
 
         bdg.addButton.setOnClickListener {
             bdg.addButton.isEnabled = false
-            if (bdg.addButton.text == getString(R.string.addToMyNetwork)) {
+            if (bdg.addText.text == getString(R.string.addToMyNetwork)) {
                 usersViewModel.addUserToMyNetwork(userKey, true)
             } else {
                 usersViewModel.addUserToMyNetwork(userKey, false)
@@ -99,9 +100,11 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         }
         usersViewModel.isUserAdded.observe(viewLifecycleOwner, {
             if (it) {
-                bdg.addButton.text = getString(R.string.removeFromMyNetwork)
+                bdg.addText.text = getString(R.string.removeFromMyNetwork)
+                bdg.addIcon.setBackgroundResource(R.drawable.ic_users_remove)
             }else{
-                bdg.addButton.text = getString(R.string.addToMyNetwork)
+                bdg.addText.text = getString(R.string.addToMyNetwork)
+                bdg.addIcon.setBackgroundResource(R.drawable.ic_users_add)
             }
             bdg.addButton.isEnabled = true
         })
