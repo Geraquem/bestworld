@@ -20,6 +20,8 @@ import com.ftbw.app.bestworld.helper.UserHelper.Companion.generateAlertDialog
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -67,11 +69,11 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         if (!checkIfIsMainUser(userKey, bdg.addButton)) {
             usersViewModel.checkIfUserIsAlreadyAdded(userKey)
         }
-        usersViewModel.isUserAlreadyAdded.observe(viewLifecycleOwner,{
-            if(it){
+        usersViewModel.isUserAlreadyAdded.observe(viewLifecycleOwner, {
+            if (it) {
                 bdg.addText.text = getString(R.string.removeFromMyNetwork)
                 bdg.addIcon.setBackgroundResource(R.drawable.ic_users_remove)
-            }else{
+            } else {
                 bdg.addText.text = getString(R.string.addToMyNetwork)
                 bdg.addIcon.setBackgroundResource(R.drawable.ic_users_add)
             }
@@ -102,7 +104,7 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
             if (it) {
                 bdg.addText.text = getString(R.string.removeFromMyNetwork)
                 bdg.addIcon.setBackgroundResource(R.drawable.ic_users_remove)
-            }else{
+            } else {
                 bdg.addText.text = getString(R.string.addToMyNetwork)
                 bdg.addIcon.setBackgroundResource(R.drawable.ic_users_add)
             }

@@ -3,7 +3,6 @@ package com.ftbw.app.bestworld.helper
 import android.content.Context
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ftbw.app.bestworld.R
@@ -28,14 +27,15 @@ class UserHelper {
         }
 
         fun checkIfIsMainUser(userKey: String, addButton: LinearLayout): Boolean {
-            if (userKey == Firebase.auth.currentUser!!.uid) {
+            val currentUser = Firebase.auth.currentUser
+            return if (currentUser == null || userKey == currentUser.uid) {
                 addButton.visibility = View.GONE
                 //editProfileButton.visibility = View.GONE
-                return true
+                true
             } else {
                 addButton.visibility = View.VISIBLE
                 //editProfileButton.visibility = View.VISIBLE
-                return false
+                false
             }
         }
     }
