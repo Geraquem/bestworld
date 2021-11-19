@@ -142,6 +142,7 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
             bdg.recyclerView.visibility = View.GONE
             eventsViewModel.getCreatedEventsByUser(userKey, eventLabel)
         } else {
+            bdg.recyclerView.visibility = View.GONE
             bdg.loadingEvents.root.visibility = View.GONE
             bdg.suchEmpty.root.visibility = View.GONE
         }
