@@ -99,8 +99,9 @@ class CreateEventActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     }
 
     private fun onTimeSelected(hour: Int, minutes: Int) {
-        val min = checkIfTimeHasOnlyOneNumber(minutes.toString())
-        val time = "$hour:$min"
+        val completedHour = checkIfTimeHasOnlyOneNumber(hour.toString())
+        val completedMinute = checkIfTimeHasOnlyOneNumber(minutes.toString())
+        val time = "$completedHour:$completedMinute"
         bdg.timeText.text = time
     }
 
