@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ftbw.app.bestworld.view.activity.EventFile
+import com.ftbw.app.bestworld.view.activity.EventFileActivity
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.RowEventRecyclerBinding
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
@@ -40,7 +40,7 @@ class RViewEventsAdapter(var context: Context, private var eventsList: List<Even
                 context.startActivity(
                     Intent(
                         context,
-                        EventFile::class.java
+                        EventFileActivity::class.java
                     ).apply {
                         putExtra("key", event.key)
                         putExtra("label", event.label)

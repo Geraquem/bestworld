@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.EventFile">
+    tools:context=".view.activity.EventFileActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -23,47 +23,126 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
             android:orientation="vertical"
-            android:paddingHorizontal="15dp"
             android:paddingVertical="8dp">
 
             <TextView
                 android:id="@+id/label"
-                android:fontFamily="@font/montserrat_regular"
-                android:background="@drawable/bg_event_label"
-                android:elevation="3dp"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="LABEL"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_event_label"
+                android:elevation="3dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:text="LABEL" />
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="15dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="TITULO DEL EVENTO"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
 
+            <ImageView
+                android:layout_width="220dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:contentDescription="@string/contentDescription"
+                android:src="@color/black" />
+
             <TextView
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="15dp"
                 android:fontFamily="@font/montserrat_regular"
-                android:text="DESCRIPCION DEL EVENTO"
+                android:text="DESCRIPCION DEL EVENTODESCRIPCIONDESCRIPCIONDESCRIPCIONDESCRIPCION DESCRIPCION  DESCRIPCIONDESCRIPCION "
                 android:textColor="@color/gray"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/linearOtherInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/additionalInfo" />
+
+                <TextView
+                    android:id="@+id/otherInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/bg_edit_text"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="3dp"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="c/Oligisto 32"
                 android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="25dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="12-Noviembre-2021"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="8dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="@string/atTime"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="13:20"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -84,12 +163,10 @@
 
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="220dp"
-                android:layout_height="300dp"
-                android:layout_gravity="center"
-                android:contentDescription="@string/contentDescription"
-                android:src="@color/black" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="APUNTARSE" />
 
         </LinearLayout>
 

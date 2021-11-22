@@ -17,6 +17,8 @@
     <string name="OtherTitleTab">Otros</string>
 
     <string name="createdBy">Creado por</string>
+    <string name="additionalInfo">Información adicional</string>
+    <string name="atTime">a las</string>
     <string name="createdEvents">EVENTOS CREADOS</string>
     <string name="suchEmpty">Vaya, parece que esto está vacío</string>
 

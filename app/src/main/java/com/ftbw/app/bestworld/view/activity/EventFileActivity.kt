@@ -3,6 +3,7 @@ package com.ftbw.app.bestworld.view.activity
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +15,7 @@ import com.ftbw.app.bestworld.model.event.EventDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 import com.google.firebase.database.collection.LLRBNode
 
-class EventFile : AppCompatActivity() {
+class EventFileActivity : AppCompatActivity() {
 
     lateinit var bdg: ActivityEventFileBinding
 
@@ -43,7 +44,21 @@ class EventFile : AppCompatActivity() {
         bdg.label.text = getLabelInSpanish(this, event.label!!)
         setLabelBackgroundColor(this, bdg.label.background, event.label)
         bdg.title.text = event.title
+        //set image
         bdg.description.text = event.description
+        checkIfOtherInfoExists(event.otherInfo)
         bdg.creator.text = event.creatorName
+        bdg.address.text = event.address
+        bdg.date.text = event.date
+        bdg.time.text = event.time
+    }
+
+    private fun checkIfOtherInfoExists(otherInfo: String?) {
+        if (otherInfo != null && otherInfo.isBlank() && otherInfo.isEmpty()){
+            bdg.linearOtherInfo.visibility = View.GONE
+        }else{
+            bdg.linearOtherInfo.visibility = View.VISIBLE
+            bdg.otherInfo.text = otherInfo
+        }
     }
 }

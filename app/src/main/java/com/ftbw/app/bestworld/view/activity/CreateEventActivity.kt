@@ -112,7 +112,7 @@ class CreateEventActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             ) else it.toString()
         }
         val completeDay = checkIfTimeHasOnlyOneNumber(day.toString())
-        val date = "$completeDay-$monthName-$year"
+        val date = "$completeDay $monthName $year"
         bdg.dateText.text = date
     }
 

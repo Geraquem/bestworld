@@ -19,7 +19,7 @@
             android:name=".view.activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.EventFile"
+            android:name=".view.activity.EventFileActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.BottomNavActivity"
