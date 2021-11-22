@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -59,7 +60,7 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:hint="@string/eventDescription"
                 android:importantForAutofill="no"
-                android:inputType="text"
+                android:inputType="textMultiLine"
                 android:padding="15dp" />
 
             <EditText
@@ -82,13 +83,78 @@
                 android:id="@+id/otherInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/bg_edit_text"
                 android:fontFamily="@font/montserrat_regular"
                 android:hint="@string/eventOtherInfo"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:padding="15dp" />
+
+            <LinearLayout
+                android:id="@+id/selectDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_custom_button"
+                    android:drawablePadding="3dp"
+                    android:elevation="5dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/selectDate"
+                    android:textSize="14sp"
+                    app:drawableStartCompat="@drawable/ic_picker_date" />
+
+                <TextView
+                    android:id="@+id/dateText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/selectTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_custom_button"
+                    android:elevation="5dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/selectHour"
+                    android:textSize="14sp"
+                    app:drawableStartCompat="@drawable/ic_picker_time" />
+
+                <TextView
+                    android:id="@+id/timeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/uploadImage"

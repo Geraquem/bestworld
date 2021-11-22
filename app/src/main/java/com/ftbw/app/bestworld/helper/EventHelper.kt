@@ -1,6 +1,5 @@
 package com.ftbw.app.bestworld.helper
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
@@ -8,6 +7,10 @@ import android.view.View
 import androidx.core.content.ContextCompat.getColor
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityCreateEventBinding
+import java.text.DateFormatSymbols
+import java.time.Month
+import java.time.format.TextStyle
+import java.util.*
 
 class EventHelper {
     companion object {
@@ -27,6 +30,8 @@ class EventHelper {
             description: String,
             address: String,
             label: String,
+            date: String,
+            time: String
         ): Boolean {
             if (title.isEmpty()) {
                 setErrorMessage(bdg, context.getString(R.string.errorMessageEventTitle))
@@ -42,6 +47,14 @@ class EventHelper {
             }
             if (label == "Selecciona categoría") {
                 setErrorMessage(bdg, context.getString(R.string.errorMessageEventCategory))
+                return true
+            }
+            if (date.isEmpty() || date.isBlank()) {
+                setErrorMessage(bdg, context.getString(R.string.errorMessageEventDate))
+                return true
+            }
+            if (time.isEmpty() || time.isBlank()) {
+                setErrorMessage(bdg, context.getString(R.string.errorMessageEventTime))
                 return true
             }
             return false
@@ -96,6 +109,24 @@ class EventHelper {
         private fun setColor(background: Drawable, color: Int) {
             background as GradientDrawable
             background.setColor(color)
+        }
+
+        fun checkIfTimeHasOnlyOneNumber(time: String): String {
+            if (time.length == 1) {
+                return "0$time"
+            }
+            return time
+        }
+
+        fun getMonthNameByNumber(number: Int): String {
+
+            var m =
+                Month.of(number + 1).getDisplayName(TextStyle.FULL_STANDALONE, Locale("es", "ES"));
+            System.out.println(" ----------------------------------- ******* > " + m)
+
+            var a = DateFormatSymbols().months[number]
+            System.out.println(" ----------------------------------- > " + a)
+            return m
         }
     }
 }

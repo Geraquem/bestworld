@@ -44,11 +44,15 @@
     <string name="eventDescription">Descripción</string>
     <string name="eventAddress">Dirección</string>
     <string name="eventOtherInfo">Información adicional (opcional)</string>
+    <string name="selectDate">FECHA</string>
+    <string name="selectHour">HORA</string>
     <string name="uploadImage">SUBIR FOTO</string>
     <string name="errorMessageEventTitle">Introduce un título válido</string>
     <string name="errorMessageEventDescription">El evento necesita una descripción</string>
     <string name="errorMessageEventAddress">El evento necesita una dirección</string>
     <string name="errorMessageEventCategory">Selecciona la categoría del evento</string>
+    <string name="errorMessageEventDate">Seleccione una fecha para el evento</string>
+    <string name="errorMessageEventTime">Seleccione una hora para el evento</string>
 
     <string name="searchUsers">Buscar personas</string>
     <string name="searchCompanies">Buscar empresas</string>

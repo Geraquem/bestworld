@@ -14,14 +14,19 @@ import androidx.lifecycle.ViewModelProvider
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityCreateEventBinding
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.CREATE_EVENT_ACTIVITY_REQUEST_CODE
+import com.ftbw.app.bestworld.helper.EventHelper.Companion.checkIfTimeHasOnlyOneNumber
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInEnglish
+import com.ftbw.app.bestworld.helper.EventHelper.Companion.getMonthNameByNumber
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.isThereFailures
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.setErrorMessage
 import com.ftbw.app.bestworld.model.event.EventDTO
+import com.ftbw.app.bestworld.view.picker.DatePickerFragment
+import com.ftbw.app.bestworld.view.picker.TimePickerFragment
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
 class CreateEventActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
@@ -73,6 +78,17 @@ class CreateEventActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         bdg.errorMessage.visibility = View.GONE
         bdg.loading.visibility = View.GONE
         bdg.createButton.isEnabled = true
+
+        bdg.selectDate.setOnClickListener {
+            DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
+                .show(supportFragmentManager, "datePicker")
+        }
+
+        bdg.selectTime.setOnClickListener {
+            TimePickerFragment { hour, minutes -> onTimeSelected(hour, minutes) }
+                .show(supportFragmentManager, "timePicker")
+        }
+
         bdg.uploadImage.setOnClickListener {
             //UPLOAD IMAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
         }
@@ -82,16 +98,36 @@ class CreateEventActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         }
     }
 
+    private fun onTimeSelected(hour: Int, minutes: Int) {
+        val min = checkIfTimeHasOnlyOneNumber(minutes.toString())
+        val time = "$hour:$min"
+        bdg.timeText.text = time
+    }
+
+    private fun onDateSelected(day: Int, month: Int, year: Int) {
+        val monthName = getMonthNameByNumber(month).replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase(
+                Locale.getDefault()
+            ) else it.toString()
+        }
+        val completeDay = checkIfTimeHasOnlyOneNumber(day.toString())
+        val date = "$completeDay-$monthName-$year"
+        bdg.dateText.text = date
+    }
+
+
     private fun doOnclick() {
         closeKeyboard()
         bdg.errorMessage.visibility = View.GONE
 
         val title = bdg.title.text.toString()
         val description = bdg.description.text.toString()
-        val address = bdg.address.text.toString()
         val otherInfo = bdg.otherInfo.text.toString()
+        val address = bdg.address.text.toString()
+        val date = bdg.dateText.text.toString()
+        val time = bdg.timeText.text.toString()
 
-        if (!isThereFailures(this, bdg, title, description, address, label)) {
+        if (!isThereFailures(this, bdg, title, description, address, label, date, time)) {
             val event = EventDTO(
                 "",
                 label,
@@ -101,7 +137,9 @@ class CreateEventActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 address,
                 "",
                 userName,
-                Firebase.auth.currentUser!!.uid
+                Firebase.auth.currentUser!!.uid,
+                date,
+                time
             )
             eventsViewModel.saveEvent(event)
         }
