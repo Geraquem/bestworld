@@ -54,6 +54,7 @@ class EventFileActivity : AppCompatActivity() {
         })
 
         bdg.signUpButton.setOnClickListener {
+            bdg.signUpButton.isEnabled = false
             doSignUp(eventLabel, eventKey)
         }
 
@@ -66,6 +67,7 @@ class EventFileActivity : AppCompatActivity() {
                 bdg.signUpIcon.setBackgroundResource(R.drawable.ic_event_assistant)
             }
             viewModel.updateAssistantCount(eventLabel, eventKey)
+            bdg.signUpButton.isEnabled = true
         })
 
         viewModel.numberOfAssistants.observe(this, {
