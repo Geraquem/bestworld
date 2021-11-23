@@ -7,7 +7,6 @@ import android.view.View
 import androidx.core.content.ContextCompat.getColor
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityCreateEventBinding
-import java.text.DateFormatSymbols
 import java.time.Month
 import java.time.format.TextStyle
 import java.util.*
@@ -119,14 +118,8 @@ class EventHelper {
         }
 
         fun getMonthNameByNumber(number: Int): String {
-
-            var m =
-                Month.of(number + 1).getDisplayName(TextStyle.FULL_STANDALONE, Locale("es", "ES"));
-            System.out.println(" ----------------------------------- ******* > " + m)
-
-            var a = DateFormatSymbols().months[number]
-            System.out.println(" ----------------------------------- > " + a)
-            return m
+            return Month.of(number + 1)
+                .getDisplayName(TextStyle.FULL_STANDALONE, Locale("es", "ES"));
         }
     }
 }

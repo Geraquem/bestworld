@@ -12,5 +12,6 @@ data class EventDTO(
     val creatorKey: String? = "",
     val date: String? = "",
     val time: String? = "",
+    var assistantsCount: Long? = 0
 
 )

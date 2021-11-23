@@ -14,19 +14,22 @@ class EventsViewModel(application: Application) : AndroidViewModel(application) 
 
     private val repository = EventsRepository(application)
 
-    val isLoading: LiveData<Boolean>
-
     val listEventRecycler: LiveData<List<EventRecyclerDTO>>
     val listCreatedEvents: LiveData<List<EventRecyclerDTO>>
     val event: LiveData<EventDTO>
     val isEventSaved: LiveData<Boolean>
+    val isUserAlreadySignedUp: LiveData<Boolean>
+    val isUserGoingToAssist: LiveData<Boolean>
+    val numberOfAssistants: LiveData<Long>
 
     init {
-        this.isLoading = repository.isLoading
         this.listEventRecycler = repository.listEventRecycler
         this.listCreatedEvents = repository.listCreatedEvents
         this.event = repository.event
         this.isEventSaved = repository.isEventSaved
+        this.isUserAlreadySignedUp = repository.isUserAlreadySignedUp
+        this.isUserGoingToAssist = repository.isUserGoingToAssist
+        this.numberOfAssistants = repository.numberOfAssistants
     }
 
     fun getEvents(eventLabel: String) {
@@ -50,6 +53,24 @@ class EventsViewModel(application: Application) : AndroidViewModel(application) 
     fun getCreatedEventsByUser(userKey: String, eventLabel: String){
         CoroutineScope(Dispatchers.IO).launch {
             repository.getCreatedEventsByUser(userKey, eventLabel)
+        }
+    }
+
+    fun checkIfUserIsSignedUp(userKey: String, eventKey: String, eventLabel: String){
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.checkIfUserIsSignedUp(userKey, eventKey, eventLabel)
+        }
+    }
+
+    fun userSignUpInEvent(userKey: String, eventKey: String, eventLabel: String, signUp: Boolean){
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.userSignUpInEvent(userKey, eventKey, eventLabel, signUp)
+        }
+    }
+
+    fun updateAssistantCount(eventLabel: String, eventKey: String){
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.updateAssistantCount(eventLabel, eventKey)
         }
     }
 }

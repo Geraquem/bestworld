@@ -18,7 +18,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/appBar">
+        android:layout_below="@+id/appBar"
+        android:layout_marginTop="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,17 +28,46 @@
             android:orientation="vertical"
             android:paddingVertical="8dp">
 
-            <TextView
-                android:id="@+id/label"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_event_label"
-                android:elevation="3dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="4dp"
-                android:text="LABEL" />
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_event_label"
+                    android:elevation="3dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp" />
+
+                <LinearLayout
+                    android:id="@+id/assistantsLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    tools:ignore="RelativeOverlap,UseCompoundDrawables">
+
+                    <TextView
+                        android:id="@+id/numberOfAssistants"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="3dp"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/contentDescription"
+                        android:src="@drawable/ic_nav_users" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/title"
@@ -45,7 +75,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="TITULO DEL EVENTO"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
 
@@ -63,7 +92,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/montserrat_regular"
-                android:text="DESCRIPCION DEL EVENTODESCRIPCIONDESCRIPCIONDESCRIPCIONDESCRIPCION DESCRIPCION  DESCRIPCIONDESCRIPCION "
                 android:textColor="@color/gray"
                 android:textSize="16sp" />
 
@@ -101,7 +129,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="c/Oligisto 32"
                 android:textSize="18sp" />
 
             <LinearLayout
@@ -116,8 +143,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/montserrat_regular"
-                    android:text="12-Noviembre-2021"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -131,10 +157,9 @@
                 <TextView
                     android:id="@+id/time"
                     android:layout_width="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="13:20"
+                    android:fontFamily="@font/montserrat_regular"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -142,7 +167,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="8dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -158,18 +183,48 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_light"
-                    android:text="creador 1"
                     android:textSize="15sp" />
 
             </LinearLayout>
 
-            <Button
+            <LinearLayout
+                android:id="@+id/signUpButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="APUNTARSE" />
+                android:background="@drawable/bg_custom_button"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/signUpText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center" />
+
+                <ImageView
+                    android:id="@+id/signUpIcon"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/contentDescription" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
+
+    <include
+        android:id="@+id/loading"
+        layout="@layout/include_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appBar"
+        android:visibility="gone" />
 
 </RelativeLayout>

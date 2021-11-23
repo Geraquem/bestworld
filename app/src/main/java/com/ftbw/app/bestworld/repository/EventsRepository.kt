@@ -9,12 +9,13 @@ import com.google.firebase.ktx.Firebase
 
 class EventsRepository constructor(val application: Application) {
 
-    val isLoading = MutableLiveData<Boolean>()
-
     val listEventRecycler = MutableLiveData<List<EventRecyclerDTO>>()
     val listCreatedEvents = MutableLiveData<List<EventRecyclerDTO>>()
     val event = MutableLiveData<EventDTO>()
     val isEventSaved = MutableLiveData<Boolean>()
+    val isUserAlreadySignedUp = MutableLiveData<Boolean>()
+    val isUserGoingToAssist = MutableLiveData<Boolean>()
+    val numberOfAssistants = MutableLiveData<Long>()
 
     fun getEvents(eventLabel: String) {
         val auxList: MutableList<EventRecyclerDTO> = mutableListOf()
@@ -25,7 +26,6 @@ class EventsRepository constructor(val application: Application) {
                     auxList.add(event.getValue(EventRecyclerDTO::class.java)!!)
                 }
                 listEventRecycler.value = auxList
-                isLoading.value = false
 
             }.addOnFailureListener {
                 System.out.println("------- NOPE, DATABASE ERROR")
@@ -35,7 +35,22 @@ class EventsRepository constructor(val application: Application) {
     fun getSpecificEvent(eventLabel: String, key: String) {
         Firebase.database.reference.child("events").child(eventLabel).child(key).get()
             .addOnSuccessListener {
-                event.value = it.getValue(EventDTO::class.java)
+                getAssistantCount(eventLabel, key, it.getValue(EventDTO::class.java))
+
+            }.addOnFailureListener {
+                System.out.println("------- NOPE, DATABASE ERROR")
+            }
+
+    }
+
+    private fun getAssistantCount(eventLabel: String, key: String, event: EventDTO?) {
+        Firebase.database.reference.child("events").child(eventLabel)
+            .child(key).child("assistants").get()
+            .addOnSuccessListener {
+                if (event != null) {
+                    event.assistantsCount = it.childrenCount
+                    this.event.value = event
+                }
 
             }.addOnFailureListener {
                 System.out.println("------- NOPE, DATABASE ERROR")
@@ -64,8 +79,8 @@ class EventsRepository constructor(val application: Application) {
 
     fun getCreatedEventsByUser(userKey: String, eventLabel: String) {
         val keyList: MutableList<String> = mutableListOf()
-        Firebase.database.reference.child("users").child(userKey).child("events").child(eventLabel)
-            .get()
+        Firebase.database.reference.child("users").child(userKey)
+            .child("events").child(eventLabel).get()
             .addOnSuccessListener {
                 keyList.clear()
                 for (event in it.children) {
@@ -95,5 +110,52 @@ class EventsRepository constructor(val application: Application) {
             }.addOnFailureListener {
                 System.out.println("------- NOPE, DATABASE ERROR")
             }
+    }
+
+    fun checkIfUserIsSignedUp(userKey: String, eventKey: String, eventLabel: String) {
+        var isAssistant = false
+        Firebase.database.reference.child("events").child(eventLabel)
+            .child(eventKey).child("assistants").get()
+            .addOnSuccessListener {
+                for (key in it.children) {
+                    if (userKey == key.key) {
+                        isAssistant = true
+                    }
+                }
+                isUserAlreadySignedUp.value = isAssistant
+
+            }.addOnFailureListener {
+                System.out.println("------- NOPE, DATABASE ERROR")
+            }
+    }
+
+    fun userSignUpInEvent(userKey: String, eventKey: String, eventLabel: String, signUp: Boolean) {
+        val reference = Firebase.database.reference.child("events").child(eventLabel)
+            .child(eventKey).child("assistants").child(userKey)
+        if (signUp) {
+            reference.setValue(true).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    isUserGoingToAssist.value = true
+                }
+            }
+        } else {
+            reference.removeValue().addOnCompleteListener {
+                if (it.isSuccessful) {
+                    isUserGoingToAssist.value = false
+                }
+            }
+        }
+    }
+
+    fun updateAssistantCount(eventLabel: String, eventKey: String) {
+        Firebase.database.reference.child("events").child(eventLabel)
+            .child(eventKey).child("assistants").get()
+            .addOnSuccessListener {
+                numberOfAssistants.value = it.childrenCount
+
+            }.addOnFailureListener {
+                System.out.println("------- NOPE, DATABASE ERROR")
+            }
+
     }
 }

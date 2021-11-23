@@ -93,8 +93,8 @@ class UsersRepository constructor(val application: Application) {
     fun addUserToMyNetwork(userKey: String, add: Boolean) {
         val currentUserKey = Firebase.auth.currentUser!!.uid
         if (userKey != currentUserKey) {
-            val reference = Firebase.database.reference.child("users").child(currentUserKey)
-                .child("added").child(userKey)
+            val reference = Firebase.database.reference.child("users")
+                .child(currentUserKey).child("added").child(userKey)
             if (add) {
                 reference.setValue(true).addOnCompleteListener {
                     if (it.isSuccessful) {
