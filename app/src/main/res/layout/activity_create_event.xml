@@ -18,7 +18,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearCreateButton"
         android:layout_below="@+id/appBar"
         android:layout_marginTop="20dp">
 
@@ -128,7 +129,7 @@
                 android:id="@+id/selectTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -156,43 +157,67 @@
 
             </LinearLayout>
 
-            <Button
+            <TextView
                 android:id="@+id/uploadImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_custom_button"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:paddingVertical="8dp"
                 android:text="@string/uploadImage" />
 
-            <TextView
-                android:id="@+id/errorMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="280dp"
+                android:layout_height="280dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="3dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:gravity="center"
-                android:textAllCaps="true"
-                android:textColor="@color/design_default_color_error"
-                android:textSize="14sp" />
-
-            <Button
-                android:id="@+id/createButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="@string/createEventTitle" />
-
-            <pl.droidsonroids.gif.GifImageView
-                android:id="@+id/loading"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:src="@drawable/loading_dots" />
+                android:layout_marginBottom="20dp"
+                android:contentDescription="@string/contentDescription"
+                android:visibility="gone" />
 
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearCreateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/errorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textColor="@color/design_default_color_error"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/createButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@string/createEventTitle" />
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/loading"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/loading_dots"
+            android:visibility="gone" />
+
+    </LinearLayout>
 
 </RelativeLayout>
