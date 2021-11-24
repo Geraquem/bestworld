@@ -129,12 +129,19 @@ class CreateEventActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         closeKeyboard()
         bdg.errorMessage.visibility = View.GONE
 
-        val title = bdg.title.text.toString()
-        val description = bdg.description.text.toString()
-        val otherInfo = bdg.otherInfo.text.toString()
-        val address = bdg.address.text.toString()
-        val date = bdg.dateText.text.toString()
-        val time = bdg.timeText.text.toString()
+//        val title = bdg.title.text.toString()
+//        val description = bdg.description.text.toString()
+//        val otherInfo = bdg.otherInfo.text.toString()
+//        val address = bdg.address.text.toString()
+//        val date = bdg.dateText.text.toString()
+//        val time = bdg.timeText.text.toString()
+//
+        val title = " - "
+        val description = " - "
+        val otherInfo = " - "
+        val address = " - "
+        val date = " - "
+        val time = " - "
 
         if (!isThereFailures(this, bdg, title, description, address, label, date, time)) {
             val event = EventDTO(
@@ -150,7 +157,7 @@ class CreateEventActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 date,
                 time
             )
-            eventsViewModel.saveEvent(event)
+            eventsViewModel.saveEvent(event, imageUri)
         }
     }
 

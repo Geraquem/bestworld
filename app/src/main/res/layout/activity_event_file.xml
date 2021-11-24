@@ -79,6 +79,7 @@
                 android:textSize="22sp" />
 
             <ImageView
+                android:id="@+id/image"
                 android:layout_width="220dp"
                 android:layout_height="300dp"
                 android:layout_gravity="center"

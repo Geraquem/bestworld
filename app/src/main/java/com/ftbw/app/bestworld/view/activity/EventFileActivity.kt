@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityEventFileBinding
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInSpanish
@@ -73,7 +74,6 @@ class EventFileActivity : AppCompatActivity() {
         viewModel.numberOfAssistants.observe(this, {
             bdg.numberOfAssistants.text = it.toString()
         })
-
     }
 
     private fun doSignUp(label: String, eventKey: String) {
@@ -99,13 +99,22 @@ class EventFileActivity : AppCompatActivity() {
         bdg.numberOfAssistants.text = event.assistantsCount.toString()
         setLabelBackgroundColor(this, bdg.label.background, event.label)
         bdg.title.text = event.title
-        //set image
+        setImageByUrl(event.imageURL)
         bdg.description.text = event.description
         checkIfOtherInfoExists(event.otherInfo)
         bdg.creator.text = event.creatorName
         bdg.address.text = event.address
         bdg.date.text = event.date
         bdg.time.text = event.time
+    }
+
+    private fun setImageByUrl(imageURL: String?) {
+        if (imageURL == "") {
+            bdg.image.visibility = View.GONE
+        } else {
+            Glide.with(this).load(imageURL).into(bdg.image)
+            bdg.image.visibility = View.VISIBLE
+        }
     }
 
     private fun checkIfOtherInfoExists(otherInfo: String?) {

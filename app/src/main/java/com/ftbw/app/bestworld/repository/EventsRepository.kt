@@ -1,11 +1,14 @@
 package com.ftbw.app.bestworld.repository
 
 import android.app.Application
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import com.ftbw.app.bestworld.model.event.EventDTO
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class EventsRepository constructor(val application: Application) {
 
@@ -57,16 +60,38 @@ class EventsRepository constructor(val application: Application) {
             }
     }
 
-    fun saveEvent(event: EventDTO) {
+    fun saveEvent(event: EventDTO, imageUri: Uri?) {
         val database = Firebase.database.reference
-
         val label = event.label
         val key = database.child(label!!).push().key
         event.key = key
 
-        database.child("events").child(label).child(key!!).setValue(event).addOnCompleteListener {
-            saveCreatedEventByUser(event)
+        if (imageUri != null) {
+            saveAndGetImageUrlInStorage(event, imageUri)
+        } else {
+            saveCompleteEvent(event)
         }
+    }
+
+    private fun saveAndGetImageUrlInStorage(event: EventDTO, imageUri: Uri?) {
+        if (imageUri != null && event.label != null) {
+            val folder: StorageReference = FirebaseStorage.getInstance().reference
+                .child("events").child(event.label).child(event.key!!)
+            val fileName: StorageReference = folder.child("file" + imageUri.lastPathSegment)
+            fileName.putFile(imageUri).addOnSuccessListener {
+                fileName.downloadUrl.addOnSuccessListener {
+                    event.imageURL = it.toString()
+                    saveCompleteEvent(event)
+                }
+            }
+        }
+    }
+
+    private fun saveCompleteEvent(event: EventDTO) {
+        Firebase.database.reference.child("events")
+            .child(event.label!!).child(event.key!!).setValue(event).addOnCompleteListener {
+                saveCreatedEventByUser(event)
+            }
     }
 
     private fun saveCreatedEventByUser(event: EventDTO) {
@@ -75,7 +100,6 @@ class EventsRepository constructor(val application: Application) {
                 isEventSaved.value = it.isSuccessful
             }
     }
-
 
     fun getCreatedEventsByUser(userKey: String, eventLabel: String) {
         val keyList: MutableList<String> = mutableListOf()

@@ -1,6 +1,7 @@
 package com.ftbw.app.bestworld.viewmodel
 
 import android.app.Application
+import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.ftbw.app.bestworld.model.event.EventDTO
@@ -44,9 +45,9 @@ class EventsViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    fun saveEvent(event: EventDTO){
+    fun saveEvent(event: EventDTO, imageUri: Uri?){
         CoroutineScope(Dispatchers.IO).launch {
-            repository.saveEvent(event)
+            repository.saveEvent(event, imageUri)
         }
     }
 
