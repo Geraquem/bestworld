@@ -8,9 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityEventFileBinding
-import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInSpanish
-import com.ftbw.app.bestworld.helper.EventHelper.Companion.setLabelBackgroundColor
-import com.ftbw.app.bestworld.model.event.EventDTO
+import com.ftbw.app.bestworld.helper.EventFileHelper.setEventAttributes
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -31,17 +29,17 @@ class EventFileActivity : AppCompatActivity() {
         val eventLabel: String = intent.getStringExtra("label").toString().lowercase()
         val eventKey: String = intent.getStringExtra("key").toString()
 
+        findViewById<ImageView>(R.id.backButton).setOnClickListener {
+            finish();
+        }
+
         viewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
 
         viewModel.getSpecificEvent(eventLabel, eventKey)
         viewModel.event.observe(this, {
-            setEventAttributes(it)
+            setEventAttributes(this, bdg, it)
             if (it.label != null) checkIfSignUpButtonShouldExist(it.label, eventKey)
         })
-
-        findViewById<ImageView>(R.id.backButton).setOnClickListener {
-            finish();
-        }
 
         viewModel.isUserAlreadySignedUp.observe(this, {
             if (it) {
@@ -91,38 +89,6 @@ class EventFileActivity : AppCompatActivity() {
             bdg.loading.root.visibility = View.GONE
         } else {
             viewModel.checkIfUserIsSignedUp(Firebase.auth.currentUser!!.uid, eventKey, label)
-        }
-    }
-
-    private fun setEventAttributes(event: EventDTO) {
-        bdg.label.text = getLabelInSpanish(this, event.label!!)
-        bdg.numberOfAssistants.text = event.assistantsCount.toString()
-        setLabelBackgroundColor(this, bdg.label.background, event.label)
-        bdg.title.text = event.title
-        setImageByUrl(event.imageURL)
-        bdg.description.text = event.description
-        checkIfOtherInfoExists(event.otherInfo)
-        bdg.creator.text = event.creatorName
-        bdg.address.text = event.address
-        bdg.date.text = event.date
-        bdg.time.text = event.time
-    }
-
-    private fun setImageByUrl(imageURL: String?) {
-        if (imageURL == "") {
-            bdg.image.visibility = View.GONE
-        } else {
-            Glide.with(this).load(imageURL).into(bdg.image)
-            bdg.image.visibility = View.VISIBLE
-        }
-    }
-
-    private fun checkIfOtherInfoExists(otherInfo: String?) {
-        if (otherInfo != null && otherInfo.isBlank() && otherInfo.isEmpty()) {
-            bdg.linearOtherInfo.visibility = View.GONE
-        } else {
-            bdg.linearOtherInfo.visibility = View.VISIBLE
-            bdg.otherInfo.text = otherInfo
         }
     }
 }

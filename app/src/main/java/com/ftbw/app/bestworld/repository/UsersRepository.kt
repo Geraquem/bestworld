@@ -12,6 +12,7 @@ import com.google.firebase.ktx.Firebase
 class UsersRepository constructor(val application: Application) {
 
     val user = MutableLiveData<UserDTO>()
+    val creator = MutableLiveData<UserRecyclerDTO>()
     val isUserSaved = MutableLiveData<Boolean>()
     val isUserAdded = MutableLiveData<Boolean>()
     val isUserAlreadyAdded = MutableLiveData<Boolean>()
@@ -32,10 +33,23 @@ class UsersRepository constructor(val application: Application) {
             }
     }
 
+    fun getCreatorOfEvent(key: String) {
+        Firebase.database.reference.child("users").child(key).get()
+            .addOnSuccessListener {
+                if (it.exists()) {
+                    creator.value = it.getValue(UserRecyclerDTO::class.java)
+                }
+            }.addOnFailureListener {
+                System.out.println("------- NOPE, DATABASE ERROR")
+            }
+    }
+
     fun getUser(key: String) {
         Firebase.database.reference.child("users").child(key).get()
             .addOnSuccessListener {
-                getAddedByUser(key, it.getValue(UserDTO::class.java))
+                if (it.exists()) {
+                    getAddedByUser(key, it.getValue(UserDTO::class.java))
+                }
 
             }.addOnFailureListener {
                 System.out.println("------- NOPE, DATABASE ERROR")

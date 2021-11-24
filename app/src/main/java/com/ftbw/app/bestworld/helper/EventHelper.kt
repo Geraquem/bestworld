@@ -63,7 +63,7 @@ class EventHelper {
             bdg: ActivityCreateEventBinding,
             message: String
         ) {
-            bdg.loading.visibility = View.GONE
+            bdg.loadingCreating.visibility = View.GONE
             bdg.errorMessage.visibility = View.VISIBLE
             bdg.errorMessage.text = message
             bdg.createButton.isEnabled = true

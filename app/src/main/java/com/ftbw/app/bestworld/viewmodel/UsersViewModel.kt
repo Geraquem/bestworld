@@ -19,6 +19,7 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
     val isUserAdded: LiveData<Boolean>
     val isUserAlreadyAdded: LiveData<Boolean>
     val user: LiveData<UserDTO>
+    val creator: LiveData<UserRecyclerDTO>
     val listUsers: LiveData<List<UserRecyclerDTO>>
     val userKey = MutableLiveData<String>()
 
@@ -27,12 +28,19 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
         this.isUserAdded = repository.isUserAdded
         this.isUserAlreadyAdded = repository.isUserAlreadyAdded
         this.user = repository.user
+        this.creator = repository.creator
         this.listUsers = repository.listUsers
     }
 
     fun saveUser(name: String, email: String, key: String, type: String) {
         CoroutineScope(Dispatchers.IO).launch {
             repository.saveUser(name, email, key, type)
+        }
+    }
+
+    fun getCreatorOfEvent(key: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.getCreatorOfEvent(key)
         }
     }
 

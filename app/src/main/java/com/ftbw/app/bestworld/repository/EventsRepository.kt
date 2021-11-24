@@ -38,7 +38,9 @@ class EventsRepository constructor(val application: Application) {
     fun getSpecificEvent(eventLabel: String, key: String) {
         Firebase.database.reference.child("events").child(eventLabel).child(key).get()
             .addOnSuccessListener {
-                getAssistantCount(eventLabel, key, it.getValue(EventDTO::class.java))
+                if (it.exists()) {
+                    getAssistantCount(eventLabel, key, it.getValue(EventDTO::class.java))
+                }
 
             }.addOnFailureListener {
                 System.out.println("------- NOPE, DATABASE ERROR")

@@ -87,6 +87,4 @@ class LoginActivity : AppCompatActivity() {
             imm?.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
-
-    //HACER FIREBASE AUTH CON LINK EN EL CORREO
 }
