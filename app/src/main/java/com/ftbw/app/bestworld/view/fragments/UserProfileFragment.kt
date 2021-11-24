@@ -126,7 +126,7 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         if (imageURL == "") {
             bdg.profilePicture.setBackgroundResource(R.drawable.ic_user_name)
         } else {
-            Glide.with(getContext).load("").into(bdg.profilePicture)
+            Glide.with(getContext).load(imageURL).into(bdg.profilePicture)
         }
     }
 
