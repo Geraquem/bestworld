@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.adapter.recyclerview.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentUserProfileBinding
@@ -20,8 +21,6 @@ import com.ftbw.app.bestworld.helper.UserHelper.Companion.generateAlertDialog
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -86,9 +85,9 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         usersViewModel.getUser(userKey)
         usersViewModel.user.observe(viewLifecycleOwner, {
             bdg.name.text = it.name
+            setProfilePicture(it.imageURL)
             bdg.email.text = it.email
             bdg.usersAdded.text = it.addedCount.toString()
-
             bdg.loading.root.visibility = View.GONE
         })
 
@@ -123,6 +122,14 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         })
     }
 
+    private fun setProfilePicture(imageURL: String) {
+        if (imageURL == "") {
+            bdg.profilePicture.setBackgroundResource(R.drawable.ic_user_name)
+        } else {
+            Glide.with(getContext).load("").into(bdg.profilePicture)
+        }
+    }
+
     private fun initRecyclerView(list: List<EventRecyclerDTO>) {
         bdg.recyclerView.layoutManager = LinearLayoutManager(getContext)
         adapter = RViewEventsAdapter(requireContext(), list)
@@ -141,6 +148,7 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
             bdg.loadingEvents.root.visibility = View.VISIBLE
             bdg.recyclerView.visibility = View.GONE
             eventsViewModel.getCreatedEventsByUser(userKey, eventLabel)
+
         } else {
             bdg.recyclerView.visibility = View.GONE
             bdg.loadingEvents.root.visibility = View.GONE

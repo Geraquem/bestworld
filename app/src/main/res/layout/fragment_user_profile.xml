@@ -27,10 +27,11 @@
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/montserrat_bold"
                     android:lines="1"
+                    android:gravity="center"
                     android:maxLength="25"
                     android:maxLines="1"
                     android:textAllCaps="true"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
             </RelativeLayout>
 
@@ -86,10 +87,10 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profilePicture"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@color/black" />
+                    android:layout_marginEnd="8dp" />
 
                 <TextView
                     android:id="@+id/email"

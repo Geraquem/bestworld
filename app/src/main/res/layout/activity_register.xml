@@ -97,7 +97,7 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
+                android:layout_marginBottom="15dp"
                 android:background="@drawable/bg_edit_text"
                 android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="10dp"
@@ -110,6 +110,33 @@
                 android:maxLines="1"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="10dp" />
+
+            <LinearLayout
+                android:id="@+id/profilePictureButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bg_custom_button"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/profilePicture"
+                    android:textAllCaps="true" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profilePicture"
+                    android:visibility="gone"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:src="@color/black" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"

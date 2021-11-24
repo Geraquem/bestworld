@@ -5,7 +5,7 @@ data class UserDTO (
     val email: String = "",
     val aboutYou: String = "",
     val key: String = "",
-    val imageURL: String = "",
+    var imageURL: String = "",
     val type: String = "",
     var addedCount: Long = 0,
 )

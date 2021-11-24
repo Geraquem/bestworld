@@ -2,16 +2,21 @@ package com.ftbw.app.bestworld.view.activity
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityRegisterBinding
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.REGISTER_ACTIVITY_REQUEST_CODE
+import com.ftbw.app.bestworld.model.user.UserDTO
+import com.ftbw.app.bestworld.repository.ImageController
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -19,6 +24,8 @@ import com.google.firebase.ktx.Firebase
 class RegisterActivity : AppCompatActivity() {
 
     lateinit var bdg: ActivityRegisterBinding
+
+    private var imageUri: Uri? = null
 
     private lateinit var viewModel: UsersViewModel
 
@@ -37,6 +44,10 @@ class RegisterActivity : AppCompatActivity() {
 
         bdg.errorMessage.visibility = View.GONE
         bdg.loading.visibility = View.GONE
+
+        bdg.profilePictureButton.setOnClickListener {
+            ImageController.selectImageFromGallery(launcher)
+        }
 
         bdg.registerButton.setOnClickListener {
             doRegister()
@@ -102,13 +113,16 @@ class RegisterActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     bdg.errorMessage.visibility = View.GONE
                     if (Firebase.auth.currentUser != null) {
-                        getRadioButton()
-                        viewModel.saveUser(
+                        val user = UserDTO(
                             name,
                             email,
+                            "",
                             Firebase.auth.currentUser!!.uid,
-                            getRadioButton()
+                            "",
+                            getRadioButton(),
+                            0
                         )
+                        viewModel.saveUser(user, imageUri)
                     } else {
                         setErrorMessage(R.string.somethingWentWrong)
                     }
@@ -132,4 +146,13 @@ class RegisterActivity : AppCompatActivity() {
             imm?.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
+
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.data != null) {
+                imageUri = result.data!!.data
+                Glide.with(this).load(imageUri).into(bdg.profilePicture)
+                bdg.profilePicture.visibility = View.VISIBLE
+            }
+        }
 }

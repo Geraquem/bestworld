@@ -1,13 +1,16 @@
 package com.ftbw.app.bestworld.repository
 
 import android.app.Application
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
-import com.ftbw.app.bestworld.model.RegisteredUserDTO
+import com.ftbw.app.bestworld.model.event.EventDTO
 import com.ftbw.app.bestworld.model.user.UserDTO
 import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class UsersRepository constructor(val application: Application) {
 
@@ -18,11 +21,34 @@ class UsersRepository constructor(val application: Application) {
     val isUserAlreadyAdded = MutableLiveData<Boolean>()
     val listUsers = MutableLiveData<List<UserRecyclerDTO>>()
 
-    fun saveUser(name: String, email: String, key: String, type: String) {
-        val user = RegisteredUserDTO(name, email, key, type)
-        Firebase.database.reference.child("users").child(key).setValue(user)
+    fun saveUser(user: UserDTO, imageUri: Uri?) {
+
+        if(imageUri != null){
+            saveAndGetProfilePictureInStorage(user, imageUri)
+        }else
+        {
+            saveCompleteUser(user)
+        }
+    }
+
+    private fun saveAndGetProfilePictureInStorage(user: UserDTO, imageUri: Uri?) {
+        if (imageUri != null) {
+            val folder: StorageReference = FirebaseStorage.getInstance().reference
+                .child("users").child(user.key)
+            val fileName: StorageReference = folder.child("file" + imageUri.lastPathSegment)
+            fileName.putFile(imageUri).addOnSuccessListener {
+                fileName.downloadUrl.addOnSuccessListener {
+                    user.imageURL = it.toString()
+                    saveCompleteUser(user)
+                }
+            }
+        }
+    }
+
+    private fun saveCompleteUser(user: UserDTO){
+        Firebase.database.reference.child("users").child(user.key).setValue(user)
             .addOnCompleteListener {
-                saveUserByType(type, key)
+                saveUserByType(user.type, user.key)
             }
     }
 

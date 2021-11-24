@@ -64,7 +64,7 @@ class UsersRVTab(var type: String) : Fragment() {
 
     private fun initRecyclerView(list: List<UserRecyclerDTO>) {
         bdg.recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = RViewUsersAdapter(viewModel, list)
+        adapter = RViewUsersAdapter(getContext, viewModel, list)
         bdg.recyclerView.adapter = adapter
     }
 

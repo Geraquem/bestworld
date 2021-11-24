@@ -26,6 +26,7 @@
 
     <string name="name">NOMBRE</string>
     <string name="email">EMAIL</string>
+    <string name="profilePicture">Foto de perfil</string>
     <string name="passwordDetails">La contraseña debe tener 6 caracteres como mínimo.</string>
     <string name="password">CONTRASEÑA</string>
     <string name="repeat_password">REPITE LA CONSTRASEÑA</string>

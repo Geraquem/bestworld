@@ -1,6 +1,7 @@
 package com.ftbw.app.bestworld.viewmodel
 
 import android.app.Application
+import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -32,9 +33,9 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
         this.listUsers = repository.listUsers
     }
 
-    fun saveUser(name: String, email: String, key: String, type: String) {
+    fun saveUser(user: UserDTO, imageUri: Uri?) {
         CoroutineScope(Dispatchers.IO).launch {
-            repository.saveUser(name, email, key, type)
+            repository.saveUser(user, imageUri)
         }
     }
 
