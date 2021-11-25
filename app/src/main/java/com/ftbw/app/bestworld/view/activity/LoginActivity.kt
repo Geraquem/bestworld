@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         findViewById<ImageView>(R.id.backButton).setOnClickListener {
-            finish();
+            finish()
         }
         findViewById<TextView>(R.id.toolbarText).text = getString(R.string.log_in_title)
 

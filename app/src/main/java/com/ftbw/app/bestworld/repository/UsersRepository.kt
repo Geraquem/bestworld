@@ -3,7 +3,6 @@ package com.ftbw.app.bestworld.repository
 import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
-import com.ftbw.app.bestworld.model.event.EventDTO
 import com.ftbw.app.bestworld.model.user.UserDTO
 import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
 import com.google.firebase.auth.ktx.auth
@@ -23,10 +22,9 @@ class UsersRepository constructor(val application: Application) {
 
     fun saveUser(user: UserDTO, imageUri: Uri?) {
 
-        if(imageUri != null){
+        if (imageUri != null) {
             saveAndGetProfilePictureInStorage(user, imageUri)
-        }else
-        {
+        } else {
             saveCompleteUser(user)
         }
     }
@@ -45,7 +43,7 @@ class UsersRepository constructor(val application: Application) {
         }
     }
 
-    private fun saveCompleteUser(user: UserDTO){
+    private fun saveCompleteUser(user: UserDTO) {
         Firebase.database.reference.child("users").child(user.key).setValue(user)
             .addOnCompleteListener {
                 saveUserByType(user.type, user.key)

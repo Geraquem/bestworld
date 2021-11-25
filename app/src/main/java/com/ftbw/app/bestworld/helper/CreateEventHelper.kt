@@ -2,8 +2,6 @@ package com.ftbw.app.bestworld.helper
 
 import android.view.View
 import com.ftbw.app.bestworld.databinding.ActivityCreateEventBinding
-import com.ftbw.app.bestworld.databinding.ActivityEventFileBinding
-import com.ftbw.app.bestworld.view.activity.EventFileActivity
 import java.util.*
 
 object CreateEventHelper {

@@ -26,8 +26,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/montserrat_bold"
-                    android:lines="1"
                     android:gravity="center"
+                    android:lines="1"
                     android:maxLength="25"
                     android:maxLines="1"
                     android:textAllCaps="true"
@@ -97,8 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:fontFamily="@font/montserrat_light"
-                    android:text="adafasdfaasf" />
+                    android:fontFamily="@font/montserrat_light" />
 
             </LinearLayout>
 
@@ -134,35 +133,16 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginBottom="3dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/createdEvents"
-            android:textSize="16sp" />
-
-        <Spinner
-            android:id="@+id/spinner"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/bg_spinner_event_label"
-            android:elevation="3dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
+            app:tabTextAppearance="@style/monserratRegularText"
             android:layout_height="wrap_content" />
 
-        <include
-            android:id="@+id/loadingEvents"
-            layout="@layout/include_loading" />
-
-        <include
-            android:id="@+id/suchEmpty"
-            layout="@layout/include_such_empty" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

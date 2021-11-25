@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view.fragments
+package com.ftbw.app.bestworld.view.fragments.userprofile
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,23 +6,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.adapter.recyclerview.RViewEventsAdapter
+import com.ftbw.app.bestworld.adapter.pager.UserProfileViewPagerAdapter
 import com.ftbw.app.bestworld.databinding.FragmentUserProfileBinding
-import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInEnglish
 import com.ftbw.app.bestworld.helper.UserHelper.Companion.checkIfIsMainUser
 import com.ftbw.app.bestworld.helper.UserHelper.Companion.generateAlertDialog
-import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
+import com.google.android.material.tabs.TabLayoutMediator
 
-class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemSelectedListener {
+class UserProfileFragment(var userKey: String) : Fragment() {
 
     private var _bdg: FragmentUserProfileBinding? = null
     private val bdg get() = _bdg!!
@@ -31,8 +27,6 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
 
     private lateinit var usersViewModel: UsersViewModel
     private lateinit var eventsViewModel: EventsViewModel
-
-    private lateinit var adapter: RViewEventsAdapter
 
     private lateinit var closeSession: CloseSession
 
@@ -51,15 +45,8 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         usersViewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
         eventsViewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
 
-        ArrayAdapter.createFromResource(
-            getContext,
-            R.array.event_labels,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(R.layout.spinner_item)
-            bdg.spinner.adapter = adapter
-        }
-        bdg.spinner.onItemSelectedListener = this
+        val viewPagerAdapter = UserProfileViewPagerAdapter(this, userKey)
+        bdg.viewPager.adapter = viewPagerAdapter
 
         bdg.salir.setOnClickListener {
             generateAlertDialog(getContext, closeSession)
@@ -79,8 +66,6 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         })
 
         bdg.loading.root.visibility = View.VISIBLE
-        bdg.loadingEvents.root.visibility = View.GONE
-        bdg.suchEmpty.root.visibility = View.GONE
 
         usersViewModel.getUser(userKey)
         usersViewModel.user.observe(viewLifecycleOwner, {
@@ -110,16 +95,16 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
             bdg.addButton.isEnabled = true
         })
 
-        eventsViewModel.listCreatedEvents.observe(viewLifecycleOwner, {
-            bdg.loadingEvents.root.visibility = View.GONE
-            if (it.isEmpty()) {
-                bdg.suchEmpty.root.visibility = View.VISIBLE
-            } else {
-                initRecyclerView(it)
-                adapter.notifyDataSetChanged()
-                bdg.suchEmpty.root.visibility = View.GONE
+        TabLayoutMediator(bdg.tabLayout, bdg.viewPager) { tab, position ->
+            when (position) {
+                0 -> {
+                    tab.setIcon(R.drawable.ic_tab_created)
+                }
+                1 -> {
+                    tab.setIcon(R.drawable.ic_event_assistant)
+                }
             }
-        })
+        }.attach()
     }
 
     private fun setProfilePicture(imageURL: String) {
@@ -130,33 +115,10 @@ class UserProfileFragment(var userKey: String) : Fragment(), AdapterView.OnItemS
         }
     }
 
-    private fun initRecyclerView(list: List<EventRecyclerDTO>) {
-        bdg.recyclerView.layoutManager = LinearLayoutManager(getContext)
-        adapter = RViewEventsAdapter(requireContext(), list)
-        bdg.recyclerView.adapter = adapter
-        bdg.recyclerView.visibility = View.VISIBLE
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         getContext = context
     }
-
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        val eventLabel = getLabelInEnglish(getContext, p0!!.getItemAtPosition(p2).toString())
-        if (eventLabel != "Selecciona categoría") {
-            bdg.loadingEvents.root.visibility = View.VISIBLE
-            bdg.recyclerView.visibility = View.GONE
-            eventsViewModel.getCreatedEventsByUser(userKey, eventLabel)
-
-        } else {
-            bdg.recyclerView.visibility = View.GONE
-            bdg.loadingEvents.root.visibility = View.GONE
-            bdg.suchEmpty.root.visibility = View.GONE
-        }
-    }
-
-    override fun onNothingSelected(p0: AdapterView<*>?) {}
 
     fun setCallBack(close: CloseSession) {
         closeSession = close

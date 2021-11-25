@@ -56,7 +56,7 @@ class CreateEventActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         bdg.loading.root.visibility = View.VISIBLE
 
         findViewById<ImageView>(R.id.backButton).setOnClickListener {
-            finish();
+            finish()
         }
         findViewById<TextView>(R.id.toolbarText).text = getString(R.string.createEventTitle)
 

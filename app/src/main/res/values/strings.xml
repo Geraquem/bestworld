@@ -22,6 +22,7 @@
     <string name="signUpToEvent">ASISTIRÉ</string>
     <string name="signDownToEvent">YA NO ASISTIRÉ</string>
     <string name="createdEvents">EVENTOS CREADOS</string>
+    <string name="assistedEvents">EVENTOS APUNTADOS</string>
     <string name="suchEmpty">Vaya, parece que esto está vacío</string>
 
     <string name="name">NOMBRE</string>

@@ -1,6 +1,6 @@
 package com.ftbw.app.bestworld.model.user
 
-data class UserDTO (
+data class UserDTO(
     val name: String = "",
     val email: String = "",
     val aboutYou: String = "",

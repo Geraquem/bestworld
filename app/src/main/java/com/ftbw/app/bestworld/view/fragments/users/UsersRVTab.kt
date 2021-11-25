@@ -6,12 +6,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.adapter.recyclerview.RViewUsersAdapter
 import com.ftbw.app.bestworld.databinding.FragmentTabUsersBinding
+import com.ftbw.app.bestworld.helper.UserHelper.Companion.COMPANY
+import com.ftbw.app.bestworld.helper.UserHelper.Companion.PARTICULAR
 import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
 
@@ -40,10 +43,13 @@ class UsersRVTab(var type: String) : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(UsersViewModel::class.java)
 
-        if (type == "particular") {
+        if (type == PARTICULAR) {
             bdg.search.hint = getString(R.string.searchUsers)
-        } else {
+        } else if (type == COMPANY) {
             bdg.search.hint = getString(R.string.searchCompanies)
+        } else {
+            Toast.makeText(getContext, getString(R.string.somethingWentWrong), Toast.LENGTH_SHORT)
+                .show()
         }
 
         bdg.loading.root.visibility = View.VISIBLE

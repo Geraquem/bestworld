@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ftbw.app.bestworld.view.activity.EventFileActivity
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.RowEventRecyclerBinding
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
+import com.ftbw.app.bestworld.view.activity.EventFileActivity
 
 class RViewEventsAdapter(var context: Context, private var eventsList: List<EventRecyclerDTO>) :
     RecyclerView.Adapter<RViewEventsAdapter.EventHolder>() {

@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityEventFileBinding
 import com.ftbw.app.bestworld.helper.EventFileHelper.setEventAttributes
@@ -30,7 +29,7 @@ class EventFileActivity : AppCompatActivity() {
         val eventKey: String = intent.getStringExtra("key").toString()
 
         findViewById<ImageView>(R.id.backButton).setOnClickListener {
-            finish();
+            finish()
         }
 
         viewModel = ViewModelProvider(this).get(EventsViewModel::class.java)

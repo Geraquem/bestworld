@@ -12,8 +12,8 @@ import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.LOGIN_ACTIVITY_RE
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.REGISTER_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.goToUserProfileAsMainUser
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.openFragment
-import com.ftbw.app.bestworld.view.fragments.UserProfileFragment
 import com.ftbw.app.bestworld.view.fragments.events.EventsFragment
+import com.ftbw.app.bestworld.view.fragments.userprofile.UserProfileFragment
 import com.ftbw.app.bestworld.view.fragments.users.UsersFragment
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
 import com.google.firebase.auth.ktx.auth

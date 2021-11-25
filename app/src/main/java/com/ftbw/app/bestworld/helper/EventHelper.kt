@@ -14,7 +14,7 @@ import java.util.*
 class EventHelper {
     companion object {
 
-        private const val CHOOSE_CATEGORY = "Selecciona categoría"
+        const val CHOOSE_CATEGORY = "Selecciona categoría"
         const val ENVIRONMENTAL = "environmental"
         const val DIVULGATION = "divulgation"
         const val FARMING = "farming"
@@ -44,7 +44,7 @@ class EventHelper {
                 setErrorMessage(bdg, context.getString(R.string.errorMessageEventAddress))
                 return true
             }
-            if (label == "Selecciona categoría") {
+            if (label == CHOOSE_CATEGORY) {
                 setErrorMessage(bdg, context.getString(R.string.errorMessageEventCategory))
                 return true
             }
@@ -119,7 +119,7 @@ class EventHelper {
 
         fun getMonthNameByNumber(number: Int): String {
             return Month.of(number + 1)
-                .getDisplayName(TextStyle.FULL_STANDALONE, Locale("es", "ES"));
+                .getDisplayName(TextStyle.FULL_STANDALONE, Locale("es", "ES"))
         }
     }
 }

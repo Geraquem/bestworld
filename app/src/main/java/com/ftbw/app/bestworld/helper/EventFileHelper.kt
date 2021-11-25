@@ -1,6 +1,5 @@
 package com.ftbw.app.bestworld.helper
 
-import android.content.Context
 import android.view.View
 import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.databinding.ActivityEventFileBinding
@@ -9,7 +8,11 @@ import com.ftbw.app.bestworld.view.activity.EventFileActivity
 
 object EventFileHelper {
 
-    fun setEventAttributes(context: EventFileActivity, bdg: ActivityEventFileBinding, event: EventDTO) {
+    fun setEventAttributes(
+        context: EventFileActivity,
+        bdg: ActivityEventFileBinding,
+        event: EventDTO
+    ) {
         bdg.label.text = EventHelper.getLabelInSpanish(context, event.label!!)
         bdg.numberOfAssistants.text = event.assistantsCount.toString()
         EventHelper.setLabelBackgroundColor(context, bdg.label.background, event.label)
@@ -23,7 +26,11 @@ object EventFileHelper {
         bdg.creator.text = event.creatorName
     }
 
-    private fun setImageByUrl(context: EventFileActivity, bdg: ActivityEventFileBinding, imageURL: String?) {
+    private fun setImageByUrl(
+        context: EventFileActivity,
+        bdg: ActivityEventFileBinding,
+        imageURL: String?
+    ) {
         if (imageURL == "") {
             bdg.image.visibility = View.GONE
         } else {
