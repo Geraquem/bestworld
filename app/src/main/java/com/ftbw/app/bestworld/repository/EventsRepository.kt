@@ -3,6 +3,8 @@ package com.ftbw.app.bestworld.repository
 import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
+import com.ftbw.app.bestworld.helper.UserHelper.Companion.ASSISTANT_EVENTS
+import com.ftbw.app.bestworld.helper.UserHelper.Companion.CREATED_EVENTS
 import com.ftbw.app.bestworld.model.event.EventDTO
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.google.firebase.database.ktx.database
@@ -13,7 +15,7 @@ import com.google.firebase.storage.StorageReference
 class EventsRepository constructor(val application: Application) {
 
     val listEventRecycler = MutableLiveData<List<EventRecyclerDTO>>()
-    val listCreatedEvents = MutableLiveData<List<EventRecyclerDTO>>()
+    val listOfEvents = MutableLiveData<List<EventRecyclerDTO>>()
     val event = MutableLiveData<EventDTO>()
     val isEventSaved = MutableLiveData<Boolean>()
     val isUserAlreadySignedUp = MutableLiveData<Boolean>()
@@ -45,7 +47,6 @@ class EventsRepository constructor(val application: Application) {
             }.addOnFailureListener {
                 System.out.println("------- NOPE, DATABASE ERROR")
             }
-
     }
 
     private fun getAssistantCount(eventLabel: String, key: String, event: EventDTO?) {
@@ -97,16 +98,17 @@ class EventsRepository constructor(val application: Application) {
     }
 
     private fun saveCreatedEventByUser(event: EventDTO) {
-        Firebase.database.reference.child("users").child(event.creatorKey!!).child("events")
-            .child(event.label!!).child(event.key!!).setValue(true).addOnCompleteListener {
+        Firebase.database.reference.child("users").child(event.creatorKey!!)
+            .child(CREATED_EVENTS).child(event.label!!)
+            .child(event.key!!).setValue(true).addOnCompleteListener {
                 isEventSaved.value = it.isSuccessful
             }
     }
 
-    fun getCreatedEventsByUser(userKey: String, eventLabel: String) {
+    fun getEventsRelatedWithUser(relation: String, userKey: String, eventLabel: String) {
         val keyList: MutableList<String> = mutableListOf()
         Firebase.database.reference.child("users").child(userKey)
-            .child("events").child(eventLabel).get()
+            .child(relation).child(eventLabel).get()
             .addOnSuccessListener {
                 keyList.clear()
                 for (event in it.children) {
@@ -131,7 +133,7 @@ class EventsRepository constructor(val application: Application) {
                         }
                     }
                 }
-                listCreatedEvents.value = auxList
+                listOfEvents.value = auxList
 
             }.addOnFailureListener {
                 System.out.println("------- NOPE, DATABASE ERROR")
@@ -155,20 +157,39 @@ class EventsRepository constructor(val application: Application) {
             }
     }
 
-    fun userSignUpInEvent(userKey: String, eventKey: String, eventLabel: String, signUp: Boolean) {
+    fun userSignUpInEvent(userKey: String, eventKey: String, eventLabel: String, assist: Boolean) {
         val reference = Firebase.database.reference.child("events").child(eventLabel)
             .child(eventKey).child("assistants").child(userKey)
-        if (signUp) {
+        if (assist) {
             reference.setValue(true).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    isUserGoingToAssist.value = true
+                    saveAssistantEventByUser(userKey, eventKey, eventLabel, assist)
                 }
             }
         } else {
             reference.removeValue().addOnCompleteListener {
                 if (it.isSuccessful) {
-                    isUserGoingToAssist.value = false
+                    saveAssistantEventByUser(userKey, eventKey, eventLabel, assist)
                 }
+            }
+        }
+    }
+
+    private fun saveAssistantEventByUser(
+        userKey: String,
+        eventKey: String,
+        eventLabel: String,
+        assist: Boolean
+    ) {
+        val reference = Firebase.database.reference.child("users").child(userKey)
+            .child(ASSISTANT_EVENTS).child(eventLabel).child(eventKey)
+        if (assist) {
+            reference.setValue(true).addOnSuccessListener {
+                isUserGoingToAssist.value = true
+            }
+        } else {
+            reference.removeValue().addOnSuccessListener {
+                isUserGoingToAssist.value = false
             }
         }
     }
@@ -182,6 +203,5 @@ class EventsRepository constructor(val application: Application) {
             }.addOnFailureListener {
                 System.out.println("------- NOPE, DATABASE ERROR")
             }
-
     }
 }

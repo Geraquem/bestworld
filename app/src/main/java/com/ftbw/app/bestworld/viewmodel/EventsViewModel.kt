@@ -16,7 +16,7 @@ class EventsViewModel(application: Application) : AndroidViewModel(application) 
     private val repository = EventsRepository(application)
 
     val listEventRecycler: LiveData<List<EventRecyclerDTO>>
-    val listCreatedEvents: LiveData<List<EventRecyclerDTO>>
+    val listOfEvents: LiveData<List<EventRecyclerDTO>>
     val event: LiveData<EventDTO>
     val isEventSaved: LiveData<Boolean>
     val isUserAlreadySignedUp: LiveData<Boolean>
@@ -25,7 +25,7 @@ class EventsViewModel(application: Application) : AndroidViewModel(application) 
 
     init {
         this.listEventRecycler = repository.listEventRecycler
-        this.listCreatedEvents = repository.listCreatedEvents
+        this.listOfEvents = repository.listOfEvents
         this.event = repository.event
         this.isEventSaved = repository.isEventSaved
         this.isUserAlreadySignedUp = repository.isUserAlreadySignedUp
@@ -51,9 +51,9 @@ class EventsViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    fun getCreatedEventsByUser(userKey: String, eventLabel: String) {
+    fun getEventsRelatedWithUser(relation: String, userKey: String, eventLabel: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            repository.getCreatedEventsByUser(userKey, eventLabel)
+            repository.getEventsRelatedWithUser(relation, userKey, eventLabel)
         }
     }
 

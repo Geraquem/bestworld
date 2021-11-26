@@ -17,8 +17,8 @@ import com.ftbw.app.bestworld.adapter.recyclerview.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentTabUserProfileBinding
 import com.ftbw.app.bestworld.helper.EventHelper
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.CHOOSE_CATEGORY
-import com.ftbw.app.bestworld.helper.UserHelper.Companion.VIEW_ASSISTANT_EVENTS
-import com.ftbw.app.bestworld.helper.UserHelper.Companion.VIEW_CREATED_EVENTS
+import com.ftbw.app.bestworld.helper.UserHelper.Companion.ASSISTANT_EVENTS
+import com.ftbw.app.bestworld.helper.UserHelper.Companion.CREATED_EVENTS
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 
@@ -60,16 +60,16 @@ class UserProfileRVTab(var type: String, var userKey: String) : Fragment(),
         bdg.loading.root.visibility = View.GONE
         bdg.suchEmpty.root.visibility = View.GONE
 
-        if (type == VIEW_CREATED_EVENTS) {
+        if (type == CREATED_EVENTS) {
             bdg.title.text = getString(R.string.createdEvents)
-        } else if (type == VIEW_ASSISTANT_EVENTS) {
+        } else if (type == ASSISTANT_EVENTS) {
             bdg.title.text = getString(R.string.assistedEvents)
         } else {
             Toast.makeText(getContext, getString(R.string.somethingWentWrong), Toast.LENGTH_SHORT)
                 .show()
         }
 
-        eventsViewModel.listCreatedEvents.observe(viewLifecycleOwner, {
+        eventsViewModel.listOfEvents.observe(viewLifecycleOwner, {
             bdg.loading.root.visibility = View.GONE
             if (it.isEmpty()) {
                 bdg.suchEmpty.root.visibility = View.VISIBLE
@@ -110,11 +110,10 @@ class UserProfileRVTab(var type: String, var userKey: String) : Fragment(),
     }
 
     private fun selectTab(eventLabel: String) {
-        if (type == VIEW_CREATED_EVENTS) {
-            eventsViewModel.getCreatedEventsByUser(userKey, eventLabel)
-
-        } else if (type == VIEW_ASSISTANT_EVENTS) {
-//            eventsViewModel.getAssitantEventsByUser(userKey, eventLabel)
+        if (type == CREATED_EVENTS) {
+            eventsViewModel.getEventsRelatedWithUser(CREATED_EVENTS, userKey, eventLabel)
+        } else if (type == ASSISTANT_EVENTS) {
+            eventsViewModel.getEventsRelatedWithUser(ASSISTANT_EVENTS, userKey, eventLabel)
         }
     }
 
