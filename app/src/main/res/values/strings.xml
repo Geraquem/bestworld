@@ -9,6 +9,7 @@
     <string name="tabUsers">tabUsers</string>
     <string name="tabUserProfile">tabUserProfile</string>
 
+    <string name="allEvents">Todos los eventos</string>
     <string name="EnvironmentalTitleTab">Acción medioambiental</string>
     <string name="DivulgationTitleTab">Divulgación</string>
     <string name="WorkshopTitleTab">Talleres ambientales</string>

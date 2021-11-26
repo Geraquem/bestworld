@@ -15,6 +15,7 @@ class EventHelper {
     companion object {
 
         const val CHOOSE_CATEGORY = "Selecciona categoría"
+        const val ALLEVENTS = "allEvents"
         const val ENVIRONMENTAL = "environmental"
         const val DIVULGATION = "divulgation"
         const val FARMING = "farming"
@@ -83,6 +84,7 @@ class EventHelper {
 
         fun getLabelInSpanish(context: Context, labelSelected: String): String {
             return when (labelSelected) {
+                ALLEVENTS -> context.getString(R.string.allEvents)
                 ENVIRONMENTAL -> context.getString(R.string.EnvironmentalTitleTab)
                 DIVULGATION -> context.getString(R.string.DivulgationTitleTab)
                 FARMING -> context.getString(R.string.FarmingTitleTab)

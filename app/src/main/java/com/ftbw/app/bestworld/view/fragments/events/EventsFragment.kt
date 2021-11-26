@@ -39,26 +39,30 @@ class EventsFragment : Fragment() {
         TabLayoutMediator(bdg.tabLayout, bdg.viewPager) { tab, position ->
             when (position) {
                 0 -> {
-                    tab.setIcon(R.drawable.ic_tab_enviromental)
+                    tab.setIcon(R.drawable.ic_tab_all_events)
                     //tab.setText(R.string.EnviromentalTitle)
                 }
                 1 -> {
+                    tab.setIcon(R.drawable.ic_tab_enviromental)
+                    //tab.setText(R.string.EnviromentalTitle)
+                }
+                2 -> {
                     tab.setIcon(R.drawable.ic_tab_divulgation)
                     //tab.setText(R.string.DivulgationTitle)
                 }
-                2 -> {
+                3 -> {
                     tab.setIcon(R.drawable.ic_tab_workshop)
                     //tab.setText(R.string.WorkshopTitle)
                 }
-                3 -> {
+                4 -> {
                     tab.setIcon(R.drawable.ic_tab_mobilization)
                     //tab.setText(R.string.MobilizationTitle)
                 }
-                4 -> {
+                5 -> {
                     tab.setIcon(R.drawable.ic_tab_farming)
                     //tab.setText(R.string.FarmingTitle)
                 }
-                5 -> {
+                6 -> {
                     tab.setIcon(R.drawable.ic_tab_other)
                     //tab.setText(R.string.OtherTitle)
                 }

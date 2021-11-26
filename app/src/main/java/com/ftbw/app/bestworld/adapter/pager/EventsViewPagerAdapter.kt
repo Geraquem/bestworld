@@ -2,6 +2,7 @@ package com.ftbw.app.bestworld.adapter.pager
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.ftbw.app.bestworld.helper.EventHelper.Companion.ALLEVENTS
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.DIVULGATION
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.ENVIRONMENTAL
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.FARMING
@@ -12,16 +13,17 @@ import com.ftbw.app.bestworld.view.fragments.events.EventsRVTab
 
 class EventsViewPagerAdapter(val fragment: Fragment) : FragmentStateAdapter(fragment) {
 
-    override fun getItemCount(): Int = 6
+    override fun getItemCount(): Int = 7
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> EventsRVTab(ENVIRONMENTAL)
-            1 -> EventsRVTab(DIVULGATION)
-            2 -> EventsRVTab(FARMING)
-            3 -> EventsRVTab(MOBILIZATION)
-            4 -> EventsRVTab(WORKSHOP)
-            5 -> EventsRVTab(OTHER)
+            0 -> EventsRVTab(ALLEVENTS)
+            1 -> EventsRVTab(ENVIRONMENTAL)
+            2 -> EventsRVTab(DIVULGATION)
+            3 -> EventsRVTab(FARMING)
+            4 -> EventsRVTab(MOBILIZATION)
+            5 -> EventsRVTab(WORKSHOP)
+            6 -> EventsRVTab(OTHER)
             else -> EventsRVTab(OTHER)
         }
     }

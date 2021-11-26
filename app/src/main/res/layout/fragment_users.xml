@@ -17,9 +17,9 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        app:tabTextAppearance="@style/monserratRegularText"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/appBar" />
+        android:layout_below="@+id/appBar"
+        app:tabTextAppearance="@style/monserratRegularText" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"

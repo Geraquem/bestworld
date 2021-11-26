@@ -22,6 +22,10 @@ class EventsRepository constructor(val application: Application) {
     val isUserGoingToAssist = MutableLiveData<Boolean>()
     val numberOfAssistants = MutableLiveData<Long>()
 
+    fun getAllEvents(){
+
+    }
+
     fun getEvents(eventLabel: String) {
         val auxList: MutableList<EventRecyclerDTO> = mutableListOf()
         Firebase.database.reference.child("events").child(eventLabel).get()

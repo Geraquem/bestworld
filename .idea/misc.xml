@@ -20,6 +20,7 @@
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_event_not_assistat.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_happy_face.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
+        <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_nav_add.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_nav_home.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_nav_users.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_particular.xml" value="0.3828125" />
@@ -28,6 +29,7 @@
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_sad_face.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_search.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_social_tab.xml" value="0.3828125" />
+        <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_tab_created.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_tab_divulgation.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_tab_enviromental.xml" value="0.3828125" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable/ic_tab_farming.xml" value="0.22135416666666666" />
@@ -68,6 +70,8 @@
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/row_usersrecycler.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/layout/spinner_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3828125" />
+        <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3828125" />
       </map>
     </option>
   </component>
