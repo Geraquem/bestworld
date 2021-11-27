@@ -9,14 +9,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ftbw.app.bestworld.R
+import com.ftbw.app.bestworld.adapter.recyclerview.RViewAllEventsAdapter
 import com.ftbw.app.bestworld.adapter.recyclerview.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentTabEventBinding
-import com.ftbw.app.bestworld.helper.EventHelper.Companion.ALLEVENTS
-import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInSpanish
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 
-class EventsRVTab(var label: String) : Fragment() {
+class AllEventsRVTab : Fragment() {
     private var _bdg: FragmentTabEventBinding? = null
     private val bdg get() = _bdg!!
 
@@ -24,7 +24,7 @@ class EventsRVTab(var label: String) : Fragment() {
 
     private lateinit var viewModel: EventsViewModel
 
-    private lateinit var adapter: RViewEventsAdapter
+    private lateinit var adapter: RViewAllEventsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,10 +44,9 @@ class EventsRVTab(var label: String) : Fragment() {
         bdg.loading.root.visibility = View.VISIBLE
         bdg.suchEmpty.root.visibility = View.GONE
 
-        val labelText = getLabelInSpanish(getContext, label)
-        bdg.eventTabTitle.text = labelText
+        bdg.eventTabTitle.text = getContext.getString(R.string.allEvents)
 
-        viewModel.getEventsByLabel(label)
+        viewModel.getAllEvents()
         viewModel.listEventRecycler.observe(viewLifecycleOwner, {
             bdg.loading.root.visibility = View.GONE
             if (it.isEmpty()) {
@@ -62,7 +61,7 @@ class EventsRVTab(var label: String) : Fragment() {
 
     private fun initRecyclerView(list: List<EventRecyclerDTO>) {
         bdg.recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = RViewEventsAdapter(requireContext(), list)
+        adapter = RViewAllEventsAdapter(requireContext(), list)
         bdg.recyclerView.adapter = adapter
     }
 

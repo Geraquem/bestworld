@@ -9,6 +9,7 @@ import com.ftbw.app.bestworld.helper.EventHelper.Companion.FARMING
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.MOBILIZATION
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.OTHER
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.WORKSHOP
+import com.ftbw.app.bestworld.view.fragments.events.AllEventsRVTab
 import com.ftbw.app.bestworld.view.fragments.events.EventsRVTab
 
 class EventsViewPagerAdapter(val fragment: Fragment) : FragmentStateAdapter(fragment) {
@@ -17,7 +18,7 @@ class EventsViewPagerAdapter(val fragment: Fragment) : FragmentStateAdapter(frag
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> EventsRVTab(ALLEVENTS)
+            0 -> AllEventsRVTab()
             1 -> EventsRVTab(ENVIRONMENTAL)
             2 -> EventsRVTab(DIVULGATION)
             3 -> EventsRVTab(FARMING)

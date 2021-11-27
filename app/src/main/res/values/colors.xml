@@ -10,12 +10,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#505050</color>
     <color name="red">#CA1515</color>
+    <color name="dirtyWhite">#C1E6E6E6</color>
 
-    <color name="Enviromental">#C0EFC9</color>
-    <color name="Divulgation">#AADCF8</color>
-    <color name="Workshop">#C5948C</color>
-    <color name="Mobilization">#74B397</color>
-    <color name="Farming">#AC817D</color>
-    <color name="Other">#AA9ECA</color>
+    <color name="Enviromental">#80C0EFC9</color>
+    <color name="Divulgation">#4DAADCF8</color>
+    <color name="Workshop">#4DC5948C</color>
+    <color name="Mobilization">#4D74B397</color>
+    <color name="Farming">#4DAC817D</color>
+    <color name="Other">#4DAA9ECA</color>
 
 </resources>

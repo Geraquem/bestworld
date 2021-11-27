@@ -33,9 +33,15 @@ class EventsViewModel(application: Application) : AndroidViewModel(application) 
         this.numberOfAssistants = repository.numberOfAssistants
     }
 
-    fun getEvents(eventLabel: String) {
+    fun getAllEvents() {
         CoroutineScope(Dispatchers.IO).launch {
-            repository.getEvents(eventLabel)
+            repository.getAllEvents()
+        }
+    }
+
+    fun getEventsByLabel(eventLabel: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.getEventsByLabel(eventLabel)
         }
     }
 

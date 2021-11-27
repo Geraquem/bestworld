@@ -22,14 +22,37 @@ class EventsRepository constructor(val application: Application) {
     val isUserGoingToAssist = MutableLiveData<Boolean>()
     val numberOfAssistants = MutableLiveData<Long>()
 
-    fun getAllEvents(){
+    fun getAllEvents() {
+        val labelList: MutableList<String> = mutableListOf()
+        Firebase.database.reference.child("events")
+            .get().addOnSuccessListener {
+                for (label in it.children) {
+                    labelList.add(label.key.toString())
+                }
+                getAllEventsGivenLabels(labelList)
 
+            }.addOnFailureListener {
+                System.out.println("------- NOPE, DATABASE ERROR")
+            }
     }
 
-    fun getEvents(eventLabel: String) {
+    private fun getAllEventsGivenLabels(labels: MutableList<String>) {
         val auxList: MutableList<EventRecyclerDTO> = mutableListOf()
-        Firebase.database.reference.child("events").child(eventLabel).get()
-            .addOnSuccessListener {
+        for (eventLabel in labels) {
+            Firebase.database.reference.child("events").child(eventLabel)
+                .get().addOnSuccessListener {
+                    for (event in it.children) {
+                        auxList.add(event.getValue(EventRecyclerDTO::class.java)!!)
+                    }
+                    listEventRecycler.value = auxList
+                }
+        }
+    }
+
+    fun getEventsByLabel(eventLabel: String) {
+        val auxList: MutableList<EventRecyclerDTO> = mutableListOf()
+        Firebase.database.reference.child("events").child(eventLabel)
+            .get().addOnSuccessListener {
                 auxList.clear()
                 for (event in it.children) {
                     auxList.add(event.getValue(EventRecyclerDTO::class.java)!!)
@@ -42,8 +65,8 @@ class EventsRepository constructor(val application: Application) {
     }
 
     fun getSpecificEvent(eventLabel: String, key: String) {
-        Firebase.database.reference.child("events").child(eventLabel).child(key).get()
-            .addOnSuccessListener {
+        Firebase.database.reference.child("events").child(eventLabel).child(key)
+            .get().addOnSuccessListener {
                 if (it.exists()) {
                     getAssistantCount(eventLabel, key, it.getValue(EventDTO::class.java))
                 }
@@ -55,8 +78,8 @@ class EventsRepository constructor(val application: Application) {
 
     private fun getAssistantCount(eventLabel: String, key: String, event: EventDTO?) {
         Firebase.database.reference.child("events").child(eventLabel)
-            .child(key).child("assistants").get()
-            .addOnSuccessListener {
+            .child(key).child("assistants")
+            .get().addOnSuccessListener {
                 if (event != null) {
                     event.assistantsCount = it.childrenCount
                     this.event.value = event
@@ -96,15 +119,16 @@ class EventsRepository constructor(val application: Application) {
 
     private fun saveCompleteEvent(event: EventDTO) {
         Firebase.database.reference.child("events")
-            .child(event.label!!).child(event.key!!).setValue(event).addOnCompleteListener {
+            .child(event.label!!).child(event.key!!).setValue(event)
+            .addOnCompleteListener {
                 saveCreatedEventByUser(event)
             }
     }
 
     private fun saveCreatedEventByUser(event: EventDTO) {
         Firebase.database.reference.child("users").child(event.creatorKey!!)
-            .child(CREATED_EVENTS).child(event.label!!)
-            .child(event.key!!).setValue(true).addOnCompleteListener {
+            .child(CREATED_EVENTS).child(event.label!!).child(event.key!!).setValue(true)
+            .addOnCompleteListener {
                 isEventSaved.value = it.isSuccessful
             }
     }
@@ -112,8 +136,8 @@ class EventsRepository constructor(val application: Application) {
     fun getEventsRelatedWithUser(relation: String, userKey: String, eventLabel: String) {
         val keyList: MutableList<String> = mutableListOf()
         Firebase.database.reference.child("users").child(userKey)
-            .child(relation).child(eventLabel).get()
-            .addOnSuccessListener {
+            .child(relation).child(eventLabel)
+            .get().addOnSuccessListener {
                 keyList.clear()
                 for (event in it.children) {
                     keyList.add(event.key.toString())
@@ -127,8 +151,8 @@ class EventsRepository constructor(val application: Application) {
 
     private fun givenListOfKeysGetEvents(keyList: List<String>, eventLabel: String) {
         val auxList: MutableList<EventRecyclerDTO> = mutableListOf()
-        Firebase.database.reference.child("events").child(eventLabel).get()
-            .addOnSuccessListener {
+        Firebase.database.reference.child("events").child(eventLabel)
+            .get().addOnSuccessListener {
                 auxList.clear()
                 for (event in it.children) {
                     for (key in keyList) {
@@ -147,8 +171,8 @@ class EventsRepository constructor(val application: Application) {
     fun checkIfUserIsSignedUp(userKey: String, eventKey: String, eventLabel: String) {
         var isAssistant = false
         Firebase.database.reference.child("events").child(eventLabel)
-            .child(eventKey).child("assistants").get()
-            .addOnSuccessListener {
+            .child(eventKey).child("assistants")
+            .get().addOnSuccessListener {
                 for (key in it.children) {
                     if (userKey == key.key) {
                         isAssistant = true
@@ -200,8 +224,8 @@ class EventsRepository constructor(val application: Application) {
 
     fun updateAssistantCount(eventLabel: String, eventKey: String) {
         Firebase.database.reference.child("events").child(eventLabel)
-            .child(eventKey).child("assistants").get()
-            .addOnSuccessListener {
+            .child(eventKey).child("assistants")
+            .get().addOnSuccessListener {
                 numberOfAssistants.value = it.childrenCount
 
             }.addOnFailureListener {

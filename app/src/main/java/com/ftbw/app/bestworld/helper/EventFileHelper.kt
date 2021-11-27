@@ -3,6 +3,7 @@ package com.ftbw.app.bestworld.helper
 import android.view.View
 import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.databinding.ActivityEventFileBinding
+import com.ftbw.app.bestworld.helper.EventHelper.Companion.setLabelBackgroundColor
 import com.ftbw.app.bestworld.model.event.EventDTO
 import com.ftbw.app.bestworld.view.activity.EventFileActivity
 
@@ -15,7 +16,7 @@ object EventFileHelper {
     ) {
         bdg.label.text = EventHelper.getLabelInSpanish(context, event.label!!)
         bdg.numberOfAssistants.text = event.assistantsCount.toString()
-        EventHelper.setLabelBackgroundColor(context, bdg.label.background, event.label)
+        setLabelBackgroundColor(context, bdg.label.background, event.label)
         bdg.title.text = event.title
         setImageByUrl(context, bdg, event.imageURL)
         bdg.description.text = event.description
