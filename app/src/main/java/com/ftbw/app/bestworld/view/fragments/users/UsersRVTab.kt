@@ -41,7 +41,7 @@ class UsersRVTab(var type: String) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(UsersViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
 
         if (type == PARTICULAR) {
             bdg.search.hint = getString(R.string.searchUsers)

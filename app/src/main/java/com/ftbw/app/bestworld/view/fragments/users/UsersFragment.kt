@@ -34,11 +34,11 @@ class UsersFragment : Fragment() {
             when (position) {
                 0 -> {
                     tab.setIcon(R.drawable.ic_particular)
-                    tab.setText(R.string.particular)
+                    tab.setText(R.string.usersParticulars)
                 }
                 1 -> {
                     tab.setIcon(R.drawable.ic_company)
-                    tab.setText(R.string.comapany)
+                    tab.setText(R.string.usersCompanies)
                 }
             }
         }.attach()

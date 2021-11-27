@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/dirtyWhite">
 
     <EditText
         android:id="@+id/search"
@@ -29,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/search"
-        android:layout_marginHorizontal="10dp" />
+        android:background="@color/dirtyWhite" />
 
     <include
         android:id="@+id/loading"

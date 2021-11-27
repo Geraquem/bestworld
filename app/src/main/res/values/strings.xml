@@ -40,6 +40,8 @@
     <string name="registerHere">REGISTRATE AQUÍ</string>
     <string name="particular">PARTICULAR</string>
     <string name="comapany">EMPRESA</string>
+    <string name="usersParticulars">PERSONAS</string>
+    <string name="usersCompanies">EMPRESAS</string>
     <string name="errorMessageLogIn">Error al iniciar sesión\nCredenciales incorrectas</string>
     <string name="errorMessageEmailNotValid">Email no válido</string>
     <string name="errorMessageEmailInUse">Email en uso</string>

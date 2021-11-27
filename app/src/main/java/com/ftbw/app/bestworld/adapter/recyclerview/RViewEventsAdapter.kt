@@ -5,9 +5,12 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.RowEventRecyclerBinding
+import com.ftbw.app.bestworld.helper.EventHelper.Companion.setImageEvent
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.view.activity.EventFileActivity
 
@@ -31,7 +34,7 @@ class RViewEventsAdapter(var context: Context, private var eventsList: List<Even
         private val bdg = RowEventRecyclerBinding.bind(view)
 
         fun bind(context: Context, event: EventRecyclerDTO) {
-            //set imageURL
+            setImageEvent(context, event.imageURL, bdg.imageURL)
             bdg.title.text = event.title
             bdg.creator.text = event.creatorName
             bdg.address.text = event.address

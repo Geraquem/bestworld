@@ -4,7 +4,9 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.view.View
+import android.widget.ImageView
 import androidx.core.content.ContextCompat.getColor
+import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityCreateEventBinding
 import java.time.Month
@@ -123,5 +125,14 @@ class EventHelper {
             return Month.of(number + 1)
                 .getDisplayName(TextStyle.FULL_STANDALONE, Locale("es", "ES"))
         }
+
+        fun setImageEvent(context: Context, imageURL: String, imageView: ImageView) {
+            if (imageURL == "" || imageURL.isEmpty() || imageURL.isBlank()) {
+                imageView.setBackgroundResource(R.drawable.bw_logo)
+            } else {
+                Glide.with(context).load(imageURL).into(imageView)
+            }
+        }
+
     }
 }
