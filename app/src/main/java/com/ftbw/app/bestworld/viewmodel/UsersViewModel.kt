@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ftbw.app.bestworld.model.user.UserDTO
 import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
-import com.ftbw.app.bestworld.neworden.repository.UsersRepository
+import com.ftbw.app.bestworld.neworden.repository.old.UsersRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,12 +31,6 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
         this.user = repository.user
         this.creator = repository.creator
         this.listUsers = repository.listUsers
-    }
-
-    fun saveUser(user: UserDTO, imageUri: Uri?) {
-        CoroutineScope(Dispatchers.IO).launch {
-            repository.saveUser(user, imageUri)
-        }
     }
 
     fun getCreatorOfEvent(key: String) {

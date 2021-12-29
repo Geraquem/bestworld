@@ -192,7 +192,8 @@
                 android:gravity="center"
                 android:textAllCaps="true"
                 android:textColor="@color/design_default_color_error"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/registerButton"
@@ -207,7 +208,8 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
-                android:src="@drawable/loading_dots" />
+                android:src="@drawable/loading_dots"
+                android:visibility="gone" />
 
         </LinearLayout>
 

@@ -11,9 +11,7 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground">
 
-        <include
-            android:id="toolbarLogin"
-            layout="@layout/include_back_toolbar" />
+        <include layout="@layout/include_back_toolbar" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

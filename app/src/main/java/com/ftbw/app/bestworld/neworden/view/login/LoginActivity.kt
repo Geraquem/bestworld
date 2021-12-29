@@ -9,13 +9,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.LOGIN_ACTIVITY_REQUEST_CODE
+import com.ftbw.app.bestworld.databinding.ActivityLoginBinding
+import com.ftbw.app.bestworld.neworden.helper.Constants.Companion.LOGIN_ACTIVITY_REQUEST_CODE
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), LoginView {
+
+    lateinit var bdg: ActivityLoginBinding
 
     private lateinit var auth: FirebaseAuth
 
@@ -23,20 +25,22 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        bdg = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(bdg.root)
 
         auth = Firebase.auth
 
         findViewById<ImageView>(R.id.backButton).setOnClickListener { finish() }
         findViewById<TextView>(R.id.toolbarText).text = getString(R.string.log_in_title)
 
-        logInButton.setOnClickListener {
+        bdg.logInButton.setOnClickListener {
             presenter.updateUI()
             closeKeyboard()
 //            presenter.checkCredentials(email.text.toString(), password.text.toString())
             presenter.checkCredentials("a@gmail.com", "123456")
         }
 
-        registerText.setOnClickListener {
+        bdg.registerText.setOnClickListener {
             returnIntent(true)
         }
     }
@@ -52,15 +56,15 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     override fun updateUI() {
-        errorMessage.visibility = View.GONE
-        loading.visibility = View.VISIBLE
-        logInButton.isEnabled = false
+        bdg.errorMessage.visibility = View.GONE
+        bdg.loading.visibility = View.VISIBLE
+        bdg.logInButton.isEnabled = false
     }
 
     override fun loginUnSuccessful() {
-        errorMessage.visibility = View.VISIBLE
-        loading.visibility = View.GONE
-        logInButton.isEnabled = true
+        bdg.errorMessage.visibility = View.VISIBLE
+        bdg.loading.visibility = View.GONE
+        bdg.logInButton.isEnabled = true
     }
 
     private fun returnIntent(isRegister: Boolean) {
