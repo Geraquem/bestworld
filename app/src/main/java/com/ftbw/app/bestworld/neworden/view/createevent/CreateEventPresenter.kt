@@ -6,7 +6,6 @@ import android.widget.ArrayAdapter
 import android.widget.SpinnerAdapter
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityCreateEventBinding
-import com.ftbw.app.bestworld.helper.EventHelper
 import com.ftbw.app.bestworld.model.event.EventDTO
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.CHOOSE_CATEGORY
 import com.google.firebase.auth.ktx.auth
@@ -76,9 +75,7 @@ class CreateEventPresenter(val view: CreateEventView) : CreateEventRepository.IC
             return true
         }
         if (description.isEmpty()) {
-            view.setErrorMessage(
-                context.getString(R.string.errorMessageEventDescription)
-            )
+            view.setErrorMessage(context.getString(R.string.errorMessageEventDescription))
             return true
         }
         if (address.isEmpty()) {
