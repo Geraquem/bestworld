@@ -45,12 +45,6 @@ class EventsViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    fun getSpecificEvent(eventLabel: String, key: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            repository.getSpecificEvent(eventLabel, key)
-        }
-    }
-
     fun saveEvent(event: EventDTO, imageUri: Uri?) {
         CoroutineScope(Dispatchers.IO).launch {
             repository.saveEvent(event, imageUri)
@@ -60,24 +54,6 @@ class EventsViewModel(application: Application) : AndroidViewModel(application) 
     fun getEventsRelatedWithUser(relation: String, userKey: String, eventLabel: String) {
         CoroutineScope(Dispatchers.IO).launch {
             repository.getEventsRelatedWithUser(relation, userKey, eventLabel)
-        }
-    }
-
-    fun checkIfUserIsSignedUp(userKey: String, eventKey: String, eventLabel: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            repository.checkIfUserIsSignedUp(userKey, eventKey, eventLabel)
-        }
-    }
-
-    fun userSignUpInEvent(userKey: String, eventKey: String, eventLabel: String, signUp: Boolean) {
-        CoroutineScope(Dispatchers.IO).launch {
-            repository.userSignUpInEvent(userKey, eventKey, eventLabel, signUp)
-        }
-    }
-
-    fun updateAssistantCount(eventLabel: String, eventKey: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            repository.updateAssistantCount(eventLabel, eventKey)
         }
     }
 }

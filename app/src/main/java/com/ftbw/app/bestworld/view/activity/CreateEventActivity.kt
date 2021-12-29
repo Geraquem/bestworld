@@ -19,11 +19,11 @@ import com.ftbw.app.bestworld.databinding.ActivityCreateEventBinding
 import com.ftbw.app.bestworld.helper.CreateEventHelper.checkIfUserIsAvailable
 import com.ftbw.app.bestworld.helper.CreateEventHelper.onDateSelected
 import com.ftbw.app.bestworld.helper.CreateEventHelper.onTimeSelected
-import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInEnglish
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.isThereFailures
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.setErrorMessage
 import com.ftbw.app.bestworld.model.event.EventDTO
-import com.ftbw.app.bestworld.neworden.helper.Constants.Companion.CREATE_EVENT_ACTIVITY_REQUEST_CODE
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.CREATE_EVENT_ACTIVITY_REQUEST_CODE
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.getLabelInEnglish
 import com.ftbw.app.bestworld.neworden.helper.ImagePickerHelper.selectImageFromGallery
 import com.ftbw.app.bestworld.view.picker.DatePickerFragment
 import com.ftbw.app.bestworld.view.picker.TimePickerFragment

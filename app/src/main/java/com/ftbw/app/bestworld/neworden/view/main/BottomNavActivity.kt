@@ -10,8 +10,8 @@ import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityBottomNavBinding
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.goToUserProfileAsMainUser
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.openFragment
-import com.ftbw.app.bestworld.neworden.helper.Constants.Companion.LOGIN_ACTIVITY_REQUEST_CODE
-import com.ftbw.app.bestworld.neworden.helper.Constants.Companion.REGISTER_ACTIVITY_REQUEST_CODE
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.LOGIN_ACTIVITY_REQUEST_CODE
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.REGISTER_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.neworden.view.login.LoginActivity
 import com.ftbw.app.bestworld.neworden.view.register.RegisterActivity
 import com.ftbw.app.bestworld.view.activity.CreateEventActivity

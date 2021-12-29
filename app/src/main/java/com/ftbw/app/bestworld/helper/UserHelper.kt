@@ -13,11 +13,6 @@ import com.google.firebase.ktx.Firebase
 class UserHelper {
 
     companion object {
-        const val PARTICULAR = "particular"
-        const val COMPANY = "company"
-
-        const val CREATED_EVENTS = "createdEvents"
-        const val ASSISTANT_EVENTS = "assistantEvents"
 
         fun generateAlertDialog(context: Context, closeSession: UserProfileFragment.CloseSession) {
             context as AppCompatActivity

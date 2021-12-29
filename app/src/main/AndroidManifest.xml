@@ -20,7 +20,7 @@
             android:name=".neworden.view.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.EventFileActivity"
+            android:name=".neworden.view.eventfile.EventFileActivity"
             android:exported="false" />
         <activity
             android:name=".neworden.view.main.BottomNavActivity"

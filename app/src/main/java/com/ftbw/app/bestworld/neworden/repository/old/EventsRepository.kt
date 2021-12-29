@@ -3,10 +3,9 @@ package com.ftbw.app.bestworld.neworden.repository.old
 import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
-import com.ftbw.app.bestworld.helper.UserHelper.Companion.ASSISTANT_EVENTS
-import com.ftbw.app.bestworld.helper.UserHelper.Companion.CREATED_EVENTS
 import com.ftbw.app.bestworld.model.event.EventDTO
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.CREATED_EVENTS
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -162,71 +161,6 @@ class EventsRepository constructor(val application: Application) {
                     }
                 }
                 listOfEvents.value = auxList
-
-            }.addOnFailureListener {
-                System.out.println("------- NOPE, DATABASE ERROR")
-            }
-    }
-
-    fun checkIfUserIsSignedUp(userKey: String, eventKey: String, eventLabel: String) {
-        var isAssistant = false
-        Firebase.database.reference.child("events").child(eventLabel)
-            .child(eventKey).child("assistants")
-            .get().addOnSuccessListener {
-                for (key in it.children) {
-                    if (userKey == key.key) {
-                        isAssistant = true
-                    }
-                }
-                isUserAlreadySignedUp.value = isAssistant
-
-            }.addOnFailureListener {
-                System.out.println("------- NOPE, DATABASE ERROR")
-            }
-    }
-
-    fun userSignUpInEvent(userKey: String, eventKey: String, eventLabel: String, assist: Boolean) {
-        val reference = Firebase.database.reference.child("events").child(eventLabel)
-            .child(eventKey).child("assistants").child(userKey)
-        if (assist) {
-            reference.setValue(true).addOnCompleteListener {
-                if (it.isSuccessful) {
-                    saveAssistantEventByUser(userKey, eventKey, eventLabel, assist)
-                }
-            }
-        } else {
-            reference.removeValue().addOnCompleteListener {
-                if (it.isSuccessful) {
-                    saveAssistantEventByUser(userKey, eventKey, eventLabel, assist)
-                }
-            }
-        }
-    }
-
-    private fun saveAssistantEventByUser(
-        userKey: String,
-        eventKey: String,
-        eventLabel: String,
-        assist: Boolean
-    ) {
-        val reference = Firebase.database.reference.child("users").child(userKey)
-            .child(ASSISTANT_EVENTS).child(eventLabel).child(eventKey)
-        if (assist) {
-            reference.setValue(true).addOnSuccessListener {
-                isUserGoingToAssist.value = true
-            }
-        } else {
-            reference.removeValue().addOnSuccessListener {
-                isUserGoingToAssist.value = false
-            }
-        }
-    }
-
-    fun updateAssistantCount(eventLabel: String, eventKey: String) {
-        Firebase.database.reference.child("events").child(eventLabel)
-            .child(eventKey).child("assistants")
-            .get().addOnSuccessListener {
-                numberOfAssistants.value = it.childrenCount
 
             }.addOnFailureListener {
                 System.out.println("------- NOPE, DATABASE ERROR")

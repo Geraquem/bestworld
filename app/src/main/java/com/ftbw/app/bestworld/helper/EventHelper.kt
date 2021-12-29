@@ -72,48 +72,6 @@ class EventHelper {
             bdg.createButton.isEnabled = true
         }
 
-        fun getLabelInEnglish(context: Context, labelSelected: String): String {
-            return when (labelSelected) {
-                context.getString(R.string.EnvironmentalTitleTab) -> ENVIRONMENTAL
-                context.getString(R.string.DivulgationTitleTab) -> DIVULGATION
-                context.getString(R.string.FarmingTitleTab) -> FARMING
-                context.getString(R.string.MobilizationTitleTab) -> MOBILIZATION
-                context.getString(R.string.WorkshopTitleTab) -> WORKSHOP
-                context.getString(R.string.OtherTitleTab) -> OTHER
-                else -> CHOOSE_CATEGORY
-            }
-        }
-
-        fun getLabelInSpanish(context: Context, labelSelected: String): String {
-            return when (labelSelected) {
-                ALLEVENTS -> context.getString(R.string.allEvents)
-                ENVIRONMENTAL -> context.getString(R.string.EnvironmentalTitleTab)
-                DIVULGATION -> context.getString(R.string.DivulgationTitleTab)
-                FARMING -> context.getString(R.string.FarmingTitleTab)
-                MOBILIZATION -> context.getString(R.string.MobilizationTitleTab)
-                WORKSHOP -> context.getString(R.string.WorkshopTitleTab)
-                OTHER -> context.getString(R.string.OtherTitleTab)
-                else -> context.getString(R.string.somethingWentWrong)
-            }
-        }
-
-        fun setLabelBackgroundColor(context: Context, background: Drawable, label: String) {
-            when (label) {
-                ENVIRONMENTAL -> setColor(background, getColor(context, R.color.Enviromental))
-                DIVULGATION -> setColor(background, getColor(context, R.color.Divulgation))
-                FARMING -> setColor(background, getColor(context, R.color.Farming))
-                MOBILIZATION -> setColor(background, getColor(context, R.color.Mobilization))
-                WORKSHOP -> setColor(background, getColor(context, R.color.Workshop))
-                OTHER -> setColor(background, getColor(context, R.color.Other))
-                else -> setColor(background, getColor(context, R.color.Other))
-            }
-        }
-
-        private fun setColor(background: Drawable, color: Int) {
-            background as GradientDrawable
-            background.setColor(color)
-        }
-
         fun checkIfTimeHasOnlyOneNumber(time: String): String {
             if (time.length == 1) {
                 return "0$time"
@@ -133,6 +91,7 @@ class EventHelper {
                 Glide.with(context).load(imageURL).into(imageView)
             }
         }
+
 
     }
 }

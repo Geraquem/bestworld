@@ -3,6 +3,8 @@ package com.ftbw.app.bestworld.neworden.view.register
 import android.net.Uri
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.model.user.UserDTO
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.COMPANY
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.PARTICULAR
 
 class RegisterPresenter(val view: RegisterView) : RegisterRepository.IUser {
 
@@ -38,8 +40,8 @@ class RegisterPresenter(val view: RegisterView) : RegisterRepository.IUser {
 
     fun getRadioButton(isCompany: Boolean): String {
         return when (isCompany) {
-            true -> "company"
-            false -> "particular"
+            true -> COMPANY
+            false -> PARTICULAR
         }
     }
 

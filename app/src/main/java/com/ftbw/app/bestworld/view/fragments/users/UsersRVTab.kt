@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.adapter.recyclerview.RViewUsersAdapter
 import com.ftbw.app.bestworld.databinding.FragmentTabUsersBinding
-import com.ftbw.app.bestworld.helper.UserHelper.Companion.COMPANY
-import com.ftbw.app.bestworld.helper.UserHelper.Companion.PARTICULAR
 import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.COMPANY
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.PARTICULAR
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
 
 class UsersRVTab(var type: String) : Fragment() {

@@ -11,9 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.adapter.recyclerview.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentTabEventBinding
-import com.ftbw.app.bestworld.helper.EventHelper.Companion.ALLEVENTS
-import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInSpanish
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.getLabelInSpanish
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 
 class EventsRVTab(var label: String) : Fragment() {

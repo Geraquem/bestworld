@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.RowAllEventsRecyclerBinding
-import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInSpanish
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.setImageEvent
-import com.ftbw.app.bestworld.helper.EventHelper.Companion.setLabelBackgroundColor
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
-import com.ftbw.app.bestworld.view.activity.EventFileActivity
+import com.ftbw.app.bestworld.neworden.view.eventfile.EventFileActivity
 
 class RViewAllEventsAdapter(var context: Context, private var eventsList: List<EventRecyclerDTO>) :
     RecyclerView.Adapter<RViewAllEventsAdapter.EventHolder>() {
@@ -34,8 +32,8 @@ class RViewAllEventsAdapter(var context: Context, private var eventsList: List<E
         private val bdg = RowAllEventsRecyclerBinding.bind(view)
 
         fun bind(context: Context, event: EventRecyclerDTO) {
-            bdg.label.text = getLabelInSpanish(context, event.label)
-            setLabelBackgroundColor(context, bdg.label.background, event.label)
+//            bdg.label.text = getLabelInSpanish(context, event.label)
+//            setLabelBackgroundColor(context, bdg.label.background, event.label)
             setImageEvent(context, event.imageURL, bdg.imageURL)
             bdg.title.text = event.title
             bdg.creator.text = event.creatorName

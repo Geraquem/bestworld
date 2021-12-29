@@ -15,11 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.adapter.recyclerview.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentTabUserProfileBinding
-import com.ftbw.app.bestworld.helper.EventHelper
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.CHOOSE_CATEGORY
-import com.ftbw.app.bestworld.helper.UserHelper.Companion.ASSISTANT_EVENTS
-import com.ftbw.app.bestworld.helper.UserHelper.Companion.CREATED_EVENTS
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.ASSISTANT_EVENTS
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.CREATED_EVENTS
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.getLabelInEnglish
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
 
 class UserProfileRVTab(var type: String, var userKey: String) : Fragment(),
@@ -96,7 +96,7 @@ class UserProfileRVTab(var type: String, var userKey: String) : Fragment(),
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         val eventLabel =
-            EventHelper.getLabelInEnglish(getContext, p0!!.getItemAtPosition(p2).toString())
+            getLabelInEnglish(getContext, p0!!.getItemAtPosition(p2).toString())
         if (eventLabel != CHOOSE_CATEGORY) {
             bdg.loading.root.visibility = View.VISIBLE
             bdg.recyclerView.visibility = View.GONE
