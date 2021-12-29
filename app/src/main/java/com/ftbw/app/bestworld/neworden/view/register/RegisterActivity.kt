@@ -53,6 +53,8 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
     }
 
     override fun doRegister(name: String, email: String, password: String) {
+        bdg.loading.visibility = View.VISIBLE
+        bdg.registerButton.isEnabled = false
         Firebase.auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
