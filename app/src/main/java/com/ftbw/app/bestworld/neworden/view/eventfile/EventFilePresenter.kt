@@ -49,6 +49,6 @@ class EventFilePresenter(val view: EventFileView) : EventFileRepository.IEventFi
     }
 
     override fun somethingWentWrong() {
-        TODO("Not yet implemented")
+        view.somethingWentWrong()
     }
 }

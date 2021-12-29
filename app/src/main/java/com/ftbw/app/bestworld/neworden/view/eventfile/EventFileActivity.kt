@@ -3,6 +3,7 @@ package com.ftbw.app.bestworld.neworden.view.eventfile
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
@@ -101,5 +102,9 @@ class EventFileActivity : AppCompatActivity(), EventFileView {
                 bdg.signUpIcon.setBackgroundResource(R.drawable.ic_event_assistant)
             }
         }
+    }
+
+    override fun somethingWentWrong() {
+        Toast.makeText(this, getString(R.string.somethingWentWrong), Toast.LENGTH_SHORT).show()
     }
 }

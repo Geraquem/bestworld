@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.adapter.recyclerview.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentTabUserProfileBinding
-import com.ftbw.app.bestworld.helper.EventHelper.Companion.CHOOSE_CATEGORY
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.ASSISTANT_EVENTS
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.CHOOSE_CATEGORY
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.CREATED_EVENTS
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.getLabelInEnglish
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel

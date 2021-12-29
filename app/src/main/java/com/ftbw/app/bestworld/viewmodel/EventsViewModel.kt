@@ -45,12 +45,6 @@ class EventsViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    fun saveEvent(event: EventDTO, imageUri: Uri?) {
-        CoroutineScope(Dispatchers.IO).launch {
-            repository.saveEvent(event, imageUri)
-        }
-    }
-
     fun getEventsRelatedWithUser(relation: String, userKey: String, eventLabel: String) {
         CoroutineScope(Dispatchers.IO).launch {
             repository.getEventsRelatedWithUser(relation, userKey, eventLabel)

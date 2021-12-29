@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import androidx.core.content.ContextCompat
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.helper.EventHelper
 
 class Common {
 
@@ -21,54 +20,63 @@ class Common {
         const val CREATED_EVENTS = "createdEvents"
         const val ASSISTANT_EVENTS = "assistantEvents"
 
+        const val CHOOSE_CATEGORY = "Selecciona categoría"
+        const val ALL_EVENTS = "allEvents"
+        const val ENVIRONMENTAL = "environmental"
+        const val DIVULGATION = "divulgation"
+        const val FARMING = "farming"
+        const val MOBILIZATION = "mobilization"
+        const val WORKSHOP = "workshop"
+        const val OTHER = "other"
+
         fun getLabelInEnglish(context: Context, labelSelected: String): String {
             return when (labelSelected) {
-                context.getString(R.string.EnvironmentalTitleTab) -> EventHelper.ENVIRONMENTAL
-                context.getString(R.string.DivulgationTitleTab) -> EventHelper.DIVULGATION
-                context.getString(R.string.FarmingTitleTab) -> EventHelper.FARMING
-                context.getString(R.string.MobilizationTitleTab) -> EventHelper.MOBILIZATION
-                context.getString(R.string.WorkshopTitleTab) -> EventHelper.WORKSHOP
-                context.getString(R.string.OtherTitleTab) -> EventHelper.OTHER
-                else -> EventHelper.CHOOSE_CATEGORY
+                context.getString(R.string.EnvironmentalTitleTab) -> ENVIRONMENTAL
+                context.getString(R.string.DivulgationTitleTab) -> DIVULGATION
+                context.getString(R.string.FarmingTitleTab) -> FARMING
+                context.getString(R.string.MobilizationTitleTab) -> MOBILIZATION
+                context.getString(R.string.WorkshopTitleTab) -> WORKSHOP
+                context.getString(R.string.OtherTitleTab) -> OTHER
+                else -> CHOOSE_CATEGORY
             }
         }
 
         fun getLabelInSpanish(context: Context, labelSelected: String): String {
             return when (labelSelected) {
-                EventHelper.ALLEVENTS -> context.getString(R.string.allEvents)
-                EventHelper.ENVIRONMENTAL -> context.getString(R.string.EnvironmentalTitleTab)
-                EventHelper.DIVULGATION -> context.getString(R.string.DivulgationTitleTab)
-                EventHelper.FARMING -> context.getString(R.string.FarmingTitleTab)
-                EventHelper.MOBILIZATION -> context.getString(R.string.MobilizationTitleTab)
-                EventHelper.WORKSHOP -> context.getString(R.string.WorkshopTitleTab)
-                EventHelper.OTHER -> context.getString(R.string.OtherTitleTab)
+                ALL_EVENTS -> context.getString(R.string.allEvents)
+                ENVIRONMENTAL -> context.getString(R.string.EnvironmentalTitleTab)
+                DIVULGATION -> context.getString(R.string.DivulgationTitleTab)
+                FARMING -> context.getString(R.string.FarmingTitleTab)
+                MOBILIZATION -> context.getString(R.string.MobilizationTitleTab)
+                WORKSHOP -> context.getString(R.string.WorkshopTitleTab)
+                OTHER -> context.getString(R.string.OtherTitleTab)
                 else -> context.getString(R.string.somethingWentWrong)
             }
         }
 
         fun setLabelBackgroundColor(context: Context, background: Drawable, label: String) {
             when (label) {
-                EventHelper.ENVIRONMENTAL -> setColor(
+                ENVIRONMENTAL -> setColor(
                     background,
                     ContextCompat.getColor(context, R.color.Enviromental)
                 )
-                EventHelper.DIVULGATION -> setColor(
+                DIVULGATION -> setColor(
                     background,
                     ContextCompat.getColor(context, R.color.Divulgation)
                 )
-                EventHelper.FARMING -> setColor(
+                FARMING -> setColor(
                     background,
                     ContextCompat.getColor(context, R.color.Farming)
                 )
-                EventHelper.MOBILIZATION -> setColor(
+                MOBILIZATION -> setColor(
                     background,
                     ContextCompat.getColor(context, R.color.Mobilization)
                 )
-                EventHelper.WORKSHOP -> setColor(
+                WORKSHOP -> setColor(
                     background,
                     ContextCompat.getColor(context, R.color.Workshop)
                 )
-                EventHelper.OTHER -> setColor(
+                OTHER -> setColor(
                     background,
                     ContextCompat.getColor(context, R.color.Other)
                 )

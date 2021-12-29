@@ -16,52 +16,6 @@ import java.util.*
 class EventHelper {
     companion object {
 
-        const val CHOOSE_CATEGORY = "Selecciona categoría"
-        const val ALLEVENTS = "allEvents"
-        const val ENVIRONMENTAL = "environmental"
-        const val DIVULGATION = "divulgation"
-        const val FARMING = "farming"
-        const val MOBILIZATION = "mobilization"
-        const val WORKSHOP = "workshop"
-        const val OTHER = "other"
-
-        fun isThereFailures(
-            context: Context,
-            bdg: ActivityCreateEventBinding,
-            title: String,
-            description: String,
-            address: String,
-            label: String,
-            date: String,
-            time: String
-        ): Boolean {
-            if (title.isEmpty()) {
-                setErrorMessage(bdg, context.getString(R.string.errorMessageEventTitle))
-                return true
-            }
-            if (description.isEmpty()) {
-                setErrorMessage(bdg, context.getString(R.string.errorMessageEventDescription))
-                return true
-            }
-            if (address.isEmpty()) {
-                setErrorMessage(bdg, context.getString(R.string.errorMessageEventAddress))
-                return true
-            }
-            if (label == CHOOSE_CATEGORY) {
-                setErrorMessage(bdg, context.getString(R.string.errorMessageEventCategory))
-                return true
-            }
-            if (date.isEmpty() || date.isBlank()) {
-                setErrorMessage(bdg, context.getString(R.string.errorMessageEventDate))
-                return true
-            }
-            if (time.isEmpty() || time.isBlank()) {
-                setErrorMessage(bdg, context.getString(R.string.errorMessageEventTime))
-                return true
-            }
-            return false
-        }
-
         fun setErrorMessage(
             bdg: ActivityCreateEventBinding,
             message: String
@@ -72,19 +26,19 @@ class EventHelper {
             bdg.createButton.isEnabled = true
         }
 
-        fun checkIfTimeHasOnlyOneNumber(time: String): String {
+        private fun checkIfTimeHasOnlyOneNumber(time: String): String {
             if (time.length == 1) {
                 return "0$time"
             }
             return time
         }
 
-        fun getMonthNameByNumber(number: Int): String {
+        private fun getMonthNameByNumber(number: Int): String {
             return Month.of(number + 1)
                 .getDisplayName(TextStyle.FULL_STANDALONE, Locale("es", "ES"))
         }
 
-        fun setImageEvent(context: Context, imageURL: String, imageView: ImageView) {
+        private fun setImageEvent(context: Context, imageURL: String, imageView: ImageView) {
             if (imageURL == "" || imageURL.isEmpty() || imageURL.isBlank()) {
                 imageView.setBackgroundResource(R.drawable.bw_logo)
             } else {

@@ -16,6 +16,7 @@ import com.ftbw.app.bestworld.databinding.ActivityRegisterBinding
 import com.ftbw.app.bestworld.model.user.UserDTO
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.REGISTER_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.neworden.helper.ImagePickerHelper
+import com.ftbw.app.bestworld.neworden.helper.ImagePickerHelper.selectImageFromGallery
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -38,7 +39,7 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
         bdg.particular.isChecked = true
 
         bdg.profilePictureButton.setOnClickListener {
-            ImagePickerHelper.selectImageFromGallery(launcher)
+            selectImageFromGallery(launcher)
         }
 
         bdg.registerButton.setOnClickListener {

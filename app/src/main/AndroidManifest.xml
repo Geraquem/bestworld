@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bestworld">
         <activity
-            android:name=".view.activity.CreateEventActivity"
+            android:name=".neworden.view.createevent.CreateEventActivity"
             android:exported="false"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity

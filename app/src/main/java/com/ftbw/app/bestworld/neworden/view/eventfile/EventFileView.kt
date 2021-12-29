@@ -9,4 +9,6 @@ interface EventFileView {
     fun setOtherInfo(view: Int, otherInfo: String)
 
     fun userSignedUpInEvent(assistants: Long, signedUp: Boolean)
+
+    fun somethingWentWrong()
 }
