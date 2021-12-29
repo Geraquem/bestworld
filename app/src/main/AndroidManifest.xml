@@ -14,16 +14,16 @@
             android:exported="false"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".view.activity.RegisterActivity"
+            android:name=".neworden.view.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.LoginActivity"
+            android:name=".neworden.view.login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.EventFileActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.BottomNavActivity"
+            android:name=".neworden.view.main.BottomNavActivity"
             android:exported="true"
             android:theme="@style/SplashScreenTheme"
             android:windowSoftInputMode="stateHidden|adjustPan">

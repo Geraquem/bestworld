@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/include_back_toolbar.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/include_main_toolbar.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gershon.araque/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gershon.araque/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gershon.araque/Desktop/projectos/bestworld/app/src/main/res/drawable-anydpi/ic_spinner_drop_down.xml" value="0.3828125" />
@@ -76,7 +79,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

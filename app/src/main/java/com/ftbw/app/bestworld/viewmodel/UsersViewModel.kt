@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ftbw.app.bestworld.model.user.UserDTO
 import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
-import com.ftbw.app.bestworld.repository.UsersRepository
+import com.ftbw.app.bestworld.neworden.repository.UsersRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

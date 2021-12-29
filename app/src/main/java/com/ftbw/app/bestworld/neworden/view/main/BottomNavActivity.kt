@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view.activity
+package com.ftbw.app.bestworld.neworden.view.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +12,9 @@ import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.LOGIN_ACTIVITY_RE
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.REGISTER_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.goToUserProfileAsMainUser
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.openFragment
+import com.ftbw.app.bestworld.view.activity.CreateEventActivity
+import com.ftbw.app.bestworld.neworden.view.login.LoginActivity
+import com.ftbw.app.bestworld.neworden.view.register.RegisterActivity
 import com.ftbw.app.bestworld.view.fragments.events.EventsFragment
 import com.ftbw.app.bestworld.view.fragments.userprofile.UserProfileFragment
 import com.ftbw.app.bestworld.view.fragments.users.UsersFragment

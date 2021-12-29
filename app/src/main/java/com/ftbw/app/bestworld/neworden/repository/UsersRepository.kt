@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.repository
+package com.ftbw.app.bestworld.neworden.repository
 
 import android.app.Application
 import android.net.Uri

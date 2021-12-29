@@ -2,7 +2,7 @@ package com.ftbw.app.bestworld.helper
 
 import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.view.activity.BottomNavActivity
+import com.ftbw.app.bestworld.neworden.view.main.BottomNavActivity
 import com.ftbw.app.bestworld.view.fragments.events.EventsFragment
 import com.ftbw.app.bestworld.view.fragments.userprofile.UserProfileFragment
 import com.google.firebase.auth.ktx.auth

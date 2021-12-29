@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view.activity
+package com.ftbw.app.bestworld.neworden.view.register
 
 import android.content.Context
 import android.content.Intent
@@ -16,7 +16,7 @@ import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityRegisterBinding
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.REGISTER_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.model.user.UserDTO
-import com.ftbw.app.bestworld.repository.ImageController
+import com.ftbw.app.bestworld.neworden.repository.ImageController
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

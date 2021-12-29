@@ -24,7 +24,7 @@ import com.ftbw.app.bestworld.helper.EventHelper.Companion.getLabelInEnglish
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.isThereFailures
 import com.ftbw.app.bestworld.helper.EventHelper.Companion.setErrorMessage
 import com.ftbw.app.bestworld.model.event.EventDTO
-import com.ftbw.app.bestworld.repository.ImageController.selectImageFromGallery
+import com.ftbw.app.bestworld.neworden.repository.ImageController.selectImageFromGallery
 import com.ftbw.app.bestworld.view.picker.DatePickerFragment
 import com.ftbw.app.bestworld.view.picker.TimePickerFragment
 import com.ftbw.app.bestworld.viewmodel.EventsViewModel
