@@ -33,37 +33,12 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
         this.listUsers = repository.listUsers
     }
 
-    fun getCreatorOfEvent(key: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            repository.getCreatorOfEvent(key)
-        }
-    }
-
-    fun getUser(key: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            repository.getUser(key)
-        }
-    }
-
     fun getUsersByType(type: String) {
         CoroutineScope(Dispatchers.IO).launch {
             repository.getUsersByType(type)
         }
     }
 
-    fun goToUserProfileByKey(userKey: String) {
-        this.userKey.value = userKey
-    }
 
-    fun addUserToMyNetwork(userKey: String, add: Boolean) {
-        CoroutineScope(Dispatchers.IO).launch {
-            repository.addUserToMyNetwork(userKey, add)
-        }
-    }
 
-    fun checkIfUserIsAlreadyAdded(userKey: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            repository.checkIfUserIsAlreadyAdded(userKey)
-        }
-    }
 }

@@ -91,43 +91,5 @@ class UsersRepository(val application: Application) {
             }
     }
 
-    fun addUserToMyNetwork(userKey: String, add: Boolean) {
-        val currentUserKey = Firebase.auth.currentUser!!.uid
-        if (userKey != currentUserKey) {
-            val reference = Firebase.database.reference.child("users")
-                .child(currentUserKey).child("added").child(userKey)
-            if (add) {
-                reference.setValue(true).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        isUserAdded.value = true
-                    }
-                }
-            } else {
-                reference.removeValue().addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        isUserAdded.value = false
-                    }
-                }
-            }
-        }
-    }
 
-    fun checkIfUserIsAlreadyAdded(userKey: String) {
-        var isAdded = false
-        val currentUserKey = Firebase.auth.currentUser!!.uid
-        if (userKey != currentUserKey) {
-            Firebase.database.reference.child("users").child(currentUserKey).child("added").get()
-                .addOnSuccessListener {
-                    for (key in it.children) {
-                        if (userKey == key.key) {
-                            isAdded = true
-                        }
-                    }
-                    isUserAlreadyAdded.value = isAdded
-
-                }.addOnFailureListener {
-                    System.out.println("------- NOPE, DATABASE ERROR")
-                }
-        }
-    }
 }

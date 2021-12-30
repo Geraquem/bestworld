@@ -12,11 +12,10 @@ import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
 
 class RViewUsersAdapter(
+    val rowClickListener: (userKey: String) -> Unit,
     var context: Context,
-    var viewModel: UsersViewModel,
     private var usersList: List<UserRecyclerDTO>
-) :
-    RecyclerView.Adapter<RViewUsersAdapter.UserHolder>() {
+) : RecyclerView.Adapter<RViewUsersAdapter.UserHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
         return UserHolder(
@@ -26,25 +25,24 @@ class RViewUsersAdapter(
     }
 
     override fun onBindViewHolder(holder: UserHolder, position: Int) {
-        holder.bind(context, viewModel, usersList[position])
+        holder.bind(context, usersList[position])
+        holder.bdg.row.setOnClickListener{
+            rowClickListener(usersList[position].key)
+        }
     }
 
     override fun getItemCount() = usersList.size
 
     class UserHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val bdg = RowUsersRecyclerBinding.bind(view)
+        val bdg = RowUsersRecyclerBinding.bind(view)
 
-        fun bind(context: Context, viewModel: UsersViewModel, user: UserRecyclerDTO) {
+        fun bind(context: Context, user: UserRecyclerDTO) {
             bdg.name.text = user.name
             bdg.email.text = user.email
             if (user.imageURL == "") {
                 bdg.profilePicture.setBackgroundResource(R.drawable.ic_user_name)
             } else {
                 Glide.with(context).load(user.imageURL).into(bdg.profilePicture)
-            }
-
-            bdg.row.setOnClickListener {
-                viewModel.goToUserProfileByKey(user.key)
             }
         }
     }

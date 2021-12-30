@@ -16,7 +16,7 @@ import com.ftbw.app.bestworld.neworden.view.login.LoginActivity
 import com.ftbw.app.bestworld.neworden.view.register.RegisterActivity
 import com.ftbw.app.bestworld.neworden.view.createevent.CreateEventActivity
 import com.ftbw.app.bestworld.view.fragments.events.EventsFragment
-import com.ftbw.app.bestworld.view.fragments.userprofile.UserProfileFragment
+import com.ftbw.app.bestworld.neworden.view.userprofile.UserProfileFragment
 import com.ftbw.app.bestworld.view.fragments.users.UsersFragment
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
 import com.google.firebase.auth.ktx.auth

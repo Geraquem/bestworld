@@ -16,13 +16,14 @@ import com.ftbw.app.bestworld.databinding.FragmentTabUsersBinding
 import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.COMPANY
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.PARTICULAR
+import com.ftbw.app.bestworld.neworden.view.userprofile.UserProfileFragment
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel
 
 class UsersRVTab(var type: String) : Fragment() {
     private var _bdg: FragmentTabUsersBinding? = null
     private val bdg get() = _bdg!!
 
-    lateinit var getContext: Context
+    lateinit var mContext: Context
 
     private lateinit var viewModel: UsersViewModel
 
@@ -48,7 +49,7 @@ class UsersRVTab(var type: String) : Fragment() {
         } else if (type == COMPANY) {
             bdg.search.hint = getString(R.string.searchCompanies)
         } else {
-            Toast.makeText(getContext, getString(R.string.somethingWentWrong), Toast.LENGTH_SHORT)
+            Toast.makeText(mContext, getString(R.string.somethingWentWrong), Toast.LENGTH_SHORT)
                 .show()
         }
 
@@ -70,12 +71,19 @@ class UsersRVTab(var type: String) : Fragment() {
 
     private fun initRecyclerView(list: List<UserRecyclerDTO>) {
         bdg.recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = RViewUsersAdapter(getContext, viewModel, list)
+        adapter = RViewUsersAdapter(
+            { goToUserProfile(it) }, mContext, list
+        )
         bdg.recyclerView.adapter = adapter
+    }
+
+    private fun goToUserProfile(it: String) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, UserProfileFragment(it)).commit()
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        getContext = context
+        mContext = context
     }
 }

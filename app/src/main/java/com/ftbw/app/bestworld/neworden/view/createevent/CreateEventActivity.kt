@@ -18,8 +18,8 @@ import com.ftbw.app.bestworld.databinding.ActivityCreateEventBinding
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.CREATE_EVENT_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.getLabelInEnglish
 import com.ftbw.app.bestworld.neworden.helper.ImagePickerHelper.selectImageFromGallery
-import com.ftbw.app.bestworld.view.picker.DatePickerFragment
-import com.ftbw.app.bestworld.view.picker.TimePickerFragment
+import com.ftbw.app.bestworld.neworden.view.createevent.picker.DatePickerFragment
+import com.ftbw.app.bestworld.neworden.view.createevent.picker.TimePickerFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
