@@ -1,6 +1,5 @@
 package com.ftbw.app.bestworld.neworden.view.userprofile.tabs
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,13 +10,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.adapter.recyclerview.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentTabUserProfileBinding
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.ASSISTANT_EVENTS
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.CHOOSE_CATEGORY
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.CREATED_EVENTS
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.getLabelInEnglish
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.goToEventFile
+import com.ftbw.app.bestworld.neworden.view.userprofile.adapter.RViewUserProfileEventsAdapter
 
 class UserProfileRVTab(var type: String, var userKey: String) : Fragment(), UserProfileRVTabView,
     AdapterView.OnItemSelectedListener {
@@ -29,7 +29,7 @@ class UserProfileRVTab(var type: String, var userKey: String) : Fragment(), User
 
     private val presenter by lazy { UserProfileRVTabPresenter(this) }
 
-    private lateinit var adapter: RViewEventsAdapter
+    private lateinit var adapter: RViewUserProfileEventsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +40,6 @@ class UserProfileRVTab(var type: String, var userKey: String) : Fragment(), User
         return bdg.root
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -61,7 +60,9 @@ class UserProfileRVTab(var type: String, var userKey: String) : Fragment(), User
         } else {
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(mContext)
-            adapter = RViewEventsAdapter(requireContext(), events)
+            adapter = RViewUserProfileEventsAdapter(
+                { goToEventFile(mContext, it) }, requireContext(), events
+            )
             bdg.recyclerView.adapter = adapter
             bdg.recyclerView.visibility = View.VISIBLE
         }

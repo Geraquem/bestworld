@@ -1,10 +1,12 @@
 package com.ftbw.app.bestworld.neworden.view.userprofile.tabs
 
 import android.content.Context
+import android.content.Intent
 import android.widget.ArrayAdapter
 import android.widget.SpinnerAdapter
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
+import com.ftbw.app.bestworld.neworden.view.eventfile.EventFileActivity
 
 class UserProfileRVTabPresenter(var view: UserProfileRVTabView) :
     UserProfileRVTabRepository.IUserProfileRVTab {

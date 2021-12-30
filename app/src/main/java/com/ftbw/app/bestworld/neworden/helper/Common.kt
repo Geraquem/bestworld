@@ -1,10 +1,15 @@
 package com.ftbw.app.bestworld.neworden.helper
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
+import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
+import com.ftbw.app.bestworld.neworden.view.eventfile.EventFileActivity
 
 class Common {
 
@@ -90,6 +95,21 @@ class Common {
         private fun setColor(background: Drawable, color: Int) {
             background as GradientDrawable
             background.setColor(color)
+        }
+
+        fun setEventImage(context: Context, imageURL: String, imageView: ImageView) {
+            if (imageURL == "" || imageURL.isEmpty() || imageURL.isBlank()) {
+                imageView.setBackgroundResource(R.drawable.bw_logo)
+            } else {
+                Glide.with(context).load(imageURL).into(imageView)
+            }
+        }
+
+        fun goToEventFile(context: Context, event: EventRecyclerDTO) {
+            context.startActivity(Intent(context, EventFileActivity::class.java).apply {
+                putExtra("key", event.key)
+                putExtra("label", event.label)
+            })
         }
     }
 }

@@ -38,14 +38,5 @@ class EventHelper {
                 .getDisplayName(TextStyle.FULL_STANDALONE, Locale("es", "ES"))
         }
 
-        private fun setImageEvent(context: Context, imageURL: String, imageView: ImageView) {
-            if (imageURL == "" || imageURL.isEmpty() || imageURL.isBlank()) {
-                imageView.setBackgroundResource(R.drawable.bw_logo)
-            } else {
-                Glide.with(context).load(imageURL).into(imageView)
-            }
-        }
-
-
     }
 }
