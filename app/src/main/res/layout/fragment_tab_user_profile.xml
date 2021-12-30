@@ -30,13 +30,14 @@
 
     <include
         android:id="@+id/loading"
+        android:visibility="gone"
         layout="@layout/include_loading" />
 
     <include
+        android:layout_height="wrap_content"
         android:id="@+id/suchEmpty"
         layout="@layout/include_such_empty"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner" />
+        android:visibility="gone" />
 
 </LinearLayout>

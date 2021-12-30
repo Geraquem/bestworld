@@ -1,10 +1,10 @@
-package com.ftbw.app.bestworld.adapter.pager
+package com.ftbw.app.bestworld.neworden.view.userprofile.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.ASSISTANT_EVENTS
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.CREATED_EVENTS
-import com.ftbw.app.bestworld.view.fragments.userprofile.UserProfileRVTab
+import com.ftbw.app.bestworld.neworden.view.userprofile.tabs.UserProfileRVTab
 
 class UserProfileViewPagerAdapter(val fragment: Fragment, var userKey: String) :
     FragmentStateAdapter(fragment) {

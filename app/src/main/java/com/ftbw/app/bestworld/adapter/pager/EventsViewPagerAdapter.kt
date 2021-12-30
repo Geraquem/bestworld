@@ -8,8 +8,8 @@ import com.ftbw.app.bestworld.neworden.helper.Common.Companion.FARMING
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.MOBILIZATION
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.OTHER
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.WORKSHOP
-import com.ftbw.app.bestworld.view.fragments.events.AllEventsRVTab
-import com.ftbw.app.bestworld.view.fragments.events.EventsRVTab
+import com.ftbw.app.bestworld.neworden.view.events.tabs.AllEventsRVTab
+import com.ftbw.app.bestworld.neworden.view.events.tabs.EventsRVTab
 
 class EventsViewPagerAdapter(val fragment: Fragment) : FragmentStateAdapter(fragment) {
 

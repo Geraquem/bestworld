@@ -15,7 +15,7 @@ import com.ftbw.app.bestworld.neworden.helper.Common.Companion.REGISTER_ACTIVITY
 import com.ftbw.app.bestworld.neworden.view.login.LoginActivity
 import com.ftbw.app.bestworld.neworden.view.register.RegisterActivity
 import com.ftbw.app.bestworld.neworden.view.createevent.CreateEventActivity
-import com.ftbw.app.bestworld.view.fragments.events.EventsFragment
+import com.ftbw.app.bestworld.neworden.view.events.EventsFragment
 import com.ftbw.app.bestworld.neworden.view.userprofile.UserProfileFragment
 import com.ftbw.app.bestworld.view.fragments.users.UsersFragment
 import com.ftbw.app.bestworld.viewmodel.UsersViewModel

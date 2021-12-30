@@ -44,10 +44,4 @@ class EventsViewModel(application: Application) : AndroidViewModel(application) 
             repository.getEventsByLabel(eventLabel)
         }
     }
-
-    fun getEventsRelatedWithUser(relation: String, userKey: String, eventLabel: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            repository.getEventsRelatedWithUser(relation, userKey, eventLabel)
-        }
-    }
 }

@@ -1,6 +1,5 @@
 package com.ftbw.app.bestworld.neworden.view.userprofile
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.adapter.pager.UserProfileViewPagerAdapter
+import com.ftbw.app.bestworld.neworden.view.userprofile.adapter.UserProfileViewPagerAdapter
 import com.ftbw.app.bestworld.databinding.FragmentUserProfileBinding
 import com.ftbw.app.bestworld.model.user.UserDTO
 import com.google.android.material.tabs.TabLayoutMediator

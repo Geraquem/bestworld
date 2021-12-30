@@ -13,8 +13,8 @@ import kotlin.concurrent.timerTask
 class CreateEventRepository(private val listener: ICreateEvent) {
 
     fun getCreatorOfEvent(userKey: String) {
-        Firebase.database.reference.child("users").child(userKey).child("name").get()
-            .addOnSuccessListener {
+        Firebase.database.reference.child("users").child(userKey).child("name")
+            .get().addOnSuccessListener {
                 if (it.exists()) {
                     listener.creatorOfEvent(it.value.toString())
                 }

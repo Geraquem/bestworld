@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view.fragments.events
+package com.ftbw.app.bestworld.neworden.view.events
 
 import android.os.Bundle
 import android.view.LayoutInflater
