@@ -3,6 +3,7 @@ package com.ftbw.app.bestworld.neworden.view.createevent
 import android.net.Uri
 import com.ftbw.app.bestworld.model.event.EventDTO
 import com.ftbw.app.bestworld.neworden.helper.Common
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.CREATED_EVENTS
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -53,13 +54,16 @@ class CreateEventRepository(private val listener: ICreateEvent) {
         Firebase.database.reference.child("events")
             .child(event.label!!).child(event.key!!).setValue(event)
             .addOnCompleteListener {
-                saveCreatedEventByUser(event)
+                when {
+                    it.isSuccessful -> saveCreatedEventByUser(event)
+                    else -> listener.somethingWentWrong()
+                }
             }
     }
 
     private fun saveCreatedEventByUser(event: EventDTO) {
         Firebase.database.reference.child("users").child(event.creatorKey!!)
-            .child(Common.CREATED_EVENTS).child(event.label!!).child(event.key!!).setValue(true)
+            .child(CREATED_EVENTS).child(event.label!!).child(event.key!!).setValue(true)
             .addOnCompleteListener {
                 when {
                     it.isSuccessful -> listener.eventCreated()
