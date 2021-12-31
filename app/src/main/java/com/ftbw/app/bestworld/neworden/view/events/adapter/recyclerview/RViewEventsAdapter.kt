@@ -1,7 +1,6 @@
-package com.ftbw.app.bestworld.adapter.recyclerview
+package com.ftbw.app.bestworld.neworden.view.events.adapter.recyclerview
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.RowEventRecyclerBinding
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
-import com.ftbw.app.bestworld.neworden.view.eventfile.EventFileActivity
+import com.ftbw.app.bestworld.neworden.helper.Common.Companion.setEventImage
 
-class RViewEventsAdapter(var context: Context, private var eventsList: List<EventRecyclerDTO>) :
+class RViewEventsAdapter(
+    val onClick: (event: EventRecyclerDTO) -> Unit,
+    var context: Context,
+    private var eventsList: List<EventRecyclerDTO>
+) :
     RecyclerView.Adapter<RViewEventsAdapter.EventHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventHolder {
@@ -23,29 +26,21 @@ class RViewEventsAdapter(var context: Context, private var eventsList: List<Even
 
     override fun onBindViewHolder(holder: EventHolder, position: Int) {
         holder.bind(context, eventsList[position])
+        holder.bdg.row.setOnClickListener {
+            onClick(eventsList[position])
+        }
     }
 
     override fun getItemCount() = eventsList.size
 
     class EventHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val bdg = RowEventRecyclerBinding.bind(view)
+        val bdg = RowEventRecyclerBinding.bind(view)
 
         fun bind(context: Context, event: EventRecyclerDTO) {
-//            setImageEvent(context, event.imageURL, bdg.imageURL)
+            setEventImage(context, event.imageURL, bdg.imageURL)
             bdg.title.text = event.title
             bdg.creator.text = event.creatorName
             bdg.address.text = event.address
-
-            bdg.row.setOnClickListener {
-                context.startActivity(
-                    Intent(
-                        context,
-                        EventFileActivity::class.java
-                    ).apply {
-                        putExtra("key", event.key)
-                        putExtra("label", event.label)
-                    })
-            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.adapter.pager
+package com.ftbw.app.bestworld.neworden.view.events.adapter.viewpager
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
