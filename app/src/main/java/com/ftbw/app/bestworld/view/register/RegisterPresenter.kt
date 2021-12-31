@@ -2,11 +2,17 @@ package com.ftbw.app.bestworld.view.register
 
 import android.net.Uri
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.model.user.UserDTO
 import com.ftbw.app.bestworld.helper.Common.Companion.COMPANY
 import com.ftbw.app.bestworld.helper.Common.Companion.PARTICULAR
+import com.ftbw.app.bestworld.model.user.UserDTO
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class RegisterPresenter(val view: RegisterView) : RegisterRepository.IUser {
+class RegisterPresenter(val view: RegisterView) : RegisterRepository.IUser, CoroutineScope {
+
+    override val coroutineContext: CoroutineContext = Dispatchers.Main
 
     private val repository by lazy { RegisterRepository(this) }
 
@@ -45,15 +51,21 @@ class RegisterPresenter(val view: RegisterView) : RegisterRepository.IUser {
         }
     }
 
-    fun saveUser(user: UserDTO, imageUri: Uri?){
-        repository.saveUser(user, imageUri)
+    fun saveUser(user: UserDTO, imageUri: Uri?) {
+        launch(Dispatchers.IO) {
+            repository.saveUser(user, imageUri)
+        }
     }
 
     override fun userSavedOk() {
-        view.userSavedOk()
+        launch {
+            view.userSavedOk()
+        }
     }
 
     override fun somethingWentWrong() {
-        view.setErrorMessage(R.string.somethingWentWrong)
+        launch {
+            view.setErrorMessage(R.string.somethingWentWrong)
+        }
     }
 }

@@ -1,20 +1,32 @@
 package com.ftbw.app.bestworld.view.users
 
 import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class UsersPresenter(private val view: UsersView) : UsersRepository.IUsers {
+class UsersPresenter(private val view: UsersView) : UsersRepository.IUsers, CoroutineScope {
+
+    override val coroutineContext: CoroutineContext = Dispatchers.Main
 
     private val repository by lazy { UsersRepository(this) }
 
     fun getUsersByType(type: String) {
-        repository.getUsersByType(type)
+        launch(Dispatchers.IO) {
+            repository.getUsersByType(type)
+        }
     }
 
     override fun showUsers(users: List<UserRecyclerDTO>) {
-        view.showUsers(users)
+        launch {
+            view.showUsers(users)
+        }
     }
 
     override fun somethingWentWrong() {
-        view.somethingWentWrong()
+        launch {
+            view.somethingWentWrong()
+        }
     }
 }

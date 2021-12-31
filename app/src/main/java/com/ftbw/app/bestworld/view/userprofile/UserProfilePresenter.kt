@@ -4,8 +4,15 @@ import android.view.View
 import com.ftbw.app.bestworld.model.user.UserDTO
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class UserProfilePresenter(var view: UserProfileView) : UserProfileRepository.IUserProfile {
+class UserProfilePresenter(var view: UserProfileView) : UserProfileRepository.IUserProfile,
+    CoroutineScope {
+
+    override val coroutineContext: CoroutineContext = Dispatchers.Main
 
     private val repository by lazy { UserProfileRepository(this) }
 
@@ -14,27 +21,41 @@ class UserProfilePresenter(var view: UserProfileView) : UserProfileRepository.IU
         return if (currentUser == null || userKey == currentUser.uid) {
             view.showAddButton(View.GONE)
             view.showEditProfileButton(View.VISIBLE)
-            repository.getUserData(userKey, true)
+            getUserData(userKey, true)
         } else {
             view.showAddButton(View.VISIBLE)
             view.showEditProfileButton(View.GONE)
-            repository.getUserData(userKey, false)
+            getUserData(userKey, false)
         }
     }
 
-    fun addUserToMyNetwork(userKey: String, shouldAdd: Boolean){
-        repository.addUserToMyNetwork(userKey, shouldAdd)
+    private fun getUserData(userKey: String, isMainUserProfile: Boolean) {
+        launch(Dispatchers.IO) {
+            repository.getUserData(userKey, isMainUserProfile)
+        }
+    }
+
+    fun addUserToMyNetwork(userKey: String, shouldAdd: Boolean) {
+        launch(Dispatchers.IO) {
+            repository.addUserToMyNetwork(userKey, shouldAdd)
+        }
     }
 
     override fun userData(user: UserDTO) {
-        view.setUserData(user)
+        launch {
+            view.setUserData(user)
+        }
     }
 
     override fun isAddedToMyNetwork(isAdded: Boolean) {
-        view.modifyAddButton(isAdded)
+        launch {
+            view.modifyAddButton(isAdded)
+        }
     }
 
     override fun somethingWentWrong() {
-        view.somethingWentWrong()
+        launch {
+            view.somethingWentWrong()
+        }
     }
 }
