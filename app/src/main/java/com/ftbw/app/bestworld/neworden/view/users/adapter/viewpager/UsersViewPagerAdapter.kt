@@ -1,10 +1,10 @@
-package com.ftbw.app.bestworld.adapter.pager
+package com.ftbw.app.bestworld.neworden.view.users.adapter.viewpager
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.COMPANY
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.PARTICULAR
-import com.ftbw.app.bestworld.view.fragments.users.UsersRVTab
+import com.ftbw.app.bestworld.neworden.view.users.tabs.UsersRVTab
 
 class UsersViewPagerAdapter(val fragment: Fragment) : FragmentStateAdapter(fragment) {
 

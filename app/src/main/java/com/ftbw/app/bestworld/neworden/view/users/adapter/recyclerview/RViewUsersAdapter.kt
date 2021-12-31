@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.adapter.recyclerview
+package com.ftbw.app.bestworld.neworden.view.users.adapter.recyclerview
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.RowUsersRecyclerBinding
 import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
-import com.ftbw.app.bestworld.viewmodel.UsersViewModel
 
 class RViewUsersAdapter(
     val rowClickListener: (userKey: String) -> Unit,

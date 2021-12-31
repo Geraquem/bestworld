@@ -5,20 +5,18 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityBottomNavBinding
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.goToUserProfileAsMainUser
 import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.openFragment
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.LOGIN_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.REGISTER_ACTIVITY_REQUEST_CODE
-import com.ftbw.app.bestworld.neworden.view.login.LoginActivity
-import com.ftbw.app.bestworld.neworden.view.register.RegisterActivity
 import com.ftbw.app.bestworld.neworden.view.createevent.CreateEventActivity
 import com.ftbw.app.bestworld.neworden.view.events.EventsFragment
+import com.ftbw.app.bestworld.neworden.view.login.LoginActivity
+import com.ftbw.app.bestworld.neworden.view.register.RegisterActivity
 import com.ftbw.app.bestworld.neworden.view.userprofile.UserProfileFragment
-import com.ftbw.app.bestworld.view.fragments.users.UsersFragment
-import com.ftbw.app.bestworld.viewmodel.UsersViewModel
+import com.ftbw.app.bestworld.neworden.view.users.UsersFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -26,16 +24,12 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession 
 
     lateinit var bdg: ActivityBottomNavBinding
 
-    private lateinit var usersViewModel: UsersViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1500)
         setTheme(R.style.Theme_Bestworld)
         super.onCreate(savedInstanceState)
         bdg = ActivityBottomNavBinding.inflate(layoutInflater)
         setContentView(bdg.root)
-
-        usersViewModel = ViewModelProvider(this).get(UsersViewModel::class.java)
 
         openFragment(this, EventsFragment())
 
@@ -85,10 +79,6 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession 
                 }
             }
         }
-
-        usersViewModel.userKey.observe(this, {
-            openFragment(this, UserProfileFragment(it))
-        })
     }
 
     private val openPostActivity =
@@ -123,5 +113,4 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession 
         openFragment(this, EventsFragment())
         //recreate() -> Another way
     }
-
 }

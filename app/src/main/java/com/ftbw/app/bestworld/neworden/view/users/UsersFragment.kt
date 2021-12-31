@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view.fragments.users
+package com.ftbw.app.bestworld.neworden.view.users
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.adapter.pager.UsersViewPagerAdapter
+import com.ftbw.app.bestworld.neworden.view.users.adapter.viewpager.UsersViewPagerAdapter
 import com.ftbw.app.bestworld.databinding.FragmentUsersBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
