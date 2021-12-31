@@ -10,20 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bestworld">
         <activity
-            android:name=".neworden.view.createevent.CreateEventActivity"
+            android:name="com.ftbw.app.bestworld.view.createevent.CreateEventActivity"
             android:exported="false"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".neworden.view.register.RegisterActivity"
+            android:name="com.ftbw.app.bestworld.view.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".neworden.view.login.LoginActivity"
+            android:name="com.ftbw.app.bestworld.view.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".neworden.view.eventfile.EventFileActivity"
+            android:name="com.ftbw.app.bestworld.view.eventfile.EventFileActivity"
             android:exported="false" />
         <activity
-            android:name=".neworden.view.main.BottomNavActivity"
+            android:name="com.ftbw.app.bestworld.view.main.BottomNavActivity"
             android:exported="true"
             android:theme="@style/SplashScreenTheme"
             android:windowSoftInputMode="stateHidden|adjustPan">
