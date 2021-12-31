@@ -6,15 +6,18 @@ import com.ftbw.app.bestworld.neworden.helper.Common.Companion.COMPANY
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.PARTICULAR
 import com.ftbw.app.bestworld.neworden.view.users.tabs.UsersRVTab
 
-class UsersViewPagerAdapter(val fragment: Fragment) : FragmentStateAdapter(fragment) {
+class UsersViewPagerAdapter(
+    val listener: UsersRVTab.IOpenUserProfileFromUsers,
+    val fragment: Fragment
+) : FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> UsersRVTab(PARTICULAR)
-            1 -> UsersRVTab(COMPANY)
-            else -> UsersRVTab(PARTICULAR)
+            0 -> UsersRVTab(listener, PARTICULAR)
+            1 -> UsersRVTab(listener, COMPANY)
+            else -> UsersRVTab(listener, PARTICULAR)
         }
     }
 }

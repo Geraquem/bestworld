@@ -18,7 +18,8 @@ import com.ftbw.app.bestworld.neworden.view.users.UsersPresenter
 import com.ftbw.app.bestworld.neworden.view.users.UsersView
 import com.ftbw.app.bestworld.neworden.view.users.adapter.recyclerview.RViewUsersAdapter
 
-class UsersRVTab(var type: String) : Fragment(), UsersView {
+class UsersRVTab(val listener: IOpenUserProfileFromUsers, var type: String) :
+    Fragment(), UsersView {
     private var _bdg: FragmentTabUsersBinding? = null
     private val bdg get() = _bdg!!
 
@@ -66,7 +67,7 @@ class UsersRVTab(var type: String) : Fragment(), UsersView {
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(context)
             adapter = RViewUsersAdapter(
-                { goToUserProfile(it) }, mContext, users
+                { listener.openUserProfileFromUsers(it) }, mContext, users
             )
             bdg.recyclerView.adapter = adapter
         }
@@ -79,5 +80,9 @@ class UsersRVTab(var type: String) : Fragment(), UsersView {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
+    }
+
+    interface IOpenUserProfileFromUsers {
+        fun openUserProfileFromUsers(userKey: String)
     }
 }

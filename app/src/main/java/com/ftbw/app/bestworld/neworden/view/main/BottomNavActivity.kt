@@ -2,13 +2,12 @@ package com.ftbw.app.bestworld.neworden.view.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityBottomNavBinding
-import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.goToUserProfileAsMainUser
-import com.ftbw.app.bestworld.helper.BottomNavHelper.Companion.openFragment
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.LOGIN_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.neworden.helper.Common.Companion.REGISTER_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.neworden.view.createevent.CreateEventActivity
@@ -17,12 +16,16 @@ import com.ftbw.app.bestworld.neworden.view.login.LoginActivity
 import com.ftbw.app.bestworld.neworden.view.register.RegisterActivity
 import com.ftbw.app.bestworld.neworden.view.userprofile.UserProfileFragment
 import com.ftbw.app.bestworld.neworden.view.users.UsersFragment
+import com.ftbw.app.bestworld.neworden.view.users.tabs.UsersRVTab
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession {
+class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
+    UsersRVTab.IOpenUserProfileFromUsers {
 
     lateinit var bdg: ActivityBottomNavBinding
+
+    private val presenter by lazy { BottomNavPresenter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1500)
@@ -31,12 +34,12 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession 
         bdg = ActivityBottomNavBinding.inflate(layoutInflater)
         setContentView(bdg.root)
 
-        openFragment(this, EventsFragment())
+        presenter.openFragment(this, EventsFragment())
 
         bdg.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.tab1 -> {
-                    openFragment(this, EventsFragment())
+                    presenter.openFragment(this, EventsFragment())
                     true
                 }
                 R.id.tab2 -> {
@@ -48,12 +51,12 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession 
                     true
                 }
                 R.id.tab3 -> {
-                    openFragment(this, UsersFragment())
+                    presenter.openFragment(this, UsersFragment(this))
                     true
                 }
                 R.id.tab4 -> {
                     if (Firebase.auth.currentUser != null) {
-                        openFragment(
+                        presenter.openFragment(
                             this, UserProfileFragment(Firebase.auth.currentUser!!.uid)
                         )
                     } else {
@@ -65,20 +68,20 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession 
             }
         }
 
-        bdg.bottomNavigation.setOnItemReselectedListener {
-            when (it.itemId) {
-                R.id.tab2 -> {
-                    if (Firebase.auth.currentUser != null) {
-                        openPostActivity.launch(Intent(this, CreateEventActivity::class.java))
-                    } else {
-                        openPostActivity.launch(Intent(this, LoginActivity::class.java))
-                    }
-                }
-                R.id.tab3 -> {
-                    openFragment(this, UsersFragment())
-                }
-            }
-        }
+//        bdg.bottomNavigation.setOnItemReselectedListener {
+//            when (it.itemId) {
+//                R.id.tab2 -> {
+//                    if (Firebase.auth.currentUser != null) {
+//                        openPostActivity.launch(Intent(this, CreateEventActivity::class.java))
+//                    } else {
+//                        openPostActivity.launch(Intent(this, LoginActivity::class.java))
+//                    }
+//                }
+//                R.id.tab3 -> {
+//                    presenter.openFragment(this, UsersFragment())
+//                }
+//            }
+//        }
     }
 
     private val openPostActivity =
@@ -88,18 +91,22 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession 
                     if (result.data?.getBooleanExtra("register", false) == true) {
                         openActivity(RegisterActivity::class.java)
                     } else {
-                        goToUserProfileAsMainUser(this)
+                        presenter.goToUserProfileAsMainUser(this)
                     }
 
                 }
                 REGISTER_ACTIVITY_REQUEST_CODE -> {
-                    goToUserProfileAsMainUser(this)
+                    presenter.goToUserProfileAsMainUser(this)
                 }
             }
         }
 
     private fun openActivity(classToGo: Class<*>) {
         openPostActivity.launch(Intent(this, classToGo))
+    }
+
+    override fun openUserProfileFromUsers(userKey: String) {
+        presenter.openFragment(this, UserProfileFragment(userKey))
     }
 
     override fun onAttachFragment(fragment: Fragment) {
@@ -110,7 +117,7 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession 
 
     override fun closeSession() {
         Firebase.auth.signOut()
-        openFragment(this, EventsFragment())
+        presenter.openFragment(this, EventsFragment())
         //recreate() -> Another way
     }
 }
