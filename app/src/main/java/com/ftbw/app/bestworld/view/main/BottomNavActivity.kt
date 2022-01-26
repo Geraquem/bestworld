@@ -2,6 +2,7 @@ package com.ftbw.app.bestworld.view.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -38,10 +39,14 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
         bdg.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.tab1 -> {
-                    presenter.openFragment(this, EventsFragment())
+                    Toast.makeText(this, "posts", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.tab2 -> {
+                    presenter.openFragment(this, EventsFragment())
+                    true
+                }
+                R.id.tab3 -> {
                     if (Firebase.auth.currentUser != null) {
                         openPostActivity.launch(Intent(this, CreateEventActivity::class.java))
                     } else {
@@ -49,11 +54,11 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
                     }
                     true
                 }
-                R.id.tab3 -> {
+                R.id.tab4 -> {
                     presenter.openFragment(this, UsersFragment(this))
                     true
                 }
-                R.id.tab4 -> {
+                R.id.tab5 -> {
                     if (Firebase.auth.currentUser != null) {
                         presenter.openFragment(
                             this, UserProfileFragment(Firebase.auth.currentUser!!.uid)

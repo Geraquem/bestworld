@@ -4,7 +4,8 @@
     <string name="contentDescription">contentDescription</string>
     <string name="somethingWentWrong">Algo ha salido mal</string>
 
-    <string name="tabHome">tabHome</string>
+    <string name="tabPosts">tabPosts</string>
+    <string name="tabEvents">tabEvents</string>
     <string name="tabAdd">tabAdd</string>
     <string name="tabUsers">tabUsers</string>
     <string name="tabUserProfile">tabUserProfile</string>

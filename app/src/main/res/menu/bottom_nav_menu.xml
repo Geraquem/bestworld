@@ -3,23 +3,29 @@
     <item
         android:id="@+id/tab1"
         android:enabled="true"
-        android:icon="@drawable/ic_nav_home"
-        android:title="@string/tabHome" />
+        android:icon="@drawable/ic_address"
+        android:title="@string/tabPosts" />
 
     <item
         android:id="@+id/tab2"
+        android:enabled="true"
+        android:icon="@drawable/ic_nav_events"
+        android:title="@string/tabEvents" />
+
+    <item
+        android:id="@+id/tab3"
         android:enabled="true"
         android:icon="@drawable/ic_nav_add"
         android:title="@string/tabAdd" />
 
     <item
-        android:id="@+id/tab3"
+        android:id="@+id/tab4"
         android:enabled="true"
         android:icon="@drawable/ic_nav_users"
         android:title="@string/tabUsers" />
 
     <item
-        android:id="@+id/tab4"
+        android:id="@+id/tab5"
         android:enabled="true"
         android:icon="@drawable/ic_nav_user_profile"
         android:title="@string/tabUserProfile" />
