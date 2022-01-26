@@ -13,6 +13,7 @@ import com.ftbw.app.bestworld.helper.Common.Companion.REGISTER_ACTIVITY_REQUEST_
 import com.ftbw.app.bestworld.view.createevent.CreateEventActivity
 import com.ftbw.app.bestworld.view.events.EventsFragment
 import com.ftbw.app.bestworld.view.login.LoginActivity
+import com.ftbw.app.bestworld.view.posts.PostsFragment
 import com.ftbw.app.bestworld.view.register.RegisterActivity
 import com.ftbw.app.bestworld.view.userprofile.UserProfileFragment
 import com.ftbw.app.bestworld.view.users.UsersFragment
@@ -39,7 +40,7 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
         bdg.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.tab1 -> {
-                    Toast.makeText(this, "posts", Toast.LENGTH_SHORT).show()
+                    presenter.openFragment(this, PostsFragment())
                     true
                 }
                 R.id.tab2 -> {
