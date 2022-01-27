@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view.createevent
+package com.ftbw.app.bestworld.view.create.createevent
 
 import android.content.Context
 import android.content.Intent
@@ -18,8 +18,8 @@ import com.ftbw.app.bestworld.databinding.ActivityCreateEventBinding
 import com.ftbw.app.bestworld.helper.Common.Companion.CREATE_EVENT_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.helper.Common.Companion.getLabelInEnglish
 import com.ftbw.app.bestworld.helper.ImagePickerHelper.selectImageFromGallery
-import com.ftbw.app.bestworld.view.createevent.picker.DatePickerFragment
-import com.ftbw.app.bestworld.view.createevent.picker.TimePickerFragment
+import com.ftbw.app.bestworld.view.create.createevent.picker.DatePickerFragment
+import com.ftbw.app.bestworld.view.create.createevent.picker.TimePickerFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 

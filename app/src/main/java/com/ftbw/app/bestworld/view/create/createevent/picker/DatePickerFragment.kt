@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view.createevent.picker
+package com.ftbw.app.bestworld.view.create.createevent.picker
 
 import android.app.DatePickerDialog
 import android.app.Dialog
