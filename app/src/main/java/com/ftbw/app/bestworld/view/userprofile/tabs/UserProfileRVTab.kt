@@ -11,13 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.FragmentTabUserProfileBinding
-import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
+import com.ftbw.app.bestworld.helper.Common.Companion.ALL_EVENTS
 import com.ftbw.app.bestworld.helper.Common.Companion.ASSISTANT_EVENTS
-import com.ftbw.app.bestworld.helper.Common.Companion.CHOOSE_CATEGORY
 import com.ftbw.app.bestworld.helper.Common.Companion.CREATED_EVENTS
 import com.ftbw.app.bestworld.helper.Common.Companion.getLabelInEnglish
 import com.ftbw.app.bestworld.helper.Common.Companion.goToEventFile
-import com.ftbw.app.bestworld.view.userprofile.adapter.RViewUserProfileEventsAdapter
+import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
+import com.ftbw.app.bestworld.view.userprofile.adapter.recyclerview.RViewUserProfileEventsAdapter
 
 class UserProfileRVTab(var type: String, var userKey: String) : Fragment(), UserProfileRVTabView,
     AdapterView.OnItemSelectedListener {
@@ -69,15 +69,13 @@ class UserProfileRVTab(var type: String, var userKey: String) : Fragment(), User
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        bdg.loading.root.visibility = View.VISIBLE
+        bdg.recyclerView.visibility = View.GONE
         val eventLabel = getLabelInEnglish(mContext, p0!!.getItemAtPosition(p2).toString())
-        if (eventLabel != CHOOSE_CATEGORY) {
-            bdg.loading.root.visibility = View.VISIBLE
-            bdg.recyclerView.visibility = View.GONE
+        if (eventLabel != ALL_EVENTS) {
             selectTab(eventLabel)
         } else {
-            bdg.recyclerView.visibility = View.GONE
-            bdg.loading.root.visibility = View.GONE
-            bdg.suchEmpty.root.visibility = View.GONE
+            selectTab(ALL_EVENTS)
         }
     }
 

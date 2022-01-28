@@ -36,6 +36,7 @@ class Common {
 
         fun getLabelInEnglish(context: Context, labelSelected: String): String {
             return when (labelSelected) {
+                context.getString(R.string.allEvents) -> ALL_EVENTS
                 context.getString(R.string.EnvironmentalTitleTab) -> ENVIRONMENTAL
                 context.getString(R.string.DivulgationTitleTab) -> DIVULGATION
                 context.getString(R.string.FarmingTitleTab) -> FARMING

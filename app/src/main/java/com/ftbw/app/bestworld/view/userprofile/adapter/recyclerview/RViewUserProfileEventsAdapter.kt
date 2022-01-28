@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view.userprofile.adapter
+package com.ftbw.app.bestworld.view.userprofile.adapter.recyclerview
 
 import android.content.Context
 import android.view.LayoutInflater

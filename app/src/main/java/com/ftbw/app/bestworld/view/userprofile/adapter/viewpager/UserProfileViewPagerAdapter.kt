@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view.userprofile.adapter
+package com.ftbw.app.bestworld.view.userprofile.adapter.viewpager
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter

@@ -10,9 +10,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.view.userprofile.adapter.UserProfileViewPagerAdapter
 import com.ftbw.app.bestworld.databinding.FragmentUserProfileBinding
 import com.ftbw.app.bestworld.model.user.UserDTO
+import com.ftbw.app.bestworld.view.userprofile.adapter.viewpager.UserProfileViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class UserProfileFragment(var userKey: String) : Fragment(), UserProfileView {
@@ -44,6 +44,7 @@ class UserProfileFragment(var userKey: String) : Fragment(), UserProfileView {
         bdg.viewPager.adapter = viewPagerAdapter
 
         bdg.closeSession.setOnClickListener { showAlertDialog() }
+        bdg.settings.setOnClickListener { /* open editProfile */ }
 
         presenter.checkIfIsMainUserProfile(userKey)
 
@@ -84,6 +85,10 @@ class UserProfileFragment(var userKey: String) : Fragment(), UserProfileView {
         bdg.loading.root.visibility = View.GONE
     }
 
+    override fun showLinearButtons(view: Int) {
+        bdg.linearButtons.visibility = view
+    }
+
     override fun showAddButton(view: Int) {
         bdg.addButton.visibility = view
     }
@@ -100,10 +105,6 @@ class UserProfileFragment(var userKey: String) : Fragment(), UserProfileView {
             }
         }
         bdg.addButton.isEnabled = true
-    }
-
-    override fun showEditProfileButton(view: Int) {
-        //TODO
     }
 
     override fun somethingWentWrong() {

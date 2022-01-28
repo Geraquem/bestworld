@@ -18,13 +18,20 @@ class UserProfilePresenter(var view: UserProfileView) : UserProfileRepository.IU
 
     fun checkIfIsMainUserProfile(userKey: String) {
         val currentUser = Firebase.auth.currentUser
-        return if (currentUser == null || userKey == currentUser.uid) {
+
+        return if (currentUser == null) {
             view.showAddButton(View.GONE)
-            view.showEditProfileButton(View.VISIBLE)
+            view.showLinearButtons(View.GONE)
             getUserData(userKey, true)
+
+        } else if (userKey == currentUser.uid) {
+            view.showAddButton(View.GONE)
+            view.showLinearButtons(View.VISIBLE)
+            getUserData(userKey, true)
+
         } else {
             view.showAddButton(View.VISIBLE)
-            view.showEditProfileButton(View.GONE)
+            view.showLinearButtons(View.GONE)
             getUserData(userKey, false)
         }
     }

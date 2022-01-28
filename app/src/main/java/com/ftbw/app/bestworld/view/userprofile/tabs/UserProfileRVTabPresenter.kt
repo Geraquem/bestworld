@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.ArrayAdapter
 import android.widget.SpinnerAdapter
 import com.ftbw.app.bestworld.R
+import com.ftbw.app.bestworld.helper.Common.Companion.ALL_EVENTS
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +21,7 @@ class UserProfileRVTabPresenter(var view: UserProfileRVTabView) :
     fun spinnerAdapter(context: Context): SpinnerAdapter {
         ArrayAdapter.createFromResource(
             context,
-            R.array.event_labels,
+            R.array.user_event_labels,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(R.layout.spinner_item)
@@ -29,8 +30,14 @@ class UserProfileRVTabPresenter(var view: UserProfileRVTabView) :
     }
 
     fun getEventsRelatedWithUser(relation: String, userKey: String, eventLabel: String) {
-        launch(Dispatchers.IO) {
-            repository.getEventsRelatedWithUser(relation, userKey, eventLabel)
+        if (eventLabel == ALL_EVENTS) {
+            launch(Dispatchers.IO) {
+                repository.getAllEventsRelatedWithUser(relation, userKey)
+            }
+        } else {
+            launch(Dispatchers.IO) {
+                repository.getEventsRelatedWithUser(relation, userKey, eventLabel)
+            }
         }
     }
 

@@ -95,4 +95,14 @@
         <item>Otros</item>
     </string-array>
 
+    <string-array name="user_event_labels">
+        <item>Todos los eventos</item>
+        <item>Acción medioambiental</item>
+        <item>Divulgación</item>
+        <item>Talleres ambientales</item>
+        <item>Movilización</item>
+        <item>Agricultura colaborativa</item>
+        <item>Otros</item>
+    </string-array>
+
 </resources>
