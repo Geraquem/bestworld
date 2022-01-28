@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view.createevent
+package com.ftbw.app.bestworld.view.create.createevent
 
 import android.content.Context
 import android.net.Uri

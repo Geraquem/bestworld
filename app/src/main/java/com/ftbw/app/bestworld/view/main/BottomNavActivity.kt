@@ -2,15 +2,16 @@ package com.ftbw.app.bestworld.view.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityBottomNavBinding
 import com.ftbw.app.bestworld.helper.Common.Companion.LOGIN_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.helper.Common.Companion.REGISTER_ACTIVITY_REQUEST_CODE
-import com.ftbw.app.bestworld.view.createevent.CreateEventActivity
+import com.ftbw.app.bestworld.view.create.SelectorFragment
+import com.ftbw.app.bestworld.view.create.createevent.CreateEventActivity
 import com.ftbw.app.bestworld.view.events.EventsFragment
 import com.ftbw.app.bestworld.view.login.LoginActivity
 import com.ftbw.app.bestworld.view.posts.PostsFragment
@@ -22,7 +23,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
-    UsersRVTab.IOpenUserProfileFromUsers {
+    UsersRVTab.IOpenUserProfileFromUsers, SelectorFragment.IFragmentSelector {
 
     lateinit var bdg: ActivityBottomNavBinding
 
@@ -49,9 +50,10 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
                 }
                 R.id.tab3 -> {
                     if (Firebase.auth.currentUser != null) {
-                        openPostActivity.launch(Intent(this, CreateEventActivity::class.java))
+                        bdg.bottomNavigation.menu.forEach { it.isEnabled = false }
+                        presenter.openSelectorFragment(this, SelectorFragment(this))
                     } else {
-                        openPostActivity.launch(Intent(this, LoginActivity::class.java))
+                        openActivity(LoginActivity::class.java)
                     }
                     true
                 }
@@ -65,7 +67,7 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
                             this, UserProfileFragment(Firebase.auth.currentUser!!.uid)
                         )
                     } else {
-                        openPostActivity.launch(Intent(this, LoginActivity::class.java))
+                        openActivity(LoginActivity::class.java)
                     }
                     true
                 }
@@ -73,20 +75,11 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
             }
         }
 
-//        bdg.bottomNavigation.setOnItemReselectedListener {
-//            when (it.itemId) {
-//                R.id.tab2 -> {
-//                    if (Firebase.auth.currentUser != null) {
-//                        openPostActivity.launch(Intent(this, CreateEventActivity::class.java))
-//                    } else {
-//                        openPostActivity.launch(Intent(this, LoginActivity::class.java))
-//                    }
-//                }
-//                R.id.tab3 -> {
-//                    presenter.openFragment(this, UsersFragment())
-//                }
-//            }
-//        }
+        bdg.bottomNavigation.setOnItemReselectedListener {
+            when (it.itemId) {
+                R.id.tab3 -> {}
+            }
+        }
     }
 
     private val openPostActivity =
@@ -124,5 +117,25 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
         Firebase.auth.signOut()
         presenter.openFragment(this, EventsFragment())
         //recreate() -> Another way
+    }
+
+    override fun closeFragmentSelector() {
+        bdg.bottomNavigation.menu.forEach { it.isEnabled = true }
+        supportFragmentManager.popBackStack()
+    }
+
+    override fun uploadPost() {
+        closeFragmentSelector()
+//        openActivity(CreatePostActivity::class.java)
+    }
+
+    override fun createEvent() {
+        closeFragmentSelector()
+        openActivity(CreateEventActivity::class.java)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        bdg.bottomNavigation.menu.forEach { it.isEnabled = true }
     }
 }

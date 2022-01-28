@@ -15,6 +15,12 @@ class BottomNavPresenter {
             .addToBackStack(null)
             .commit()
     }
+    fun openSelectorFragment(context: BottomNavActivity, fragment: Fragment) {
+        context.supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_selector_container, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
 
     fun goToUserProfileAsMainUser(context: BottomNavActivity) {
         if (Firebase.auth.currentUser != null) {
