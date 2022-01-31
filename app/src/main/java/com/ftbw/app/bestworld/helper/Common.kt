@@ -63,32 +63,25 @@ class Common {
         fun setLabelBackgroundColor(context: Context, background: Drawable, label: String) {
             when (label) {
                 ENVIRONMENTAL -> setColor(
-                    background,
-                    ContextCompat.getColor(context, R.color.Enviromental)
+                    background, ContextCompat.getColor(context, R.color.Enviromental)
                 )
                 DIVULGATION -> setColor(
-                    background,
-                    ContextCompat.getColor(context, R.color.Divulgation)
+                    background, ContextCompat.getColor(context, R.color.Divulgation)
                 )
                 FARMING -> setColor(
-                    background,
-                    ContextCompat.getColor(context, R.color.Farming)
+                    background, ContextCompat.getColor(context, R.color.Farming)
                 )
                 MOBILIZATION -> setColor(
-                    background,
-                    ContextCompat.getColor(context, R.color.Mobilization)
+                    background, ContextCompat.getColor(context, R.color.Mobilization)
                 )
                 WORKSHOP -> setColor(
-                    background,
-                    ContextCompat.getColor(context, R.color.Workshop)
+                    background, ContextCompat.getColor(context, R.color.Workshop)
                 )
                 OTHER -> setColor(
-                    background,
-                    ContextCompat.getColor(context, R.color.Other)
+                    background, ContextCompat.getColor(context, R.color.Other)
                 )
                 else -> setColor(
-                    background,
-                    ContextCompat.getColor(context, R.color.Other)
+                    background, ContextCompat.getColor(context, R.color.Other)
                 )
             }
         }

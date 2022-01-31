@@ -40,6 +40,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_event_label"
                     android:elevation="3dp"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/montserrat_regular"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="4dp" />
