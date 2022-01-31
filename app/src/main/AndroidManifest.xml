@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bestworld">
         <activity
+            android:name="com.ftbw.app.bestworld.view.create.createpost.CreatePostActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
             android:name="com.ftbw.app.bestworld.view.create.createevent.CreateEventActivity"
             android:exported="false"
             android:windowSoftInputMode="stateHidden|adjustPan" />

@@ -66,7 +66,9 @@ class CreateEventPresenter(val view: CreateEventView) : CreateEventRepository.IC
                 dateText,
                 timeText
             )
-            repository.createEvent(event, imageUri)
+            launch(Dispatchers.IO) {
+                repository.createEvent(event, imageUri)
+            }
         }
     }
 
@@ -137,20 +139,14 @@ class CreateEventPresenter(val view: CreateEventView) : CreateEventRepository.IC
     }
 
     override fun creatorOfEvent(name: String) {
-        launch {
-            view.creatorOfEvent(name)
-        }
+        launch { view.creatorOfEvent(name) }
     }
 
     override fun eventCreated() {
-        launch {
-            view.eventCreated()
-        }
+        launch { view.eventCreated() }
     }
 
     override fun somethingWentWrong() {
-        launch {
-            view.somethingWentWrong()
-        }
+        launch { view.somethingWentWrong() }
     }
 }

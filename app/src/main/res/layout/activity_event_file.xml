@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground">
 
+        <!-- cambiar para poder editar el evento si soy el creador -->
         <include layout="@layout/include_back_toolbar" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -80,12 +81,12 @@
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="220dp"
+                android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="15dp"
                 android:contentDescription="@string/contentDescription"
-                android:src="@color/black" />
+                android:src="@drawable/bw_big_logo" />
 
             <TextView
                 android:id="@+id/description"

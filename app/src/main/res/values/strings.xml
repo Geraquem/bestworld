@@ -10,6 +10,9 @@
     <string name="tabUsers">Usuarios</string>
     <string name="tabUserProfile">Mi perfil</string>
 
+    <!-- POSTS -->
+    <string name="firstLogIn">¡Para ver esto primero tienes que iniciar sesión!</string>
+
     <!-- EVENTS -->
     <string name="allEvents">Todos los eventos</string>
     <string name="EnvironmentalTitleTab">Acción medioambiental</string>
@@ -67,6 +70,11 @@
     <string name="errorMessageEventCategory">Selecciona la categoría del evento</string>
     <string name="errorMessageEventDate">Seleccione una fecha para el evento</string>
     <string name="errorMessageEventTime">Seleccione una hora para el evento</string>
+
+    <!-- CREATE POST -->
+    <string name="hintPostText">¿Qué quieres publicar?</string>
+    <string name="publish">PUBLICAR</string>
+    <string name="errorMessagePostText">No puedes publicar un mensaje en blanco</string>
 
     <!-- USERS -->
     <string name="searchUsers">Buscar personas</string>

@@ -90,16 +90,18 @@
         <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/drawable/ic_settings.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/drawable/ic_user_profile_close_session.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/activity_create_event.xml" value="0.19739583333333333" />
+        <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/activity_create_post.xml" value="0.24270833333333333" />
         <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/activity_event_file.xml" value="0.19739583333333333" />
         <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/activity_login.xml" value="0.19739583333333333" />
         <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/activity_register.xml" value="0.19739583333333333" />
         <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/fragment_events.xml" value="0.19739583333333333" />
-        <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/fragment_posts.xml" value="0.19739583333333333" />
+        <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/fragment_posts.xml" value="0.33" />
         <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/fragment_tab_event.xml" value="0.19739583333333333" />
         <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/fragment_tab_user_profile.xml" value="0.19739583333333333" />
         <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/fragment_user_profile.xml" value="0.33" />
         <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/fragment_users.xml" value="0.19739583333333333" />
         <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/include_back_toolbar.xml" value="0.19739583333333333" />
+        <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/include_such_empty.xml" value="0.3546875" />
         <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/include_toolbar_edit.xml" value="0.25" />
         <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/include_toolbar_main.xml" value="0.5" />
         <entry key="..\:/Users/s6644ga/Desktop/mpro/bestworld/app/src/main/res/layout/row_post_recycler.xml" value="0.19739583333333333" />

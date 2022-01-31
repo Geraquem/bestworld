@@ -12,6 +12,7 @@ import com.ftbw.app.bestworld.helper.Common.Companion.LOGIN_ACTIVITY_REQUEST_COD
 import com.ftbw.app.bestworld.helper.Common.Companion.REGISTER_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.view.create.SelectorFragment
 import com.ftbw.app.bestworld.view.create.createevent.CreateEventActivity
+import com.ftbw.app.bestworld.view.create.createpost.CreatePostActivity
 import com.ftbw.app.bestworld.view.events.EventsFragment
 import com.ftbw.app.bestworld.view.login.LoginActivity
 import com.ftbw.app.bestworld.view.posts.PostsFragment
@@ -75,11 +76,12 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
             }
         }
 
-        bdg.bottomNavigation.setOnItemReselectedListener {
-            when (it.itemId) {
-                R.id.tab3 -> {}
-            }
-        }
+//        bdg.bottomNavigation.setOnItemReselectedListener {
+//            when (it.itemId) {
+//                R.id.tab3 -> {
+//                }
+//            }
+//        }
     }
 
     private val openPostActivity =
@@ -96,6 +98,8 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
                 REGISTER_ACTIVITY_REQUEST_CODE -> {
                     presenter.goToUserProfileAsMainUser(this)
                 }
+
+                //CREATED EVENT AND POST?????????
             }
         }
 
@@ -126,7 +130,7 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
 
     override fun uploadPost() {
         closeFragmentSelector()
-//        openActivity(CreatePostActivity::class.java)
+        openActivity(CreatePostActivity::class.java)
     }
 
     override fun createEvent() {

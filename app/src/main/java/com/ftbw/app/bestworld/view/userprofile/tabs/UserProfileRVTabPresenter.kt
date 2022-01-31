@@ -32,7 +32,7 @@ class UserProfileRVTabPresenter(var view: UserProfileRVTabView) :
     fun getEventsRelatedWithUser(relation: String, userKey: String, eventLabel: String) {
         if (eventLabel == ALL_EVENTS) {
             launch(Dispatchers.IO) {
-                repository.getAllEventsRelatedWithUser(relation, userKey)
+                //repository.getAllEventsRelatedWithUser(relation, userKey)
             }
         } else {
             launch(Dispatchers.IO) {

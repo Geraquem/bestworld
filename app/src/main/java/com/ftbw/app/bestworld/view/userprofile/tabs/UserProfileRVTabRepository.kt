@@ -7,6 +7,7 @@ import replaceBrackets
 
 class UserProfileRVTabRepository(var listener: IUserProfileRVTab) {
 
+    /**
     fun getAllEventsRelatedWithUser(relation: String, userKey: String) {
         val hashMap = hashMapOf<String, List<*>>()
         Firebase.database.reference.child("users").child(userKey)
@@ -47,6 +48,7 @@ class UserProfileRVTabRepository(var listener: IUserProfileRVTab) {
 //        println(hashMap["environmental"].toString().replace("[", "").replace("]", ""))
     }
 
+    **/
 
     fun getEventsRelatedWithUser(relation: String, userKey: String, eventLabel: String) {
         val keyList: MutableList<String> = mutableListOf()

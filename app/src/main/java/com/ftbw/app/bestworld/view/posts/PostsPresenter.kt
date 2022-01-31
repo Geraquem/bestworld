@@ -1,6 +1,6 @@
 package com.ftbw.app.bestworld.view.posts
 
-import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
+import com.ftbw.app.bestworld.model.post.PostDTO
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -12,15 +12,15 @@ class PostsPresenter(private val view: PostsView) : PostsRepository.IPosts, Coro
 
     private val repository by lazy { PostsRepository(this) }
 
-//    fun getAllEvents() {
-//        launch(Dispatchers.IO) {
-//            repository.getAllEvents()
-//        }
-//    }
+    fun getPosts(userId: String) {
+        launch(Dispatchers.IO) { repository.getAllPosts(userId) }
+    }
+
+    override fun showPosts(posts: List<PostDTO>) {
+        launch { view.showPosts(posts) }
+    }
 
     override fun somethingWentWrong() {
-        launch {
-            view.somethingWentWrong()
-        }
+        launch { view.somethingWentWrong() }
     }
 }
