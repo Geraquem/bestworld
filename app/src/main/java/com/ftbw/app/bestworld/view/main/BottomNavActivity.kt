@@ -8,8 +8,8 @@ import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityBottomNavBinding
-import com.ftbw.app.bestworld.helper.Common.Companion.LOGIN_ACTIVITY_REQUEST_CODE
-import com.ftbw.app.bestworld.helper.Common.Companion.REGISTER_ACTIVITY_REQUEST_CODE
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.LOGIN_ACTIVITY_REQUEST_CODE
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.REGISTER_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.view.create.SelectorFragment
 import com.ftbw.app.bestworld.view.create.createevent.CreateEventActivity
 import com.ftbw.app.bestworld.view.create.createpost.CreatePostActivity
@@ -42,11 +42,11 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
         bdg.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.tab1 -> {
-                    presenter.openFragment(this, PostsFragment())
+                    presenter.openFragment(this, EventsFragment())
                     true
                 }
                 R.id.tab2 -> {
-                    presenter.openFragment(this, EventsFragment())
+                    presenter.openFragment(this, PostsFragment())
                     true
                 }
                 R.id.tab3 -> {

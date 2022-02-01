@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityLoginBinding
-import com.ftbw.app.bestworld.helper.Common.Companion.LOGIN_ACTIVITY_REQUEST_CODE
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.LOGIN_ACTIVITY_REQUEST_CODE
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

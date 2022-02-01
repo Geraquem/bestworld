@@ -6,20 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.databinding.RowEventRecyclerBinding
+import com.ftbw.app.bestworld.databinding.RowAllEventsRecyclerBinding
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.getLabelInSpanish
 import com.ftbw.app.bestworld.helper.EventCommon.Companion.setEventImage
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.setLabelBackgroundColor
 
-class RViewUserProfileEventsAdapter(
+class RViewUserProfileAllEventsAdapter(
     val onClick :(event: EventRecyclerDTO) -> Unit,
-    val context: Context,
+    var context: Context,
     private var eventsList: List<EventRecyclerDTO>) :
-    RecyclerView.Adapter<RViewUserProfileEventsAdapter.EventHolder>() {
+    RecyclerView.Adapter<RViewUserProfileAllEventsAdapter.EventHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventHolder {
         return EventHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.row_event_recycler, parent, false)
+                .inflate(R.layout.row_all_events_recycler, parent, false)
         )
     }
 
@@ -33,9 +35,11 @@ class RViewUserProfileEventsAdapter(
     override fun getItemCount() = eventsList.size
 
     class EventHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val bdg = RowEventRecyclerBinding.bind(view)
+        val bdg = RowAllEventsRecyclerBinding.bind(view)
 
         fun bind(context: Context, event: EventRecyclerDTO) {
+            bdg.label.text = getLabelInSpanish(context, event.label)
+            setLabelBackgroundColor(context, bdg.label.background, event.label)
             setEventImage(context, event.imageURL, bdg.imageURL)
             bdg.title.text = event.title
             bdg.creator.text = event.creatorName

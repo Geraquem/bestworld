@@ -12,8 +12,8 @@ import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.view.events.adapter.recyclerview.RViewEventsAdapter
 import com.ftbw.app.bestworld.databinding.FragmentTabEventBinding
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
-import com.ftbw.app.bestworld.helper.Common
-import com.ftbw.app.bestworld.helper.Common.Companion.getLabelInSpanish
+import com.ftbw.app.bestworld.helper.EventCommon
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.getLabelInSpanish
 import com.ftbw.app.bestworld.view.events.EventsPresenter
 import com.ftbw.app.bestworld.view.events.EventsView
 
@@ -55,7 +55,7 @@ class EventsRVTab(var label: String) : Fragment(), EventsView {
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(context)
             adapter = RViewEventsAdapter(
-                { Common.goToEventFile(mContext, it) }, requireContext(), events
+                { EventCommon.goToEventFile(mContext, it) }, requireContext(), events
             )
             bdg.recyclerView.adapter = adapter
         }

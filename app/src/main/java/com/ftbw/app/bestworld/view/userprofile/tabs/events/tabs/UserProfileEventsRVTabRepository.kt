@@ -1,54 +1,43 @@
-package com.ftbw.app.bestworld.view.userprofile.tabs
+package com.ftbw.app.bestworld.view.userprofile.tabs.events.tabs
 
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import replaceBrackets
 
-class UserProfileRVTabRepository(var listener: IUserProfileRVTab) {
+class UserProfileEventsRVTabRepository(var listener: IUserProfileRVTab) {
 
-    /**
     fun getAllEventsRelatedWithUser(relation: String, userKey: String) {
-        val hashMap = hashMapOf<String, List<*>>()
+        val keyList = mutableListOf<String>()
         Firebase.database.reference.child("users").child(userKey)
-            .child(relation).get()
-            .addOnSuccessListener {
+            .child(relation).get().addOnSuccessListener {
                 for (label in it.children) {
-                    hashMap[label.key.toString()] = listOf((label.value as HashMap<*, *>).keys)
-                }
-                getAllEvents(hashMap)
-
-            }.addOnFailureListener {
-                listener.somethingWentWrong()
-            }
-    }
-
-    private fun getAllEvents(hashMap: HashMap<String, List<*>>) {
-        val events: MutableList<EventRecyclerDTO> = mutableListOf()
-        for (label in hashMap.keys) {
-            Firebase.database.reference.child("events").child(label).get().addOnSuccessListener {
-                for (child in it.children) {
-                    val aux = hashMap.values
-                    aux.forEach {
-                        println(" -------------> " + it.toString().replaceBrackets()) //no funciona
+                    for (key in label.children) {
+                        keyList.add(key.key.toString())
                     }
-//                    if (aux.forEach().equals(child.key)){
-//
-//                    }
-//                    if (hashMap.values.toString().replaceBrackets() == child.key) {
-//                        println("---------->>>>>>>>>> " + child.key)
-//                    }
                 }
+                getAllEvents(keyList)
+
             }.addOnFailureListener {
                 listener.somethingWentWrong()
             }
-        }
-//
-//        println("-------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-//        println(hashMap["environmental"].toString().replace("[", "").replace("]", ""))
     }
 
-    **/
+    private fun getAllEvents(keyList: MutableList<String>) {
+        val events: MutableList<EventRecyclerDTO> = mutableListOf()
+        Firebase.database.reference.child("events").get().addOnSuccessListener {
+            for (label in it.children) {
+                for (event in label.children) {
+                    if (keyList.contains(event.key.toString())) {
+                        events.add(event.getValue(EventRecyclerDTO::class.java)!!)
+                    }
+                }
+            }
+            listener.allEvents(events)
+
+        }.addOnFailureListener {
+            listener.somethingWentWrong()
+        }
+    }
 
     fun getEventsRelatedWithUser(relation: String, userKey: String, eventLabel: String) {
         val keyList: MutableList<String> = mutableListOf()
@@ -86,6 +75,7 @@ class UserProfileRVTabRepository(var listener: IUserProfileRVTab) {
     }
 
     interface IUserProfileRVTab {
+        fun allEvents(events: List<EventRecyclerDTO>)
         fun events(events: List<EventRecyclerDTO>)
         fun somethingWentWrong()
     }

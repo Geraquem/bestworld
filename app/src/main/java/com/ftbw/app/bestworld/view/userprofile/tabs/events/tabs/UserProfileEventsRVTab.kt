@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view.userprofile.tabs
+package com.ftbw.app.bestworld.view.userprofile.tabs.events.tabs
 
 import android.content.Context
 import android.os.Bundle
@@ -11,25 +11,27 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.FragmentTabUserProfileBinding
-import com.ftbw.app.bestworld.helper.Common.Companion.ALL_EVENTS
-import com.ftbw.app.bestworld.helper.Common.Companion.ASSISTANT_EVENTS
-import com.ftbw.app.bestworld.helper.Common.Companion.CREATED_EVENTS
-import com.ftbw.app.bestworld.helper.Common.Companion.getLabelInEnglish
-import com.ftbw.app.bestworld.helper.Common.Companion.goToEventFile
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.ALL_EVENTS
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.ASSISTANT_EVENTS
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.CREATED_EVENTS
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.getLabelInEnglish
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.goToEventFile
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
+import com.ftbw.app.bestworld.view.userprofile.adapter.recyclerview.RViewUserProfileAllEventsAdapter
 import com.ftbw.app.bestworld.view.userprofile.adapter.recyclerview.RViewUserProfileEventsAdapter
 
-class UserProfileRVTab(var type: String, var userKey: String) : Fragment(), UserProfileRVTabView,
-    AdapterView.OnItemSelectedListener {
+class UserProfileEventsRVTab(var type: String, var userKey: String) : Fragment(),
+    UserProfileEventsRVTabView, AdapterView.OnItemSelectedListener {
 
     private var _bdg: FragmentTabUserProfileBinding? = null
     private val bdg get() = _bdg!!
 
     lateinit var mContext: Context
 
-    private val presenter by lazy { UserProfileRVTabPresenter(this) }
+    private val presenter by lazy { UserProfileEventsRVTabPresenter(this) }
 
-    private lateinit var adapter: RViewUserProfileEventsAdapter
+    private lateinit var eventsAdapter: RViewUserProfileEventsAdapter
+    private lateinit var allEventsAdapter: RViewUserProfileAllEventsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,6 +55,21 @@ class UserProfileRVTab(var type: String, var userKey: String) : Fragment(), User
         }
     }
 
+    override fun setAllEvents(events: List<EventRecyclerDTO>) {
+        bdg.loading.root.visibility = View.GONE
+        if (events.isEmpty()) {
+            bdg.suchEmpty.root.visibility = View.VISIBLE
+        } else {
+            bdg.suchEmpty.root.visibility = View.GONE
+            bdg.recyclerView.layoutManager = LinearLayoutManager(mContext)
+            allEventsAdapter = RViewUserProfileAllEventsAdapter(
+                { goToEventFile(mContext, it) }, requireContext(), events
+            )
+            bdg.recyclerView.adapter = allEventsAdapter
+            bdg.recyclerView.visibility = View.VISIBLE
+        }
+    }
+
     override fun setEvents(events: List<EventRecyclerDTO>) {
         bdg.loading.root.visibility = View.GONE
         if (events.isEmpty()) {
@@ -60,10 +77,10 @@ class UserProfileRVTab(var type: String, var userKey: String) : Fragment(), User
         } else {
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(mContext)
-            adapter = RViewUserProfileEventsAdapter(
+            eventsAdapter = RViewUserProfileEventsAdapter(
                 { goToEventFile(mContext, it) }, requireContext(), events
             )
-            bdg.recyclerView.adapter = adapter
+            bdg.recyclerView.adapter = eventsAdapter
             bdg.recyclerView.visibility = View.VISIBLE
         }
     }

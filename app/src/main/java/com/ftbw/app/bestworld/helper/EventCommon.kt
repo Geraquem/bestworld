@@ -11,7 +11,7 @@ import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.view.eventfile.EventFileActivity
 
-class Common {
+class EventCommon {
 
     companion object {
 

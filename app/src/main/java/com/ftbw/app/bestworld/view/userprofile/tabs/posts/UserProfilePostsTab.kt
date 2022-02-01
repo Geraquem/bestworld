@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view.events.tabs
+package com.ftbw.app.bestworld.view.userprofile.tabs.posts
 
 import android.content.Context
 import android.os.Bundle
@@ -9,29 +9,27 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.view.events.adapter.recyclerview.RViewAllEventsAdapter
-import com.ftbw.app.bestworld.databinding.FragmentTabEventBinding
-import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
-import com.ftbw.app.bestworld.helper.EventCommon.Companion.goToEventFile
-import com.ftbw.app.bestworld.view.events.EventsPresenter
-import com.ftbw.app.bestworld.view.events.EventsView
+import com.ftbw.app.bestworld.databinding.FragmentTabPostsUserProfileBinding
+import com.ftbw.app.bestworld.model.post.PostDTO
+import com.ftbw.app.bestworld.view.userprofile.adapter.recyclerview.RViewPostsAdapter
 
-class AllEventsRVTab : Fragment(), EventsView {
-    private var _bdg: FragmentTabEventBinding? = null
+class UserProfilePostsTab(var userKey: String) : Fragment(), UserProfilePostsView {
+
+    private var _bdg: FragmentTabPostsUserProfileBinding? = null
     private val bdg get() = _bdg!!
 
     lateinit var mContext: Context
 
-    private val presenter by lazy { EventsPresenter(this) }
+    private val presenter by lazy { UserProfilePostsPresenter(this) }
 
-    private lateinit var adapter: RViewAllEventsAdapter
+    private lateinit var adapter: RViewPostsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _bdg = FragmentTabEventBinding.inflate(inflater, container, false)
+        _bdg = FragmentTabPostsUserProfileBinding.inflate(inflater, container, false)
         return bdg.root
     }
 
@@ -39,22 +37,17 @@ class AllEventsRVTab : Fragment(), EventsView {
         super.onViewCreated(view, savedInstanceState)
 
         bdg.loading.root.visibility = View.VISIBLE
-
-        bdg.eventTabTitle.text = getString(R.string.allEvents)
-
-        presenter.getAllEvents()
+        presenter.getUserPosts(userKey)
     }
 
-    override fun showEvents(events: List<EventRecyclerDTO>) {
+    override fun showPosts(posts: List<PostDTO>) {
         bdg.loading.root.visibility = View.GONE
-        if (events.isEmpty()) {
+        if (posts.isEmpty()) {
             bdg.suchEmpty.root.visibility = View.VISIBLE
         } else {
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(context)
-            adapter = RViewAllEventsAdapter(
-                { goToEventFile(mContext, it) }, requireContext(), events
-            )
+            adapter = RViewPostsAdapter({}, {}, requireContext(), posts)
             bdg.recyclerView.adapter = adapter
         }
     }

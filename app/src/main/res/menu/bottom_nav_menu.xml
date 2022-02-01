@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
         android:id="@+id/tab1"
         android:enabled="true"
-        android:icon="@drawable/ic_address"
-        android:title="@string/tabPosts" />
+        android:icon="@drawable/ic_nav_events"
+        android:title="@string/tabEvents" />
 
     <item
         android:id="@+id/tab2"
         android:enabled="true"
-        android:icon="@drawable/ic_nav_events"
-        android:title="@string/tabEvents" />
+        android:icon="@drawable/ic_nav_posts"
+        android:title="@string/tabPosts" />
 
     <item
         android:id="@+id/tab3"

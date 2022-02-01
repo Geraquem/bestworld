@@ -2,12 +2,12 @@ package com.ftbw.app.bestworld.view.events.adapter.viewpager
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.ftbw.app.bestworld.helper.Common.Companion.DIVULGATION
-import com.ftbw.app.bestworld.helper.Common.Companion.ENVIRONMENTAL
-import com.ftbw.app.bestworld.helper.Common.Companion.FARMING
-import com.ftbw.app.bestworld.helper.Common.Companion.MOBILIZATION
-import com.ftbw.app.bestworld.helper.Common.Companion.OTHER
-import com.ftbw.app.bestworld.helper.Common.Companion.WORKSHOP
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.DIVULGATION
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.ENVIRONMENTAL
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.FARMING
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.MOBILIZATION
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.OTHER
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.WORKSHOP
 import com.ftbw.app.bestworld.view.events.tabs.AllEventsRVTab
 import com.ftbw.app.bestworld.view.events.tabs.EventsRVTab
 

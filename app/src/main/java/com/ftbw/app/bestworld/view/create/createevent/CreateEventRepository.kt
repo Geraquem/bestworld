@@ -2,7 +2,7 @@ package com.ftbw.app.bestworld.view.create.createevent
 
 import android.net.Uri
 import com.ftbw.app.bestworld.model.event.EventDTO
-import com.ftbw.app.bestworld.helper.Common.Companion.CREATED_EVENTS
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.CREATED_EVENTS
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage

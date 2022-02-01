@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.FragmentUserProfileBinding
 import com.ftbw.app.bestworld.model.user.UserDTO
-import com.ftbw.app.bestworld.view.userprofile.adapter.viewpager.UserProfileViewPagerAdapter
+import com.ftbw.app.bestworld.view.userprofile.adapter.viewpager.UserProfileMainPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class UserProfileFragment(var userKey: String) : Fragment(), UserProfileView {
@@ -40,7 +40,7 @@ class UserProfileFragment(var userKey: String) : Fragment(), UserProfileView {
 
         bdg.loading.root.visibility = View.VISIBLE
 
-        val viewPagerAdapter = UserProfileViewPagerAdapter(this, userKey)
+        val viewPagerAdapter = UserProfileMainPagerAdapter(this, userKey)
         bdg.viewPager.adapter = viewPagerAdapter
 
         bdg.closeSession.setOnClickListener { showAlertDialog() }
@@ -60,10 +60,12 @@ class UserProfileFragment(var userKey: String) : Fragment(), UserProfileView {
         TabLayoutMediator(bdg.tabLayout, bdg.viewPager) { tab, position ->
             when (position) {
                 0 -> {
-                    tab.setIcon(R.drawable.ic_tab_created)
+                    tab.setIcon(R.drawable.ic_nav_posts)
+//                    tab.setIcon(R.drawable.ic_tab_created)
                 }
                 1 -> {
-                    tab.setIcon(R.drawable.ic_event_assistant)
+                    tab.setIcon(R.drawable.ic_nav_events)
+//                    tab.setIcon(R.drawable.ic_event_assistant)
                 }
             }
         }.attach()

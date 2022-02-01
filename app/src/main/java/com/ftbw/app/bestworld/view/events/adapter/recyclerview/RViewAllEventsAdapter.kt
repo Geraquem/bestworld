@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.RowAllEventsRecyclerBinding
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
-import com.ftbw.app.bestworld.helper.Common.Companion.getLabelInSpanish
-import com.ftbw.app.bestworld.helper.Common.Companion.setEventImage
-import com.ftbw.app.bestworld.helper.Common.Companion.setLabelBackgroundColor
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.getLabelInSpanish
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.setEventImage
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.setLabelBackgroundColor
 
 class RViewAllEventsAdapter(
     val onClick :(event: EventRecyclerDTO) -> Unit,

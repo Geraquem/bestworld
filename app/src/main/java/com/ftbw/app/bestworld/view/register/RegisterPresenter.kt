@@ -2,8 +2,8 @@ package com.ftbw.app.bestworld.view.register
 
 import android.net.Uri
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.helper.Common.Companion.COMPANY
-import com.ftbw.app.bestworld.helper.Common.Companion.PARTICULAR
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.COMPANY
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.PARTICULAR
 import com.ftbw.app.bestworld.model.user.UserDTO
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

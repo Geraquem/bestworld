@@ -6,7 +6,7 @@ import android.widget.ArrayAdapter
 import android.widget.SpinnerAdapter
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityCreateEventBinding
-import com.ftbw.app.bestworld.helper.Common.Companion.CHOOSE_CATEGORY
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.CHOOSE_CATEGORY
 import com.ftbw.app.bestworld.model.event.EventDTO
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

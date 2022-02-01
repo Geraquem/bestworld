@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityRegisterBinding
 import com.ftbw.app.bestworld.model.user.UserDTO
-import com.ftbw.app.bestworld.helper.Common.Companion.REGISTER_ACTIVITY_REQUEST_CODE
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.REGISTER_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.helper.ImagePickerHelper.selectImageFromGallery
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.FragmentTabUsersBinding
 import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
-import com.ftbw.app.bestworld.helper.Common.Companion.COMPANY
-import com.ftbw.app.bestworld.helper.Common.Companion.PARTICULAR
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.COMPANY
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.PARTICULAR
 import com.ftbw.app.bestworld.view.userprofile.UserProfileFragment
 import com.ftbw.app.bestworld.view.users.UsersPresenter
 import com.ftbw.app.bestworld.view.users.UsersView

@@ -15,8 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityCreateEventBinding
-import com.ftbw.app.bestworld.helper.Common.Companion.CREATE_EVENT_ACTIVITY_REQUEST_CODE
-import com.ftbw.app.bestworld.helper.Common.Companion.getLabelInEnglish
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.CREATE_EVENT_ACTIVITY_REQUEST_CODE
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.getLabelInEnglish
 import com.ftbw.app.bestworld.helper.ImagePickerHelper.selectImageFromGallery
 import com.ftbw.app.bestworld.view.create.createevent.picker.DatePickerFragment
 import com.ftbw.app.bestworld.view.create.createevent.picker.TimePickerFragment

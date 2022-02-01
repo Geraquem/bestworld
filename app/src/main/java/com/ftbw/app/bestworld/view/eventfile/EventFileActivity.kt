@@ -9,8 +9,8 @@ import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityEventFileBinding
 import com.ftbw.app.bestworld.model.event.EventDTO
-import com.ftbw.app.bestworld.helper.Common.Companion.getLabelInSpanish
-import com.ftbw.app.bestworld.helper.Common.Companion.setLabelBackgroundColor
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.getLabelInSpanish
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.setLabelBackgroundColor
 
 class EventFileActivity : AppCompatActivity(), EventFileView {
 
