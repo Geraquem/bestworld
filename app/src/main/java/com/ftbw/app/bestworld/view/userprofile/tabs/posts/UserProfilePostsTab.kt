@@ -47,7 +47,7 @@ class UserProfilePostsTab(var userKey: String) : Fragment(), UserProfilePostsVie
         } else {
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(context)
-            adapter = RViewPostsAdapter({}, {}, requireContext(), posts)
+            adapter = RViewPostsAdapter({}, {}, mContext, posts)
             bdg.recyclerView.adapter = adapter
         }
     }

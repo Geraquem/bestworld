@@ -63,7 +63,7 @@ class UserProfileEventsRVTab(var type: String, var userKey: String) : Fragment()
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(mContext)
             allEventsAdapter = RViewUserProfileAllEventsAdapter(
-                { goToEventFile(mContext, it) }, requireContext(), events
+                { goToEventFile(mContext, it) }, mContext, events
             )
             bdg.recyclerView.adapter = allEventsAdapter
             bdg.recyclerView.visibility = View.VISIBLE
@@ -78,7 +78,7 @@ class UserProfileEventsRVTab(var type: String, var userKey: String) : Fragment()
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(mContext)
             eventsAdapter = RViewUserProfileEventsAdapter(
-                { goToEventFile(mContext, it) }, requireContext(), events
+                { goToEventFile(mContext, it) }, mContext, events
             )
             bdg.recyclerView.adapter = eventsAdapter
             bdg.recyclerView.visibility = View.VISIBLE

@@ -23,6 +23,7 @@ import com.ftbw.app.bestworld.view.users.tabs.UsersRVTab
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+
 class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
     UsersRVTab.IOpenUserProfileFromUsers, SelectorFragment.IFragmentSelector {
 
@@ -139,7 +140,11 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
         bdg.bottomNavigation.menu.forEach { it.isEnabled = true }
+        super.onBackPressed()
+        val count = supportFragmentManager.backStackEntryCount
+        if (count <= 0) {
+            finish()
+        }
     }
 }

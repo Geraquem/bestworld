@@ -53,7 +53,7 @@ class AllEventsRVTab : Fragment(), EventsView {
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(context)
             adapter = RViewAllEventsAdapter(
-                { goToEventFile(mContext, it) }, requireContext(), events
+                { goToEventFile(mContext, it) }, mContext, events
             )
             bdg.recyclerView.adapter = adapter
         }

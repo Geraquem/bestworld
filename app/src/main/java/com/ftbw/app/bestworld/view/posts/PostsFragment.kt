@@ -56,7 +56,7 @@ class PostsFragment : Fragment(), PostsView {
         } else {
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(context)
-            adapter = RViewPostsAdapter({}, {}, requireContext(), posts)
+            adapter = RViewPostsAdapter({}, {}, mContext, posts)
             bdg.recyclerView.adapter = adapter
         }
     }
