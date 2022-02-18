@@ -74,13 +74,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
+                android:autoLink="phone|web"
                 android:background="@drawable/bg_edit_text"
                 android:fontFamily="@font/montserrat_regular"
                 android:hint="@string/hintPostText"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:paddingHorizontal="8dp"
-                android:paddingVertical="10dp" />
+                android:paddingVertical="10dp"
+                android:textColorLink="@color/blue" />
 
             <TextView
                 android:id="@+id/errorMessage"

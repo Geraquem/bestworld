@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/row"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -26,8 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Marisol del Rocío Hernández"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:text="Marisol del Rocío Hernández" />
 
     </LinearLayout>
 
@@ -45,38 +46,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:autoLink="phone|web"
         android:fontFamily="@font/montserrat_regular"
         android:paddingHorizontal="10dp"
-        android:text="Bueno pues esto sería solo lo que yo quiero compartir con todos mis amigos jeje blabla"
-        android:textSize="16sp" />
+        android:textColorLink="@color/blue"
+        android:textSize="16sp"
+        tools:text="Bueno pues esto sería solo lo que yo quiero compartir con todos mis amigos jeje blabla" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
+        android:foregroundGravity="center"
         android:orientation="horizontal"
         android:paddingHorizontal="10dp">
 
         <TextView
             android:id="@+id/likeCount"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            tools:text="42"
             android:layout_marginEnd="2dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:textSize="18sp" />
+            android:fontFamily="@font/montserrat_regular"
+            android:textSize="20sp" />
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginEnd="5dp"
             android:contentDescription="@string/contentDescription"
             android:src="@drawable/ic_post_no_fav" />
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:contentDescription="@string/contentDescription"
             android:src="@drawable/ic_post_comments" />
 
