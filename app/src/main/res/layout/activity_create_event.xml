@@ -65,6 +65,18 @@
                 android:padding="15dp" />
 
             <EditText
+                android:id="@+id/otherInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/montserrat_regular"
+                android:hint="@string/eventOtherInfo"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:padding="15dp" />
+
+            <EditText
                 android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,18 +91,6 @@
                 android:lines="1"
                 android:maxLines="1"
                 android:padding="12dp" />
-
-            <EditText
-                android:id="@+id/otherInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/bg_edit_text"
-                android:fontFamily="@font/montserrat_regular"
-                android:hint="@string/eventOtherInfo"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:padding="15dp" />
 
             <LinearLayout
                 android:id="@+id/selectDate"

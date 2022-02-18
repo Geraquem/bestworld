@@ -57,7 +57,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="3dp"
                         android:fontFamily="@font/montserrat_regular"
-                        android:textColor="@color/gray"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <LinearLayout
@@ -88,12 +88,13 @@
 
             <TextView
                 android:id="@+id/address"
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/montserrat_light"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 

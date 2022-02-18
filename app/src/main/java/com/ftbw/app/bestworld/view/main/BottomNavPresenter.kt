@@ -12,6 +12,19 @@ class BottomNavPresenter {
     fun openFragment(context: BottomNavActivity, fragment: Fragment) {
         val fragmentName = fragment.javaClass.name
 
+        /**
+         *
+         *
+         *
+         *
+         * CHECKKKKKKKKKKKKKKKKKKKKKK
+         *
+         *
+         *
+         **/
+
+
+
         val lastFrag = context.supportFragmentManager.backStackEntryCount - 1
         var fragAlreadyInStack = ""
         if (lastFrag > 0) {
