@@ -147,8 +147,7 @@
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:textSize="18sp"
-                    tools:text="c/ Pantomima 13 6ºDcha"
-                    app:drawableStartCompat="@drawable/ic_event_location" />
+                    tools:text="c/ Pantomima 13 6ºDcha" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
