@@ -39,7 +39,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:contentDescription="@string/contentDescription"
-        android:src="@drawable/bw_big_logo" />
+        android:src="@drawable/bw_logo" />
 
     <TextView
         android:id="@+id/postText"
