@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@color/softBlue" />
+    <item android:drawable="@color/white" />
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/bw_big_logo_2_350x200" />
+            android:src="@drawable/bw_logo_280x183" />
     </item>
 </layer-list>
