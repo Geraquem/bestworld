@@ -21,16 +21,20 @@ class EventsRepository(private val listener: IEvents) {
 
     private fun getAllEventsGivenLabels(labels: MutableList<String>) {
         val events: MutableList<EventRecyclerDTO> = mutableListOf()
-        for (eventLabel in labels) {
-            Firebase.database.reference.child("events").child(eventLabel)
-                .get().addOnSuccessListener {
-                    for (event in it.children) {
-                        events.add(event.getValue(EventRecyclerDTO::class.java)!!)
+        if (labels.isEmpty()) {
+            listener.showEvents(events)
+        } else {
+            for (eventLabel in labels) {
+                Firebase.database.reference.child("events").child(eventLabel)
+                    .get().addOnSuccessListener {
+                        for (event in it.children) {
+                            events.add(event.getValue(EventRecyclerDTO::class.java)!!)
+                        }
+                        listener.showEvents(events)
+                    }.addOnFailureListener {
+                        listener.somethingWentWrong()
                     }
-                    listener.showEvents(events)
-                }.addOnFailureListener {
-                    listener.somethingWentWrong()
-                }
+            }
         }
     }
 
