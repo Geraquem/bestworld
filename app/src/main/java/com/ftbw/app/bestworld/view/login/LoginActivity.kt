@@ -34,10 +34,9 @@ class LoginActivity : AppCompatActivity(), LoginView {
         findViewById<TextView>(R.id.toolbarText).text = getString(R.string.log_in_title)
 
         bdg.logInButton.setOnClickListener {
-            presenter.updateUI()
             closeKeyboard()
-//            presenter.checkCredentials(email.text.toString(), password.text.toString())
-            presenter.checkCredentials("a@gmail.com", "123456")
+            presenter.checkCredentials(bdg.email.text.toString(), bdg.password.text.toString())
+//            presenter.checkCredentials("a@gmail.com", "123456")
         }
 
         bdg.registerText.setOnClickListener {

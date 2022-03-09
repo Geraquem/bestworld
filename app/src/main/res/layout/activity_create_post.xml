@@ -79,7 +79,7 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:hint="@string/hintPostText"
                 android:importantForAutofill="no"
-                android:inputType="text"
+                android:inputType="textMultiLine"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="10dp"
                 android:textColorLink="@color/blue" />

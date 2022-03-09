@@ -6,9 +6,11 @@
         <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/drawable/ic_event_assistant.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/activity_bottom_nav.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/activity_create_event.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/activity_create_post.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/activity_event_file.xml" value="0.33" />
         <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/activity_register.xml" value="0.36102564102564105" />
+        <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/fragment_create_selector.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/fragment_events.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/fragment_tab_event.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/fragment_tab_events_user_profile.xml" value="0.36666666666666664" />
@@ -21,6 +23,7 @@
         <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/include_main_toolbar.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/row_all_events_recycler.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/row_event_recycler.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/row_post_recycler.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/layout/spinner_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Gershon/Desktop/projects/bestworld/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/gershon.araque/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.36666666666666664" />
