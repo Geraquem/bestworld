@@ -32,6 +32,7 @@ class EventCommon {
         const val FARMING = "farming"
         const val MOBILIZATION = "mobilization"
         const val WORKSHOP = "workshop"
+        const val SHARING_CAR = "sharingCar"
         const val OTHER = "other"
 
         fun getLabelInEnglish(context: Context, labelSelected: String): String {
@@ -42,6 +43,7 @@ class EventCommon {
                 context.getString(R.string.FarmingTitleTab) -> FARMING
                 context.getString(R.string.MobilizationTitleTab) -> MOBILIZATION
                 context.getString(R.string.WorkshopTitleTab) -> WORKSHOP
+                context.getString(R.string.SharingCarTitleTab) -> SHARING_CAR
                 context.getString(R.string.OtherTitleTab) -> OTHER
                 else -> CHOOSE_CATEGORY
             }
@@ -55,6 +57,7 @@ class EventCommon {
                 FARMING -> context.getString(R.string.FarmingTitleTab)
                 MOBILIZATION -> context.getString(R.string.MobilizationTitleTab)
                 WORKSHOP -> context.getString(R.string.WorkshopTitleTab)
+                SHARING_CAR -> context.getString(R.string.SharingCarTitleTab)
                 OTHER -> context.getString(R.string.OtherTitleTab)
                 else -> context.getString(R.string.somethingWentWrong)
             }

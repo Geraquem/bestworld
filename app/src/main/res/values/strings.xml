@@ -20,6 +20,7 @@
     <string name="WorkshopTitleTab">Talleres ambientales</string>
     <string name="MobilizationTitleTab">Movilización</string>
     <string name="FarmingTitleTab">Agricultura colaborativa</string>
+    <string name="SharingCarTitleTab">Compartiendo coche</string>
     <string name="OtherTitleTab">Otros</string>
 
     <!-- EVENT FILE -->
@@ -95,22 +96,24 @@
 
     <string-array name="event_labels">
         <item>Selecciona categoría</item>
-        <item>Acción medioambiental</item>
-        <item>Divulgación</item>
-        <item>Talleres ambientales</item>
-        <item>Movilización</item>
-        <item>Agricultura colaborativa</item>
-        <item>Otros</item>
+        <item>@string/EnvironmentalTitleTab</item>
+        <item>@string/DivulgationTitleTab</item>
+        <item>@string/WorkshopTitleTab</item>
+        <item>@string/MobilizationTitleTab</item>
+        <item>@string/FarmingTitleTab</item>
+        <item>@string/SharingCarTitleTab</item>
+        <item>@string/OtherTitleTab</item>
     </string-array>
 
     <string-array name="user_event_labels">
         <item>Todos los eventos</item>
-        <item>Acción medioambiental</item>
-        <item>Divulgación</item>
-        <item>Talleres ambientales</item>
-        <item>Movilización</item>
-        <item>Agricultura colaborativa</item>
-        <item>Otros</item>
+        <item>@string/EnvironmentalTitleTab</item>
+        <item>@string/DivulgationTitleTab</item>
+        <item>@string/WorkshopTitleTab</item>
+        <item>@string/MobilizationTitleTab</item>
+        <item>@string/FarmingTitleTab</item>
+        <item>@string/SharingCarTitleTab</item>
+        <item>@string/OtherTitleTab</item>
     </string-array>
 
 </resources>

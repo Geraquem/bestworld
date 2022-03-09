@@ -63,6 +63,10 @@ class EventsFragment : Fragment() {
                     //tab.setText(R.string.FarmingTitle)
                 }
                 6 -> {
+                    tab.setIcon(R.drawable.ic_tab_sharing_car)
+                    //tab.setText(R.string.FarmingTitle)
+                }
+                7 -> {
                     tab.setIcon(R.drawable.ic_tab_other)
                     //tab.setText(R.string.OtherTitle)
                 }

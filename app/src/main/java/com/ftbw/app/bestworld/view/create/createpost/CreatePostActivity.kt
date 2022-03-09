@@ -47,7 +47,6 @@ class CreatePostActivity : AppCompatActivity(), CreatePostView {
     override fun creatorOfEvent(name: String) {
         userName = name
         bdg.loading.root.visibility = View.GONE
-        Toast.makeText(this, userName, Toast.LENGTH_SHORT).show()
     }
 
     override fun postCreated() {
