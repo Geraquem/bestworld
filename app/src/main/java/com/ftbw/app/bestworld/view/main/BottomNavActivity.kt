@@ -29,6 +29,7 @@ class BottomNavActivity : AppCompatActivity(), UserProfileFragment.CloseSession,
 
     lateinit var bdg: ActivityBottomNavBinding
 
+
     private val presenter by lazy { BottomNavPresenter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
