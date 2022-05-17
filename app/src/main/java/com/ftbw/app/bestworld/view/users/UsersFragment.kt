@@ -34,7 +34,7 @@ class UsersFragment(val listener: UsersRVTab.IOpenUserProfileFromUsers) : Fragme
         TabLayoutMediator(bdg.tabLayout, bdg.viewPager) { tab, position ->
             when (position) {
                 0 -> {
-                    tab.setIcon(R.drawable.ic_particular)
+                    tab.setIcon(R.drawable.ic_all_users)
                     tab.setText(R.string.usersParticulars)
                 }
                 1 -> {

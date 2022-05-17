@@ -53,11 +53,11 @@ class UsersRVTab(val listener: IOpenUserProfileFromUsers, var type: String) :
         presenter.getUsersByType(type)
     }
 
-
-    private fun goToUserProfile(it: String) {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, UserProfileFragment(it)).commit()
-    }
+//
+//    private fun goToUserProfile(it: String) {
+//        requireActivity().supportFragmentManager.beginTransaction()
+//            .replace(R.id.fragment_container, UserProfileFragment(it)).commit()
+//    }
 
     override fun showUsers(users: List<UserRecyclerDTO>) {
         bdg.loading.root.visibility = View.GONE

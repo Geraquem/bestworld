@@ -84,7 +84,7 @@ class EventFileActivity : AppCompatActivity(), EventFileView {
             }
             false -> {
                 bdg.signUpText.text = getString(R.string.signUpToEvent)
-                bdg.signUpIcon.setBackgroundResource(R.drawable.ic_event_assistant)
+                bdg.signUpIcon.setBackgroundResource(R.drawable.ic_assist_event)
             }
         }
         bdg.signUpButton.isEnabled = true
@@ -99,7 +99,7 @@ class EventFileActivity : AppCompatActivity(), EventFileView {
             }
             false -> {
                 bdg.signUpText.text = getString(R.string.signUpToEvent)
-                bdg.signUpIcon.setBackgroundResource(R.drawable.ic_event_assistant)
+                bdg.signUpIcon.setBackgroundResource(R.drawable.ic_assist_event)
             }
         }
     }

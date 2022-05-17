@@ -1,6 +1,5 @@
 package com.ftbw.app.bestworld.view.userprofile.tabs.events
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.FragmentTabEventsUserProfileBinding
-import com.ftbw.app.bestworld.view.userprofile.adapter.recyclerview.RViewUserProfileEventsAdapter
 import com.ftbw.app.bestworld.view.userprofile.adapter.viewpager.UserProfileEventsPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -35,10 +33,10 @@ class UserProfileEventsTab(var userKey: String) : Fragment() {
         TabLayoutMediator(bdg.tabLayout, bdg.viewPager) { tab, position ->
             when (position) {
                 0 -> {
-                    tab.setIcon(R.drawable.ic_tab_created)
+                    tab.setIcon(R.drawable.ic_create_post)
                 }
                 1 -> {
-                    tab.setIcon(R.drawable.ic_event_assistant)
+                    tab.setIcon(R.drawable.ic_assist_event)
                 }
             }
         }.attach()

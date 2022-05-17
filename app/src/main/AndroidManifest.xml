@@ -10,24 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bestworld">
         <activity
-            android:name="com.ftbw.app.bestworld.view.create.createpost.CreatePostActivity"
+            android:name=".view.create.createpost.CreatePostActivity"
             android:exported="false"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name="com.ftbw.app.bestworld.view.create.createevent.CreateEventActivity"
+            android:name=".view.create.createevent.CreateEventActivity"
             android:exported="false"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name="com.ftbw.app.bestworld.view.register.RegisterActivity"
+            android:name=".view.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name="com.ftbw.app.bestworld.view.login.LoginActivity"
+            android:name=".view.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name="com.ftbw.app.bestworld.view.eventfile.EventFileActivity"
+            android:name=".view.eventfile.EventFileActivity"
             android:exported="false" />
         <activity
-            android:name="com.ftbw.app.bestworld.view.main.BottomNavActivity"
+            android:name=".view.main.appbar.MainActivity"
             android:exported="true"
             android:theme="@style/SplashScreenTheme"
             android:windowSoftInputMode="stateHidden|adjustPan">

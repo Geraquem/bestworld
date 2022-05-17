@@ -60,11 +60,11 @@ class UserProfileFragment(var userKey: String) : Fragment(), UserProfileView {
         TabLayoutMediator(bdg.tabLayout, bdg.viewPager) { tab, position ->
             when (position) {
                 0 -> {
-                    tab.setIcon(R.drawable.ic_nav_posts)
+                    tab.setIcon(R.drawable.ic_post)
 //                    tab.setIcon(R.drawable.ic_tab_created)
                 }
                 1 -> {
-                    tab.setIcon(R.drawable.ic_nav_events)
+                    tab.setIcon(R.drawable.ic_events)
 //                    tab.setIcon(R.drawable.ic_event_assistant)
                 }
             }

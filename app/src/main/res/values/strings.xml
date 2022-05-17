@@ -4,8 +4,25 @@
     <string name="contentDescription">contentDescription</string>
     <string name="somethingWentWrong">Algo ha salido mal</string>
 
-    <string name="tabPosts">Posts</string>
+    <!-- DRAWER MENU -->
+    <string name="dm_title_one">ACCION</string>
+    <string name="dm_title_two">GUARDADOS</string>
+    <string name="dm_title_three">GENTE</string>
+    <string name="dm_events">EVENTOS DE MI RED</string>
+    <string name="dm_all_events">TODOS LOS EVENTOS</string>
+    <string name="dm_posts">PUBLICACIONES</string>
+    <string name="dm_created_events">EVENTOS CREADOS</string>
+    <string name="dm_assist_events">EVENTOS QUE ASISTIRÉ</string>
+    <string name="dm_fav_posts">PUBLICACIONES FAVORITAS</string>
+    <string name="dm_all_users_people">PERSONAS</string>
+    <string name="dm_all_users_companies">EMPRESAS</string>
+    <string name="dm_user_profile">MI PERFIL</string>
+
+    <string name="dm_opened">menu opened</string>
+    <string name="dm_closed">menu closed</string>
+
     <string name="tabEvents">Eventos</string>
+    <string name="tabPosts">Posts</string>
     <string name="tabAdd">Subir contenido</string>
     <string name="tabUsers">Usuarios</string>
     <string name="tabUserProfile">Mi perfil</string>

@@ -67,7 +67,7 @@
                         android:layout_height="30dp"
                         android:layout_gravity="center"
                         android:contentDescription="@string/contentDescription"
-                        android:src="@drawable/ic_nav_users" />
+                        android:src="@drawable/ic_all_users" />
 
                 </LinearLayout>
 
