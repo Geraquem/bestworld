@@ -27,7 +27,7 @@
             android:name=".view.eventfile.EventFileActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.appbar.MainActivity"
+            android:name=".view.main.MainActivity"
             android:exported="true"
             android:theme="@style/SplashScreenTheme"
             android:windowSoftInputMode="stateHidden|adjustPan">

@@ -1,18 +1,5 @@
 package com.ftbw.app.bestworld.view.main.appbar
 
-import android.content.Intent
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.view.forEach
-import androidx.fragment.app.Fragment
-import com.ftbw.app.bestworld.helper.EventCommon
-import com.ftbw.app.bestworld.view.create.createevent.CreateEventActivity
-import com.ftbw.app.bestworld.view.create.createpost.CreatePostActivity
-import com.ftbw.app.bestworld.view.events.EventsFragment
-import com.ftbw.app.bestworld.view.register.RegisterActivity
-import com.ftbw.app.bestworld.view.userprofile.UserProfileFragment
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-
 class auxiliar {
 
 

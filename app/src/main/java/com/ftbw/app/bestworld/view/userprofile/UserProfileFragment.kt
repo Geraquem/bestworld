@@ -44,7 +44,6 @@ class UserProfileFragment(var userKey: String) : Fragment(), UserProfileView {
         bdg.viewPager.adapter = viewPagerAdapter
 
         bdg.closeSession.setOnClickListener { showAlertDialog() }
-        bdg.settings.setOnClickListener { /* open editProfile */ }
 
         presenter.checkIfIsMainUserProfile(userKey)
 
@@ -80,16 +79,13 @@ class UserProfileFragment(var userKey: String) : Fragment(), UserProfileView {
     }
 
     override fun setUserData(user: UserDTO) {
-        bdg.name.text = user.name
         setProfilePicture(user.imageURL)
         bdg.email.text = user.email
         bdg.usersAdded.text = user.addedCount.toString()
         bdg.loading.root.visibility = View.GONE
     }
 
-    override fun showLinearButtons(view: Int) {
-        bdg.linearButtons.visibility = view
-    }
+    override fun showLinearButtons(view: Int) {}
 
     override fun showAddButton(view: Int) {
         bdg.addButton.visibility = view

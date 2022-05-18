@@ -7,24 +7,11 @@ import com.ftbw.app.bestworld.view.userprofile.UserProfileFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class BottomNavPresenter {
-//
-//    fun openFragment(context: BottomNavActivity, fragment: Fragment) {
-//        val fragmentName = fragment.javaClass.name
-//
-//        /**
-//         *
-//         *
-//         *
-//         *
-//         * CHECKKKKKKKKKKKKKKKKKKKKKK
-//         *
-//         *
-//         *
-//         **/
-//
-//
-//
+class MainPresenter(val context: MainActivity) {
+
+    fun openFragment(fragment: Fragment) {
+        val fragmentName = fragment.javaClass.name
+
 //        val lastFrag = context.supportFragmentManager.backStackEntryCount - 1
 //        var fragAlreadyInStack = ""
 //        if (lastFrag > 0) {
@@ -42,14 +29,12 @@ class BottomNavPresenter {
 //                .replace(R.id.fragment_container, fragment)
 //                .commit()
 //        }
-//
-//        context.supportFragmentManager.beginTransaction()
-//            .replace(R.id.fragment_container, fragment)
-//            .addToBackStack(fragmentName)
-//            .commit()
-//
-//        //evitar que se añadan mismos fragments a la backstack si son iguales y se pulsa el mismo boton varias veces
-//    }
+
+        context.supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(fragmentName)
+            .commit()
+    }
 //
 //    fun openSelectorFragment(context: BottomNavActivity, fragment: Fragment) {
 //        context.supportFragmentManager.beginTransaction()

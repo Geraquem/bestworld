@@ -1,4 +1,4 @@
-package com.ftbw.app.bestworld.view.main.appbar
+package com.ftbw.app.bestworld.view.main
 
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -7,13 +7,20 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityMainBinding
+import com.ftbw.app.bestworld.view.ICommunication
+import com.ftbw.app.bestworld.view.events.EventsFragment
+import com.ftbw.app.bestworld.view.events.category.EventCategoryFragment
+import com.ftbw.app.bestworld.view.posts.PostsFragment
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, ICommunication {
 
     private lateinit var binding: ActivityMainBinding
+
+    private val presenter by lazy { MainPresenter(this) }
 
     private lateinit var toggle: ActionBarDrawerToggle
 
@@ -24,7 +31,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        setSupportActionBar(binding.appBarMain.bottomAppBar)
         toggle = ActionBarDrawerToggle(
             this, binding.drawerLayout,
             binding.appBarMain.bottomAppBar,
@@ -65,19 +71,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.events -> navigateTo(item.title.toString())
-            R.id.all_events -> navigateTo(item.title.toString())
-            R.id.posts -> navigateTo(item.title.toString())
-            R.id.created_events -> navigateTo(item.title.toString())
-            R.id.assist_events -> navigateTo(item.title.toString())
-            R.id.fav_posts -> navigateTo(item.title.toString())
-            R.id.all_users_people -> navigateTo(item.title.toString())
-            R.id.all_users_companies -> navigateTo(item.title.toString())
-            R.id.user_profile -> navigateTo(item.title.toString())
+            R.id.all_events -> openFragment(EventCategoryFragment(this))
+            R.id.events -> openFragment(EventsFragment())
+            R.id.posts -> {}
+            R.id.created_events -> {}
+            R.id.assist_events -> {}
+            R.id.fav_posts -> {}
+            R.id.all_users_people -> {}
+            R.id.all_users_companies -> {}
+            R.id.user_profile -> {}
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
-    private fun navigateTo(id: String) {}
+    override fun openFragment(fragment: Fragment) { presenter.openFragment(fragment) }
 }

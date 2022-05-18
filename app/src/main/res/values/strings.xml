@@ -6,10 +6,10 @@
 
     <!-- DRAWER MENU -->
     <string name="dm_title_one">ACCION</string>
-    <string name="dm_title_two">GUARDADOS</string>
+    <string name="dm_title_two">MIS COSAS</string>
     <string name="dm_title_three">GENTE</string>
+    <string name="dm_all_events">EVENTOS</string>
     <string name="dm_events">EVENTOS DE MI RED</string>
-    <string name="dm_all_events">TODOS LOS EVENTOS</string>
     <string name="dm_posts">PUBLICACIONES</string>
     <string name="dm_created_events">EVENTOS CREADOS</string>
     <string name="dm_assist_events">EVENTOS QUE ASISTIRÉ</string>
