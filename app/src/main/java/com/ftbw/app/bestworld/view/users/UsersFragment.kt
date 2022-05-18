@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.FragmentUsersBinding
+import com.ftbw.app.bestworld.view.ICommunication
 import com.ftbw.app.bestworld.view.users.adapter.viewpager.UsersViewPagerAdapter
-import com.ftbw.app.bestworld.view.users.tabs.UsersRVTab
 import com.google.android.material.tabs.TabLayoutMediator
 
-class UsersFragment(val listener: UsersRVTab.IOpenUserProfileFromUsers) : Fragment() {
+class UsersFragment(val listener: ICommunication, val pos: Int) : Fragment() {
 
     private var _bdg: FragmentUsersBinding? = null
     private val bdg get() = _bdg!!
@@ -30,6 +30,8 @@ class UsersFragment(val listener: UsersRVTab.IOpenUserProfileFromUsers) : Fragme
 
         val viewPagerAdapter = UsersViewPagerAdapter(listener, this)
         bdg.viewPager.adapter = viewPagerAdapter
+
+        bdg.viewPager.setCurrentItem(pos, false)
 
         TabLayoutMediator(bdg.tabLayout, bdg.viewPager) { tab, position ->
             when (position) {

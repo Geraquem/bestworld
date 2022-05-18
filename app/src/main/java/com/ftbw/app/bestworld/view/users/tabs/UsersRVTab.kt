@@ -10,15 +10,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.FragmentTabUsersBinding
-import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
 import com.ftbw.app.bestworld.helper.EventCommon.Companion.COMPANY
 import com.ftbw.app.bestworld.helper.EventCommon.Companion.PARTICULAR
+import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
+import com.ftbw.app.bestworld.view.ICommunication
 import com.ftbw.app.bestworld.view.userprofile.UserProfileFragment
 import com.ftbw.app.bestworld.view.users.UsersPresenter
 import com.ftbw.app.bestworld.view.users.UsersView
 import com.ftbw.app.bestworld.view.users.adapter.recyclerview.RViewUsersAdapter
 
-class UsersRVTab(val listener: IOpenUserProfileFromUsers, var type: String) :
+class UsersRVTab(val listener: ICommunication, var type: String) :
     Fragment(), UsersView {
     private var _bdg: FragmentTabUsersBinding? = null
     private val bdg get() = _bdg!!
@@ -53,12 +54,6 @@ class UsersRVTab(val listener: IOpenUserProfileFromUsers, var type: String) :
         presenter.getUsersByType(type)
     }
 
-//
-//    private fun goToUserProfile(it: String) {
-//        requireActivity().supportFragmentManager.beginTransaction()
-//            .replace(R.id.fragment_container, UserProfileFragment(it)).commit()
-//    }
-
     override fun showUsers(users: List<UserRecyclerDTO>) {
         bdg.loading.root.visibility = View.GONE
         if (users.isEmpty()) {
@@ -67,7 +62,7 @@ class UsersRVTab(val listener: IOpenUserProfileFromUsers, var type: String) :
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(context)
             adapter = RViewUsersAdapter(
-                { listener.openUserProfileFromUsers(it) }, mContext, users
+                { listener.openFragment(UserProfileFragment(it)) }, mContext, users
             )
             bdg.recyclerView.adapter = adapter
         }
@@ -80,9 +75,5 @@ class UsersRVTab(val listener: IOpenUserProfileFromUsers, var type: String) :
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
-    }
-
-    interface IOpenUserProfileFromUsers {
-        fun openUserProfileFromUsers(userKey: String)
     }
 }

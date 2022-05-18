@@ -1,18 +1,29 @@
 package com.ftbw.app.bestworld.view.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityMainBinding
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.LOGIN_ACTIVITY_REQUEST_CODE
+import com.ftbw.app.bestworld.helper.EventCommon.Companion.REGISTER_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.view.ICommunication
 import com.ftbw.app.bestworld.view.events.category.EventCategoryFragment
+import com.ftbw.app.bestworld.view.login.LoginActivity
+import com.ftbw.app.bestworld.view.posts.PostsFragment
+import com.ftbw.app.bestworld.view.register.RegisterActivity
+import com.ftbw.app.bestworld.view.userprofile.UserProfileFragment
+import com.ftbw.app.bestworld.view.users.UsersFragment
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     ICommunication {
@@ -41,19 +52,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
-        binding.appBarMain.bottomAppBar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.events -> {
-                    Toast.makeText(this, it.title, Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.posts -> {
-                    Toast.makeText(this, it.title, Toast.LENGTH_SHORT).show()
-                    true
-                }
-                else -> false
-            }
+        binding.appBarMain.floatingButton.setOnClickListener {
+            Toast.makeText(this, "holita", Toast.LENGTH_SHORT).show()
         }
+
+//        binding.appBarMain.bottomAppBar.setOnMenuItemClickListener {
+//            when (it.itemId) {
+//                R.id.events -> {
+//                    Toast.makeText(this, it.title, Toast.LENGTH_SHORT).show()
+//                    true
+//                }
+//                R.id.posts -> {
+//                    Toast.makeText(this, it.title, Toast.LENGTH_SHORT).show()
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
@@ -71,20 +86,46 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.all_events -> openFragment(EventCategoryFragment(this, false))
-            R.id.events -> openFragment(EventCategoryFragment(this, true)) //modificar
-            R.id.posts -> {}
-            R.id.created_events -> {}
-            R.id.assist_events -> {}
-            R.id.fav_posts -> {}
-            R.id.all_users_people -> {}
-            R.id.all_users_companies -> {}
-            R.id.user_profile -> {}
+            R.id.events -> openFragment(EventCategoryFragment(this, true))
+            R.id.posts -> openFragment(PostsFragment())
+            R.id.created_events -> {/* checkIfUserExist(Whatever()) */}
+            R.id.assist_events -> {/* checkIfUserExist(Whatever()) */}
+            R.id.fav_posts -> { /* checkIfUserExist(FavPostsFragment()) */ }
+            R.id.all_users_people -> openFragment(UsersFragment(this, 0))
+            R.id.all_users_companies -> openFragment(UsersFragment(this, 1))
+            R.id.user_profile -> checkIfUserExist(UserProfileFragment(""))
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
+    private fun checkIfUserExist(fragment: Fragment) {
+        if (presenter.checkIfUserExist()) {
+            presenter.openFragment(fragment)
+        } else {
+            openActivity(LoginActivity::class.java)
+        }
+    }
+
     override fun openFragment(fragment: Fragment) {
         presenter.openFragment(fragment)
     }
+
+    private fun openActivity(classToGo: Class<*>) {
+        openPostActivity.launch(Intent(this, classToGo))
+    }
+
+    private val openPostActivity =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            when (result.resultCode) {
+                LOGIN_ACTIVITY_REQUEST_CODE -> {
+                    if (result.data?.getBooleanExtra("register", false) == true) {
+                        openActivity(RegisterActivity::class.java)
+                    } else {
+                        presenter.openFragment(PostsFragment())
+                    }
+                }
+                REGISTER_ACTIVITY_REQUEST_CODE -> presenter.openFragment(PostsFragment())
+            }
+        }
 }

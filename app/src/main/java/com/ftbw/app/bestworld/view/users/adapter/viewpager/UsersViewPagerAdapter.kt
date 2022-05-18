@@ -4,10 +4,11 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.ftbw.app.bestworld.helper.EventCommon.Companion.COMPANY
 import com.ftbw.app.bestworld.helper.EventCommon.Companion.PARTICULAR
+import com.ftbw.app.bestworld.view.ICommunication
 import com.ftbw.app.bestworld.view.users.tabs.UsersRVTab
 
 class UsersViewPagerAdapter(
-    val listener: UsersRVTab.IOpenUserProfileFromUsers,
+    val listener: ICommunication,
     val fragment: Fragment
 ) : FragmentStateAdapter(fragment) {
 

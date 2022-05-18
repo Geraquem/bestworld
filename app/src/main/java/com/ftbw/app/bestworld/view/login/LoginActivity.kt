@@ -35,8 +35,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
         bdg.logInButton.setOnClickListener {
             closeKeyboard()
-            presenter.checkCredentials(bdg.email.text.toString(), bdg.password.text.toString())
-//            presenter.checkCredentials("a@gmail.com", "123456")
+//            presenter.checkCredentials(bdg.email.text.toString(), bdg.password.text.toString())
+            presenter.checkCredentials("gers@gmail.com", "123456")
         }
 
         bdg.registerText.setOnClickListener {

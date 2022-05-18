@@ -2,8 +2,6 @@ package com.ftbw.app.bestworld.view.main
 
 import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.R
-import com.ftbw.app.bestworld.view.events.EventsFragment
-import com.ftbw.app.bestworld.view.userprofile.UserProfileFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -35,6 +33,11 @@ class MainPresenter(val context: MainActivity) {
             .addToBackStack(fragmentName)
             .commit()
     }
+
+    fun checkIfUserExist(): Boolean {
+        return Firebase.auth.currentUser != null
+    }
+
 //
 //    fun openSelectorFragment(context: BottomNavActivity, fragment: Fragment) {
 //        context.supportFragmentManager.beginTransaction()
