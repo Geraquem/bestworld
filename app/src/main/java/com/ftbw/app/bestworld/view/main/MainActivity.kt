@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -51,6 +52,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.navigationView.setNavigationItemSelectedListener(this)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
+
+        val header = binding.navigationView.getHeaderView(0)
+        val userName = header.findViewById<TextView>(R.id.userName)
+        val networkCount = header.findViewById<TextView>(R.id.networkCount)
+        userName.text = "CHULAPO"
+        networkCount.text = "12 EN MI RED"
+
 
         binding.appBarMain.floatingButton.setOnClickListener {
             Toast.makeText(this, "holita", Toast.LENGTH_SHORT).show()
