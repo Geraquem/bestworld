@@ -16,11 +16,13 @@
 
     <color name="tabIndicator">#81D5D2D2</color>
 
+    <color name="AllEvents">#80B3BBF6</color>
     <color name="Enviromental">#80C0EFC9</color>
     <color name="Divulgation">#4DAADCF8</color>
     <color name="Workshop">#4DC5948C</color>
     <color name="Mobilization">#4D95E3C0</color>
     <color name="Farming">#4DAC817D</color>
+    <color name="SharingCar">#4DAFAA79</color>
     <color name="Other">#4DAA9ECA</color>
 
 </resources>

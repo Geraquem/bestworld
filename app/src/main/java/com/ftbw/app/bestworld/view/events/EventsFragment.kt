@@ -10,14 +10,7 @@ import com.ftbw.app.bestworld.databinding.FragmentEventsBinding
 import com.ftbw.app.bestworld.view.events.adapter.viewpager.EventsViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
-class EventsFragment : Fragment() {
-
-    /*
-
-    Credits:    Icons by svgrepo.com
-
-     */
-
+class EventsFragment(val pos: Int, val isMyNetwork: Boolean) : Fragment() {
     private var _bdg: FragmentEventsBinding? = null
     private val bdg get() = _bdg!!
 
@@ -33,43 +26,20 @@ class EventsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewPagerAdapter = EventsViewPagerAdapter(this)
+        val viewPagerAdapter = EventsViewPagerAdapter(this, isMyNetwork)
         bdg.viewPager.adapter = viewPagerAdapter
+        bdg.viewPager.currentItem = pos
 
         TabLayoutMediator(bdg.tabLayout, bdg.viewPager) { tab, position ->
             when (position) {
-                0 -> {
-                    tab.setIcon(R.drawable.ic_tab_all_events)
-                    //tab.setText(R.string.EnviromentalTitle)
-                }
-                1 -> {
-                    tab.setIcon(R.drawable.ic_tab_enviromental)
-                    //tab.setText(R.string.EnviromentalTitle)
-                }
-                2 -> {
-                    tab.setIcon(R.drawable.ic_tab_divulgation)
-                    //tab.setText(R.string.DivulgationTitle)
-                }
-                3 -> {
-                    tab.setIcon(R.drawable.ic_tab_workshop)
-                    //tab.setText(R.string.WorkshopTitle)
-                }
-                4 -> {
-                    tab.setIcon(R.drawable.ic_tab_mobilization)
-                    //tab.setText(R.string.MobilizationTitle)
-                }
-                5 -> {
-                    tab.setIcon(R.drawable.ic_tab_farming)
-                    //tab.setText(R.string.FarmingTitle)
-                }
-                6 -> {
-                    tab.setIcon(R.drawable.ic_tab_sharing_car)
-                    //tab.setText(R.string.FarmingTitle)
-                }
-                7 -> {
-                    tab.setIcon(R.drawable.ic_tab_other)
-                    //tab.setText(R.string.OtherTitle)
-                }
+                0 -> tab.setIcon(R.drawable.ic_tab_all_events)
+                1 -> tab.setIcon(R.drawable.ic_tab_enviromental)
+                2 -> tab.setIcon(R.drawable.ic_tab_divulgation)
+                3 -> tab.setIcon(R.drawable.ic_tab_workshop)
+                4 -> tab.setIcon(R.drawable.ic_tab_mobilization)
+                5 -> tab.setIcon(R.drawable.ic_tab_farming)
+                6 -> tab.setIcon(R.drawable.ic_tab_sharing_car)
+                7 -> tab.setIcon(R.drawable.ic_tab_other)
             }
         }.attach()
     }

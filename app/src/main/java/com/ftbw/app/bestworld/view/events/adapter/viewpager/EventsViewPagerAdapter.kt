@@ -12,21 +12,22 @@ import com.ftbw.app.bestworld.helper.EventCommon.Companion.WORKSHOP
 import com.ftbw.app.bestworld.view.events.tabs.AllEventsRVTab
 import com.ftbw.app.bestworld.view.events.tabs.EventsRVTab
 
-class EventsViewPagerAdapter(val fragment: Fragment) : FragmentStateAdapter(fragment) {
+class EventsViewPagerAdapter(val fragment: Fragment, val isMyNetwork: Boolean) :
+    FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int = 8
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> AllEventsRVTab()
-            1 -> EventsRVTab(ENVIRONMENTAL)
-            2 -> EventsRVTab(DIVULGATION)
-            3 -> EventsRVTab(FARMING)
-            4 -> EventsRVTab(MOBILIZATION)
-            5 -> EventsRVTab(WORKSHOP)
-            6 -> EventsRVTab(SHARING_CAR)
-            7 -> EventsRVTab(OTHER)
-            else -> EventsRVTab(OTHER)
+            0 -> AllEventsRVTab(isMyNetwork)
+            1 -> EventsRVTab(ENVIRONMENTAL, isMyNetwork)
+            2 -> EventsRVTab(DIVULGATION, isMyNetwork)
+            3 -> EventsRVTab(FARMING, isMyNetwork)
+            4 -> EventsRVTab(MOBILIZATION, isMyNetwork)
+            5 -> EventsRVTab(WORKSHOP, isMyNetwork)
+            6 -> EventsRVTab(SHARING_CAR, isMyNetwork)
+            7 -> EventsRVTab(OTHER, isMyNetwork)
+            else -> EventsRVTab(OTHER, isMyNetwork)
         }
     }
 }

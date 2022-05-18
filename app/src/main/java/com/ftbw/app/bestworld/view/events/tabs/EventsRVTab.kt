@@ -2,6 +2,7 @@ package com.ftbw.app.bestworld.view.events.tabs
 
 import android.content.Context
 import android.os.Bundle
+import android.os.NetworkOnMainThreadException
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,7 @@ import com.ftbw.app.bestworld.helper.EventCommon.Companion.getLabelInSpanish
 import com.ftbw.app.bestworld.view.events.EventsPresenter
 import com.ftbw.app.bestworld.view.events.EventsView
 
-class EventsRVTab(var label: String) : Fragment(), EventsView {
+class EventsRVTab(var label: String, val isMyNetwork: Boolean) : Fragment(), EventsView {
     private var _bdg: FragmentTabEventBinding? = null
     private val bdg get() = _bdg!!
 
@@ -44,7 +45,11 @@ class EventsRVTab(var label: String) : Fragment(), EventsView {
         val labelText = getLabelInSpanish(mContext, label)
         bdg.eventTabTitle.text = labelText
 
-        presenter.getEventsByLabel(label)
+        if(isMyNetwork){
+//            presenter.getEventsOnMyNetworkByLabel(label)
+        }else{
+            presenter.getEventsByLabel(label)
+        }
     }
 
     override fun showEvents(events: List<EventRecyclerDTO>) {

@@ -11,12 +11,11 @@ import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityMainBinding
 import com.ftbw.app.bestworld.view.ICommunication
-import com.ftbw.app.bestworld.view.events.EventsFragment
 import com.ftbw.app.bestworld.view.events.category.EventCategoryFragment
-import com.ftbw.app.bestworld.view.posts.PostsFragment
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, ICommunication {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+    ICommunication {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -71,8 +70,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.all_events -> openFragment(EventCategoryFragment(this))
-            R.id.events -> openFragment(EventsFragment())
+            R.id.all_events -> openFragment(EventCategoryFragment(this, false))
+            R.id.events -> openFragment(EventCategoryFragment(this, true)) //modificar
             R.id.posts -> {}
             R.id.created_events -> {}
             R.id.assist_events -> {}
@@ -85,5 +84,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    override fun openFragment(fragment: Fragment) { presenter.openFragment(fragment) }
+    override fun openFragment(fragment: Fragment) {
+        presenter.openFragment(fragment)
+    }
 }

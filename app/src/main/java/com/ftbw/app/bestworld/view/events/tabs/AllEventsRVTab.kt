@@ -16,7 +16,7 @@ import com.ftbw.app.bestworld.helper.EventCommon.Companion.goToEventFile
 import com.ftbw.app.bestworld.view.events.EventsPresenter
 import com.ftbw.app.bestworld.view.events.EventsView
 
-class AllEventsRVTab : Fragment(), EventsView {
+class AllEventsRVTab(val isMyNetwork: Boolean) : Fragment(), EventsView {
     private var _bdg: FragmentTabEventBinding? = null
     private val bdg get() = _bdg!!
 
@@ -42,7 +42,11 @@ class AllEventsRVTab : Fragment(), EventsView {
 
         bdg.eventTabTitle.text = getString(R.string.allEvents)
 
-        presenter.getAllEvents()
+        if(isMyNetwork){
+            //presenter.getAllEventsOnMyNetwork()
+        }else{
+            presenter.getAllEvents()
+        }
     }
 
     override fun showEvents(events: List<EventRecyclerDTO>) {
