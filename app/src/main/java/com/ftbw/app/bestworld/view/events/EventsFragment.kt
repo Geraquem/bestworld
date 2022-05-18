@@ -28,7 +28,8 @@ class EventsFragment(val pos: Int, val isMyNetwork: Boolean) : Fragment() {
 
         val viewPagerAdapter = EventsViewPagerAdapter(this, isMyNetwork)
         bdg.viewPager.adapter = viewPagerAdapter
-        bdg.viewPager.currentItem = pos
+
+        bdg.viewPager.setCurrentItem(pos, false)
 
         TabLayoutMediator(bdg.tabLayout, bdg.viewPager) { tab, position ->
             when (position) {
