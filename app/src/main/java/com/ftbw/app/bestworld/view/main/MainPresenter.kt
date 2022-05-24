@@ -3,13 +3,16 @@ package com.ftbw.app.bestworld.view.main
 import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.model.user.UserDTO
+import com.ftbw.app.bestworld.view.ICommunication
+import com.ftbw.app.bestworld.view.create.SelectorFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlin.coroutines.CoroutineContext
 
-class MainPresenter(val context: MainActivity, val view: MainView): MainRepository.IUserData, CoroutineScope {
+class MainPresenter(val context: MainActivity, val view: MainView) : MainRepository.IUserData,
+    CoroutineScope {
 
     override val coroutineContext: CoroutineContext = Dispatchers.Main
 
@@ -42,6 +45,13 @@ class MainPresenter(val context: MainActivity, val view: MainView): MainReposito
             .commit()
     }
 
+    fun openAddFragment(listener: ICommunication) {
+        context.supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container_add, SelectorFragment(listener))
+            .addToBackStack(null)
+            .commit()
+    }
+
     fun checkIfUserExist(): Boolean {
         return Firebase.auth.currentUser != null
     }
@@ -54,7 +64,7 @@ class MainPresenter(val context: MainActivity, val view: MainView): MainReposito
 //            .commit()
 //    }
 
-    fun getUserData(userKey: String){
+    fun getUserData(userKey: String) {
         repository.getUserData(userKey)
     }
 

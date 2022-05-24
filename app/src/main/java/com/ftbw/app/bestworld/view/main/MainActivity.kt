@@ -7,7 +7,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +19,8 @@ import com.ftbw.app.bestworld.helper.EventCommon.Companion.LOGIN_ACTIVITY_REQUES
 import com.ftbw.app.bestworld.helper.EventCommon.Companion.REGISTER_ACTIVITY_REQUEST_CODE
 import com.ftbw.app.bestworld.model.user.UserDTO
 import com.ftbw.app.bestworld.view.ICommunication
+import com.ftbw.app.bestworld.view.create.createevent.CreateEventActivity
+import com.ftbw.app.bestworld.view.create.createpost.CreatePostActivity
 import com.ftbw.app.bestworld.view.events.category.EventCategoryFragment
 import com.ftbw.app.bestworld.view.login.LoginActivity
 import com.ftbw.app.bestworld.view.posts.PostsFragment
@@ -63,7 +64,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         presenter.getUserData(userKey)
 
         binding.appBarMain.floatingButton.setOnClickListener {
-            Toast.makeText(this, "holita", Toast.LENGTH_SHORT).show()
+            presenter.openAddFragment(this)
         }
 
 //        binding.appBarMain.bottomAppBar.setOnMenuItemClickListener {
@@ -79,6 +80,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //                else -> false
 //            }
 //        }
+
+        presenter.openFragment(PostsFragment())
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
@@ -122,6 +125,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun openFragment(fragment: Fragment) {
         presenter.openFragment(fragment)
+    }
+
+    override fun closeFragmentSelector() {
+        supportFragmentManager.popBackStack()
+    }
+
+    override fun uploadPost() {
+        closeFragmentSelector()
+        openActivity(CreatePostActivity::class.java)
+    }
+
+    override fun createEvent() {
+        closeFragmentSelector()
+        openActivity(CreateEventActivity::class.java)
     }
 
     private fun openActivity(classToGo: Class<*>) {

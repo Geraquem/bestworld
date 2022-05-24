@@ -32,6 +32,10 @@
     <string name="tabUsers">Usuarios</string>
     <string name="tabUserProfile">Mi perfil</string>
 
+    <!-- CATEGORY -->
+    <string name="category_global">TODO LO QUE EXISTA</string>
+    <string name="category_my_network">EN MI RED</string>
+
     <!-- POSTS -->
     <string name="firstLogIn">¡Para ver esto primero tienes que iniciar sesión!</string>
 

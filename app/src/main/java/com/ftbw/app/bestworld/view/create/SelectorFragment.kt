@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ftbw.app.bestworld.databinding.FragmentCreateSelectorBinding
+import com.ftbw.app.bestworld.view.ICommunication
 
-class SelectorFragment(private val listener: IFragmentSelector) : Fragment() {
+class SelectorFragment(private val listener: ICommunication) : Fragment() {
 
     private var _bdg: FragmentCreateSelectorBinding? = null
     private val bdg get() = _bdg!!
@@ -27,11 +28,5 @@ class SelectorFragment(private val listener: IFragmentSelector) : Fragment() {
         bdg.background.setOnClickListener { listener.closeFragmentSelector() }
         bdg.uploadPost.setOnClickListener { listener.uploadPost() }
         bdg.createEvent.setOnClickListener { listener.createEvent() }
-    }
-
-    interface IFragmentSelector {
-        fun closeFragmentSelector()
-        fun uploadPost()
-        fun createEvent()
     }
 }

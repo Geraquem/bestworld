@@ -12,7 +12,8 @@ import com.ftbw.app.bestworld.databinding.FragmentEventCategoryBinding
 import com.ftbw.app.bestworld.view.ICommunication
 import com.ftbw.app.bestworld.view.events.EventsFragment
 
-class EventCategoryFragment(val listener: ICommunication, val isMyNetwork: Boolean) : Fragment() {
+class EventCategoryFragment(val listener: ICommunication, private val isMyNetwork: Boolean) :
+    Fragment() {
 
     private var _bdg: FragmentEventCategoryBinding? = null
     private val bdg get() = _bdg!!
@@ -30,6 +31,12 @@ class EventCategoryFragment(val listener: ICommunication, val isMyNetwork: Boole
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        bdg.categoryTitle.text = if (isMyNetwork) {
+            getString(R.string.category_my_network)
+        } else {
+            getString(R.string.category_global)
+        }
         setBackgroundColors()
         setClickListeners()
     }
