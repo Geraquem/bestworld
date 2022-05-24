@@ -81,7 +81,7 @@ class UserProfileFragment(var userKey: String) : Fragment(), UserProfileView {
     override fun setUserData(user: UserDTO) {
         setProfilePicture(user.imageURL)
         bdg.email.text = user.email
-        bdg.usersAdded.text = user.addedCount.toString()
+        bdg.usersAdded.text = getString(R.string.myNetwork, user.addedCount.toString())
         bdg.loading.root.visibility = View.GONE
     }
 

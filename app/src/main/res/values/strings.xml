@@ -4,6 +4,11 @@
     <string name="contentDescription">contentDescription</string>
     <string name="somethingWentWrong">Algo ha salido mal</string>
 
+    <!-- DRAWER HEADER -->
+    <string name="dh_welcome">BIENVENID@ A</string>
+    <string name="dh_app_name">BEST WORLD</string>
+    <string name="dh_sign_up">INICIAR SESIÓN</string>
+
     <!-- DRAWER MENU -->
     <string name="dm_title_one">ACCION</string>
     <string name="dm_title_two">MIS COSAS</string>
@@ -99,7 +104,7 @@
     <string name="searchCompanies">Buscar empresas</string>
 
     <!-- MY PROFILE -->
-    <string name="myNetwork">EN MI RED</string>
+    <string name="myNetwork">%1$s EN MI RED</string>
     <string name="addToMyNetwork">AÑADIR A MI RED</string>
     <string name="removeFromMyNetwork">QUITAR DE MI RED</string>
     <string name="wannaCloseSession">¿Seguro que quieres cerrar sesión?</string>
