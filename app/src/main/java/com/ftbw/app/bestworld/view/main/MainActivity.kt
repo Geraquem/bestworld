@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //            }
 //        }
 
-        presenter.openFragment(PostsFragment())
+        presenter.openFragment(PostsFragment(this))
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.all_events -> openFragment(EventCategoryFragment(this, false))
             R.id.events -> openFragment(EventCategoryFragment(this, true))
-            R.id.posts -> openFragment(PostsFragment())
+            R.id.posts -> openFragment(PostsFragment(this))
             R.id.created_events -> {/* checkIfUserExist(Whatever()) */
             }
             R.id.assist_events -> {/* checkIfUserExist(Whatever()) */
@@ -152,10 +152,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     if (result.data?.getBooleanExtra("register", false) == true) {
                         openActivity(RegisterActivity::class.java)
                     } else {
-                        presenter.openFragment(PostsFragment())
+                        presenter.openFragment(PostsFragment(this))
                     }
                 }
-                REGISTER_ACTIVITY_REQUEST_CODE -> presenter.openFragment(PostsFragment())
+                REGISTER_ACTIVITY_REQUEST_CODE -> presenter.openFragment(PostsFragment(this))
             }
         }
 

@@ -42,20 +42,6 @@ class auxiliar {
 //        //recreate() -> Another way
 //    }
 //
-//    override fun closeFragmentSelector() {
-//        bdg.bottomNavigation.menu.forEach { it.isEnabled = true }
-//        supportFragmentManager.popBackStack()
-//    }
-//
-//    override fun uploadPost() {
-//        closeFragmentSelector()
-//        openActivity(CreatePostActivity::class.java)
-//    }
-//
-//    override fun createEvent() {
-//        closeFragmentSelector()
-//        openActivity(CreateEventActivity::class.java)
-//    }
 //
 //    override fun onBackPressed() {
 //        bdg.bottomNavigation.menu.forEach { it.isEnabled = true }

@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.FragmentPostsBinding
 import com.ftbw.app.bestworld.model.post.PostDTO
+import com.ftbw.app.bestworld.view.ICommunication
 import com.ftbw.app.bestworld.view.posts.adapter.RViewPostsAdapter
+import com.ftbw.app.bestworld.view.userprofile.UserProfileFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class PostsFragment : Fragment(), PostsView {
+class PostsFragment(val listener: ICommunication) : Fragment(), PostsView {
 
     private var _bdg: FragmentPostsBinding? = null
     private val bdg get() = _bdg!!
@@ -40,6 +42,7 @@ class PostsFragment : Fragment(), PostsView {
 
         bdg.loading.root.visibility = View.VISIBLE
 
+        /** ver cómo funcionan los posts, sacar solo los que yo sigo y los mios */
         if (Firebase.auth.currentUser != null) {
             presenter.getPosts(Firebase.auth.currentUser!!.uid)
             bdg.firstLogIn.visibility = View.GONE
@@ -56,7 +59,19 @@ class PostsFragment : Fragment(), PostsView {
         } else {
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(context)
-            adapter = RViewPostsAdapter({}, {}, mContext, posts)
+            adapter = RViewPostsAdapter(
+                {
+                    listener.openFragment(UserProfileFragment(it))
+                },
+                {
+                    //onLikeClick
+                },
+                {
+                    //onCommentClick
+                },
+                mContext,
+                posts
+            )
             bdg.recyclerView.adapter = adapter
         }
     }

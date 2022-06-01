@@ -12,6 +12,7 @@ import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
 import com.ftbw.app.bestworld.model.post.PostDTO
 
 class RViewPostsAdapter(
+    val onUserClick: (userId: String) -> Unit,
     val onLikeClick: (event: EventRecyclerDTO) -> Unit,
     val onCommentClick: (event: EventRecyclerDTO) -> Unit,
     var context: Context,
@@ -28,12 +29,16 @@ class RViewPostsAdapter(
 
     override fun onBindViewHolder(holder: PostHolder, position: Int) {
         holder.bind(context, postsList[position])
-        holder.bdg.row.setOnClickListener {
-            //onClick(postsList[position])
-        }
+        holder.bdg.userImage.setOnClickListener { goToUserProfile(position) }
+        holder.bdg.userName.setOnClickListener { goToUserProfile(position) }
     }
 
     override fun getItemCount() = postsList.size
+
+    private fun goToUserProfile(position: Int) {
+        val userId = postsList[position].creatorKey
+        if (userId != null) onUserClick(userId)
+    }
 
     class PostHolder(view: View) : RecyclerView.ViewHolder(view) {
         val bdg = RowPostRecyclerBinding.bind(view)
