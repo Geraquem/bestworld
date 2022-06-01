@@ -28,6 +28,7 @@ import com.ftbw.app.bestworld.view.register.RegisterActivity
 import com.ftbw.app.bestworld.view.userprofile.UserProfileFragment
 import com.ftbw.app.bestworld.view.users.UsersFragment
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -60,11 +61,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
-        userKey = if (presenter.checkIfUserExist()) Firebase.auth.currentUser!!.uid else ""
+        userKey = if (presenter.checkIfUserExist()) Firebase.auth.currentUser!!.uid else "null"
         presenter.getUserData(userKey)
 
         binding.appBarMain.floatingButton.setOnClickListener {
-            presenter.openAddFragment(this)
+            if (presenter.checkIfUserExist()) {
+                presenter.openAddFragment(this)
+            } else {
+                openActivity(LoginActivity::class.java)
+            }
         }
 
 //        binding.appBarMain.bottomAppBar.setOnMenuItemClickListener {
@@ -80,8 +85,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //                else -> false
 //            }
 //        }
-
-        presenter.openFragment(PostsFragment(this))
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
@@ -109,22 +112,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.all_users_people -> openFragment(UsersFragment(this, 0))
             R.id.all_users_companies -> openFragment(UsersFragment(this, 1))
-            R.id.user_profile -> checkIfUserExist(UserProfileFragment(""))
+            R.id.user_profile -> {
+                if (presenter.checkIfUserExist()) {
+                    openUserProfileFragment(Firebase.auth.currentUser!!.uid)
+                } else {
+                    openActivity(LoginActivity::class.java)
+                }
+            }
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
-    private fun checkIfUserExist(fragment: Fragment) {
-        if (presenter.checkIfUserExist()) {
-            presenter.openFragment(fragment)
-        } else {
-            openActivity(LoginActivity::class.java)
-        }
-    }
-
     override fun openFragment(fragment: Fragment) {
         presenter.openFragment(fragment)
+    }
+
+    override fun openUserProfileFragment(userKey: String) {
+        presenter.openFragment(UserProfileFragment(userKey, this))
     }
 
     override fun closeFragmentSelector() {
@@ -152,10 +157,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     if (result.data?.getBooleanExtra("register", false) == true) {
                         openActivity(RegisterActivity::class.java)
                     } else {
-                        presenter.openFragment(PostsFragment(this))
+                        presenter.getUserData(Firebase.auth.currentUser!!.uid)
                     }
                 }
-                REGISTER_ACTIVITY_REQUEST_CODE -> presenter.openFragment(PostsFragment(this))
+                REGISTER_ACTIVITY_REQUEST_CODE -> {
+                    presenter.getUserData(Firebase.auth.currentUser!!.uid)
+                }
             }
         }
 
@@ -168,11 +175,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         header.findViewById<TextView>(R.id.networkCount).text =
             getString(R.string.myNetwork, user.addedCount.toString())
         Glide.with(this).load(user.imageURL).into(header.findViewById(R.id.dh_image))
+
+        presenter.openFragment(PostsFragment(this))
     }
 
     override fun cantFindUser() {
         val header = binding.navigationView.getHeaderView(0)
-        header.findViewById<LinearLayout>(R.id.linear_welcome).visibility = View.VISIBLE
         header.findViewById<LinearLayout>(R.id.linear_user_signed).visibility = View.GONE
+        header.findViewById<LinearLayout>(R.id.linear_welcome).visibility = View.VISIBLE
+
+        presenter.openFragment(PostsFragment(this))
+    }
+
+    override fun closeSession() {
+        FirebaseAuth.getInstance().signOut()
+        openFragment(PostsFragment(this))
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
+        cantFindUser()
     }
 }

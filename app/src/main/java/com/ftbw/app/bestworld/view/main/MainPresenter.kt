@@ -56,7 +56,6 @@ class MainPresenter(val context: MainActivity, val view: MainView) : MainReposit
         return Firebase.auth.currentUser != null
     }
 
-//
 //    fun openSelectorFragment(context: BottomNavActivity, fragment: Fragment) {
 //        context.supportFragmentManager.beginTransaction()
 //            .replace(R.id.fragment_selector_container, fragment)

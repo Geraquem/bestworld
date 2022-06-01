@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.FragmentTabPostsUserProfileBinding
 import com.ftbw.app.bestworld.model.post.PostDTO
-import com.ftbw.app.bestworld.view.userprofile.adapter.recyclerview.RViewPostsAdapter
+import com.ftbw.app.bestworld.view.posts.adapter.RViewPostsAdapter
 
 class UserProfilePostsTab(var userKey: String) : Fragment(), UserProfilePostsView {
 
@@ -47,7 +47,7 @@ class UserProfilePostsTab(var userKey: String) : Fragment(), UserProfilePostsVie
         } else {
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(context)
-            adapter = RViewPostsAdapter({}, {}, mContext, posts)
+            adapter = RViewPostsAdapter({}, {}, {}, mContext, posts)
             bdg.recyclerView.adapter = adapter
         }
     }

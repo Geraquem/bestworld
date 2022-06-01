@@ -12,10 +12,12 @@ import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.FragmentUserProfileBinding
 import com.ftbw.app.bestworld.model.user.UserDTO
+import com.ftbw.app.bestworld.view.ICommunication
 import com.ftbw.app.bestworld.view.userprofile.adapter.viewpager.UserProfileMainPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
-class UserProfileFragment(var userKey: String) : Fragment(), UserProfileView {
+class UserProfileFragment(var userKey: String, val listener: ICommunication) : Fragment(),
+    UserProfileView {
 
     private var _bdg: FragmentUserProfileBinding? = null
     private val bdg get() = _bdg!!
@@ -23,8 +25,6 @@ class UserProfileFragment(var userKey: String) : Fragment(), UserProfileView {
     lateinit var mContext: Context
 
     private val presenter by lazy { UserProfilePresenter(this) }
-
-    private lateinit var closeSession: CloseSession
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -114,7 +114,7 @@ class UserProfileFragment(var userKey: String) : Fragment(), UserProfileView {
         dialogBuilder.setMessage(R.string.wannaCloseSession)
             .setCancelable(false)
             .setPositiveButton(R.string.closeSession) { dialog, _ ->
-                closeSession.closeSession()
+                listener.closeSession()
                 dialog.dismiss()
             }
             .setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
@@ -125,13 +125,5 @@ class UserProfileFragment(var userKey: String) : Fragment(), UserProfileView {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
-    }
-
-    fun setCallBack(close: CloseSession) {
-        closeSession = close
-    }
-
-    interface CloseSession {
-        fun closeSession()
     }
 }

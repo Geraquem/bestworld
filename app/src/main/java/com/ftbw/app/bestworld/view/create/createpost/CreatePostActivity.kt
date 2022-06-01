@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide
 import com.ftbw.app.bestworld.R
 import com.ftbw.app.bestworld.databinding.ActivityCreatePostBinding
 import com.ftbw.app.bestworld.helper.ImagePickerHelper.selectImageFromGallery
+import com.ftbw.app.bestworld.model.user.CreatorDTO
+import com.ftbw.app.bestworld.model.user.UserDTO
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -22,7 +24,7 @@ class CreatePostActivity : AppCompatActivity(), CreatePostView {
     private val presenter by lazy { CreatePostPresenter(this) }
 
     private var imageUri: Uri? = null
-    private var userName: String = ""
+    private lateinit var creator: CreatorDTO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,12 +42,12 @@ class CreatePostActivity : AppCompatActivity(), CreatePostView {
             bdg.publishButton.isEnabled = false
             bdg.errorMessage.visibility = View.GONE
             bdg.publishLoading.visibility = View.VISIBLE
-            presenter.publishPost(imageUri, bdg.postText.text.toString(), userName)
+            presenter.publishPost(imageUri, bdg.postText.text.toString(), creator)
         }
     }
 
-    override fun creatorOfEvent(name: String) {
-        userName = name
+    override fun creatorOfEvent(creator: CreatorDTO) {
+        this.creator = creator
         bdg.loading.root.visibility = View.GONE
     }
 

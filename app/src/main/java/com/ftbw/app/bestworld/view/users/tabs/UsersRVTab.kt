@@ -14,7 +14,6 @@ import com.ftbw.app.bestworld.helper.EventCommon.Companion.COMPANY
 import com.ftbw.app.bestworld.helper.EventCommon.Companion.PARTICULAR
 import com.ftbw.app.bestworld.model.user.UserRecyclerDTO
 import com.ftbw.app.bestworld.view.ICommunication
-import com.ftbw.app.bestworld.view.userprofile.UserProfileFragment
 import com.ftbw.app.bestworld.view.users.UsersPresenter
 import com.ftbw.app.bestworld.view.users.UsersView
 import com.ftbw.app.bestworld.view.users.adapter.recyclerview.RViewUsersAdapter
@@ -62,7 +61,7 @@ class UsersRVTab(val listener: ICommunication, var type: String) :
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(context)
             adapter = RViewUsersAdapter(
-                { listener.openFragment(UserProfileFragment(it)) }, mContext, users
+                { listener.openUserProfileFragment(it) }, mContext, users
             )
             bdg.recyclerView.adapter = adapter
         }

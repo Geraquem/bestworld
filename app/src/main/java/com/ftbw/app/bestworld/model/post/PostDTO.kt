@@ -6,7 +6,7 @@ data class PostDTO(
     var imageURL: String? = "",
     val creatorName: String? = "",
     val creatorKey: String? = "",
+    val creatorImageURL: String? = "",
     var likesCount: Long? = 0,
     var commentsCount: Long? = 0
-
 )

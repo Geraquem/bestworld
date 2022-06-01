@@ -2,6 +2,7 @@ package com.ftbw.app.bestworld.view.create.createpost
 
 import android.net.Uri
 import com.ftbw.app.bestworld.model.post.PostDTO
+import com.ftbw.app.bestworld.model.user.CreatorDTO
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
@@ -22,7 +23,7 @@ class CreatePostPresenter(val view: CreatePostView) : CreatePostRepository.ICrea
         }
     }
 
-    fun publishPost(imageUri: Uri?, text: String, userName: String) {
+    fun publishPost(imageUri: Uri?, text: String, creator: CreatorDTO) {
         if (text.isEmpty()) {
             view.setErrorMessage()
         } else {
@@ -30,8 +31,9 @@ class CreatePostPresenter(val view: CreatePostView) : CreatePostRepository.ICrea
                 "",
                 text,
                 "",
-                userName,
-                Firebase.auth.currentUser!!.uid,
+                creator.name,
+                creator.key,
+                creator.imageURL,
                 0,
                 0
             )
@@ -41,8 +43,8 @@ class CreatePostPresenter(val view: CreatePostView) : CreatePostRepository.ICrea
         }
     }
 
-    override fun creatorOfEvent(name: String) {
-        launch { view.creatorOfEvent(name) }
+    override fun creatorOfEvent(creator: CreatorDTO) {
+        launch { view.creatorOfEvent(creator) }
     }
 
     override fun postCreated() {

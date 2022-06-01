@@ -2,6 +2,7 @@ package com.ftbw.app.bestworld.view.create.createpost
 
 import android.net.Uri
 import com.ftbw.app.bestworld.model.post.PostDTO
+import com.ftbw.app.bestworld.model.user.CreatorDTO
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -10,10 +11,11 @@ import com.google.firebase.storage.StorageReference
 class CreatePostRepository(private val listener: ICreatePost) {
 
     fun getCreatorOfEvent(userKey: String) {
-        Firebase.database.reference.child("users").child(userKey).child("name")
+        Firebase.database.reference.child("users").child(userKey)
             .get().addOnSuccessListener {
                 if (it.exists()) {
-                    listener.creatorOfEvent(it.value.toString())
+                    it.getValue(CreatorDTO::class.java)
+                        ?.let { creator -> listener.creatorOfEvent(creator) }
                 }
             }.addOnFailureListener {
                 listener.somethingWentWrong()
@@ -67,7 +69,7 @@ class CreatePostRepository(private val listener: ICreatePost) {
     }
 
     interface ICreatePost {
-        fun creatorOfEvent(name: String)
+        fun creatorOfEvent(creator: CreatorDTO)
         fun postCreated()
         fun somethingWentWrong()
     }

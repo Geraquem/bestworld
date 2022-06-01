@@ -50,9 +50,16 @@ class RViewPostsAdapter(
                 Glide.with(context).load(post.imageURL).into(bdg.postImage)
                 bdg.postImage.visibility = View.VISIBLE
             }
+
+            if (post.creatorImageURL == "") {
+                bdg.userImage.setBackgroundResource(R.drawable.ic_user_name)
+            } else {
+                Glide.with(context).load(post.creatorImageURL).into(bdg.userImage)
+            }
             bdg.userName.text = post.creatorName
             bdg.postText.text = post.text
-            bdg.likeCount.text = post.likesCount.toString()
+            bdg.likesCount.text = post.likesCount.toString()
+            bdg.commentsCount.text = post.commentsCount.toString()
         }
     }
 }

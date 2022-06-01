@@ -17,8 +17,8 @@ import com.ftbw.app.bestworld.helper.EventCommon.Companion.CREATED_EVENTS
 import com.ftbw.app.bestworld.helper.EventCommon.Companion.getLabelInEnglish
 import com.ftbw.app.bestworld.helper.EventCommon.Companion.goToEventFile
 import com.ftbw.app.bestworld.model.event.EventRecyclerDTO
-import com.ftbw.app.bestworld.view.userprofile.adapter.recyclerview.RViewUserProfileAllEventsAdapter
-import com.ftbw.app.bestworld.view.userprofile.adapter.recyclerview.RViewUserProfileEventsAdapter
+import com.ftbw.app.bestworld.view.events.adapter.recyclerview.RViewAllEventsAdapter
+import com.ftbw.app.bestworld.view.events.adapter.recyclerview.RViewEventsAdapter
 
 class UserProfileEventsRVTab(var type: String, var userKey: String) : Fragment(),
     UserProfileEventsRVTabView, AdapterView.OnItemSelectedListener {
@@ -30,8 +30,8 @@ class UserProfileEventsRVTab(var type: String, var userKey: String) : Fragment()
 
     private val presenter by lazy { UserProfileEventsRVTabPresenter(this) }
 
-    private lateinit var eventsAdapter: RViewUserProfileEventsAdapter
-    private lateinit var allEventsAdapter: RViewUserProfileAllEventsAdapter
+    private lateinit var eventsAdapter: RViewEventsAdapter
+    private lateinit var allEventsAdapter: RViewAllEventsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,7 +62,7 @@ class UserProfileEventsRVTab(var type: String, var userKey: String) : Fragment()
         } else {
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(mContext)
-            allEventsAdapter = RViewUserProfileAllEventsAdapter(
+            allEventsAdapter = RViewAllEventsAdapter(
                 { goToEventFile(mContext, it) }, mContext, events
             )
             bdg.recyclerView.adapter = allEventsAdapter
@@ -77,7 +77,7 @@ class UserProfileEventsRVTab(var type: String, var userKey: String) : Fragment()
         } else {
             bdg.suchEmpty.root.visibility = View.GONE
             bdg.recyclerView.layoutManager = LinearLayoutManager(mContext)
-            eventsAdapter = RViewUserProfileEventsAdapter(
+            eventsAdapter = RViewEventsAdapter(
                 { goToEventFile(mContext, it) }, mContext, events
             )
             bdg.recyclerView.adapter = eventsAdapter

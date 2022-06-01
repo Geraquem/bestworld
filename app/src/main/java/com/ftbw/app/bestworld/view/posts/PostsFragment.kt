@@ -13,7 +13,6 @@ import com.ftbw.app.bestworld.databinding.FragmentPostsBinding
 import com.ftbw.app.bestworld.model.post.PostDTO
 import com.ftbw.app.bestworld.view.ICommunication
 import com.ftbw.app.bestworld.view.posts.adapter.RViewPostsAdapter
-import com.ftbw.app.bestworld.view.userprofile.UserProfileFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -61,7 +60,7 @@ class PostsFragment(val listener: ICommunication) : Fragment(), PostsView {
             bdg.recyclerView.layoutManager = LinearLayoutManager(context)
             adapter = RViewPostsAdapter(
                 {
-                    listener.openFragment(UserProfileFragment(it))
+                    listener.openUserProfileFragment(it)
                 },
                 {
                     //onLikeClick
